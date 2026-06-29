@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (title && desc && infoPanel) {
                     titleEl.textContent = title;
-                    descEl.textContent = desc;
+                    descEl.innerHTML = desc;
                     infoPanel.style.display = "block";
                 } else if (infoPanel) {
                     infoPanel.style.display = "none";
