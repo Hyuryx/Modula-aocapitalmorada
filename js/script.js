@@ -106,12 +106,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById("image-modal");
     const modalImg = document.getElementById("modal-img");
     const closeBtn = document.querySelector(".modal-close");
+    
+    // Variáveis para controle do Zoom e Pan
+    let scale = 1;
+    let panning = false;
+    let pointX = 0;
+    let pointY = 0;
+    let startX = 0;
+    let startY = 0;
+
+    function resetZoom() {
+        scale = 1;
+        pointX = 0;
+        pointY = 0;
+        if (modalImg) {
+            modalImg.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+            modalImg.style.cursor = 'zoom-in';
+        }
+    }
 
     if (modal && modalImg) {
         document.querySelectorAll('.content-section img, .cards-grid img').forEach(img => {
             img.addEventListener('click', function() {
                 modal.style.display = "flex";
                 modalImg.src = this.src;
+                
+                // Reseta o zoom toda vez que abre uma nova imagem
+                resetZoom();
                 
                 // Popula o painel de informações se a imagem tiver os dados
                 const title = this.getAttribute('data-title');
@@ -130,15 +151,76 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // Evento de Scroll para Zoom
+        modalImg.addEventListener('wheel', (e) => {
+            e.preventDefault(); // Evita a rolagem da página
+            
+            // Calcula a direção do zoom (aumentar ou diminuir)
+            const delta = Math.sign(e.deltaY) * -0.2;
+            const newScale = scale + delta;
+            
+            // Limita o zoom entre 1x e 5x
+            if (newScale >= 1 && newScale <= 5) {
+                scale = newScale;
+                
+                // Se voltou ao tamanho normal, reseta a posição de arrasto
+                if (scale === 1) {
+                    pointX = 0;
+                    pointY = 0;
+                    modalImg.style.cursor = 'zoom-in';
+                } else {
+                    modalImg.style.cursor = 'grab';
+                }
+                
+                modalImg.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+            }
+        });
+
+        // Eventos para Arrastar (Pan) a imagem quando estiver com zoom
+        modalImg.addEventListener('mousedown', (e) => {
+            if (scale > 1) {
+                e.preventDefault();
+                panning = true;
+                startX = e.clientX - pointX;
+                startY = e.clientY - pointY;
+                modalImg.style.cursor = 'grabbing';
+            }
+        });
+
+        modalImg.addEventListener('mousemove', (e) => {
+            if (!panning) return;
+            e.preventDefault();
+            pointX = e.clientX - startX;
+            pointY = e.clientY - startY;
+            modalImg.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+        });
+
+        modalImg.addEventListener('mouseup', () => {
+            if (panning) {
+                panning = false;
+                modalImg.style.cursor = scale > 1 ? 'grab' : 'zoom-in';
+            }
+        });
+
+        modalImg.addEventListener('mouseleave', () => {
+            if (panning) {
+                panning = false;
+                modalImg.style.cursor = scale > 1 ? 'grab' : 'zoom-in';
+            }
+        });
+
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
                 modal.style.display = "none";
+                resetZoom();
             });
         }
 
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+            // Fecha o modal se clicar fora da imagem ou do painel de info
+            if (e.target === modal || e.target.classList.contains('modal-image-container')) {
                 modal.style.display = "none";
+                resetZoom();
             }
         });
     }
