@@ -26,16 +26,106 @@ body {
     overflow: hidden;
 }
 
+/* --- Global Navbar --- */
+.global-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(10, 10, 12, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 2000;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-logo {
+    height: 40px;
+    object-fit: contain;
+}
+
+.nav-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.nav-tabs {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+.nav-item {
+    padding: 10px 20px;
+    color: var(--text-muted);
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.nav-item:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+/* --- Global Views --- */
+.global-view {
+    position: absolute;
+    top: 70px; /* Below navbar */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 70px);
+    display: none;
+    overflow: hidden;
+}
+
+.global-view.active {
+    display: block;
+}
+
+.global-view.temp-view {
+    /* Removed background-color to show global background */
+}
+
+.global-view.temp-view.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .app-container {
     display: flex;
-    height: 100vh;
+    height: 100%;
 }
 
 /* Sidebar Styling */
 .sidebar {
     width: 250px;
-    background-color: #070707;
-    border-right: 1px solid var(--border-color);
+    background-color: rgba(7, 7, 7, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
     z-index: 100;
@@ -46,16 +136,20 @@ body {
 .sidebar::before {
     content: '';
     position: absolute;
-    top: 110px;
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - 110px);
+    height: 100%;
     background-image: url('../assets/background/sidebar.png');
     background-size: cover;
     background-position: top center;
     opacity: 0.35;
     z-index: 1;
     pointer-events: none;
+}
+
+.sidebar-cursos::before {
+    background-image: url('../assets/cursos/Siderbar.png');
 }
 
 .sidebar-header {
@@ -82,11 +176,11 @@ body {
 
 /* Entry Screen */
 .entry-screen {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-image: url('../assets/fotos/bg-inicial.jpg');
     background-color: var(--bg-dark);
     background-size: cover;
@@ -94,7 +188,7 @@ body {
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza verticalmente junto com a imagem */
+    justify-content: center;
     align-items: center;
     transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s ease;
     overflow: hidden;
@@ -307,7 +401,6 @@ body {
     width: 22px;
     height: 22px;
     fill: none;
-    stroke: currentColor;
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -366,6 +459,62 @@ body {
 }
 .flash { animation: cameraFlash 3.5s infinite; transform-origin: 19px 10px; }
 
+/* --- Animações Cursos --- */
+/* Resgate Aéreo (Radar) */
+@keyframes radarSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.sidebar-nav li:hover .icon-aereo .radar-line, .sidebar-nav li.active .icon-aereo .radar-line {
+    transform-origin: center;
+    animation: radarSpin 2s linear infinite;
+}
+.sidebar-nav li:hover .icon-aereo .radar-circle, .sidebar-nav li.active .icon-aereo .radar-circle {
+    animation: pulseScale 2s infinite ease-in-out;
+}
+
+/* Resgate Aquático (Ondas) */
+@keyframes waveFlow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-3px); }
+}
+.sidebar-nav li:hover .icon-water .water-wave1, .sidebar-nav li.active .icon-water .water-wave1 {
+    animation: waveFlow 1.5s infinite ease-in-out;
+}
+.sidebar-nav li:hover .icon-water .water-wave2, .sidebar-nav li.active .icon-water .water-wave2 {
+    animation: waveFlow 1.5s infinite ease-in-out 0.75s;
+}
+
+/* Resgate Montanha (Crescimento) */
+@keyframes mountGrow {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.15); }
+}
+.sidebar-nav li:hover .icon-mountain, .sidebar-nav li.active .icon-mountain {
+    transform-origin: bottom;
+    animation: mountGrow 2s infinite ease-in-out;
+}
+
+/* Paraquedismo (Flutuar) */
+@keyframes parachuteFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-2px) rotate(-5deg); }
+    75% { transform: translateY(2px) rotate(5deg); }
+}
+.sidebar-nav li:hover .icon-parachute, .sidebar-nav li.active .icon-parachute {
+    transform-origin: top;
+    animation: parachuteFloat 3s infinite ease-in-out;
+}
+
+/* Piloto (Voo leve) */
+@keyframes pilotHover {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+.sidebar-nav li:hover .icon-pilot, .sidebar-nav li.active .icon-pilot {
+    animation: pilotHover 2s infinite ease-in-out;
+}
+
 /* Main Content */
 .main-content {
     flex-grow: 1;
@@ -377,17 +526,24 @@ body {
 
 .background-overlay {
     position: fixed;
-    top: 0;
-    left: 250px; /* Começa exatamente após a sidebar */
-    width: calc(100vw - 250px); /* Preenche apenas o espaço restante */
-    height: 100vh;
-    background-image: url('../assets/background/background.png');
-    background-size: cover; /* Preenche toda a área sem deixar bordas pretas */
+    top: 70px; /* Abaixo da Navbar */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 70px);
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.4;
-    z-index: -1; /* Fica atrás do conteúdo */
+    z-index: -1;
     pointer-events: none;
+}
+
+.bg-default {
+    background-image: url('../assets/background/background.png');
+}
+
+.bg-cursos {
+    background-image: url('../assets/cursos/background.png');
 }
 
 .content-section {
@@ -474,6 +630,7 @@ body {
 
 .red-card {
     border-top: 4px solid var(--primary-red);
+    background-color: rgba(239, 68, 68, 0.05) !important;
 }
 
 .red-card:hover {
@@ -482,6 +639,7 @@ body {
 
 .green-card {
     border-top: 4px solid var(--primary-green);
+    background-color: rgba(16, 185, 129, 0.05) !important;
 }
 
 .green-card:hover {
@@ -490,6 +648,7 @@ body {
 
 .yellow-card {
     border-top: 4px solid #f59e0b;
+    background-color: rgba(245, 158, 11, 0.05) !important;
 }
 
 .yellow-card:hover {
@@ -498,6 +657,7 @@ body {
 
 .blue-card {
     border-top: 4px solid #3b82f6;
+    background-color: rgba(59, 130, 246, 0.05) !important;
 }
 
 .blue-card:hover {
@@ -506,6 +666,7 @@ body {
 
 .orange-card {
     border-top: 4px solid #f97316;
+    background-color: rgba(249, 115, 22, 0.05) !important;
 }
 
 .orange-card:hover {
@@ -514,6 +675,7 @@ body {
 
 .purple-card {
     border-top: 4px solid #8b5cf6;
+    background-color: rgba(139, 92, 246, 0.05) !important;
 }
 
 .purple-card:hover {
@@ -751,5 +913,131 @@ body {
     .modal-info-panel {
         min-width: unset;
         max-width: unset;
+    }
+}
+
+.bg-inicio {
+    background-image: url('../assets/inicio/inicio.png');
+    background-position: top center !important;
+    opacity: 0.5 !important;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* --- Estilos da Aba Uniformes --- */
+.bg-uniformes {
+    background-image: url('../assets/fotos/bg-inicial.jpg'); /* Fundo padrão ou atualizar se houver outro */
+    opacity: 0.15;
+}
+
+.uniform-card-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.uniform-image {
+    width: 160px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+    transition: transform 0.3s ease;
+}
+
+.uniform-image:hover {
+    transform: scale(1.05);
+}
+
+.uniform-image-full {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.q-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.q-card:hover {
+    transform: translateY(-5px);
+}
+
+.q-header {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px 20px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Color-specific headers to match the top bars */
+.green-card .q-header {
+    background: linear-gradient(to bottom, rgba(16, 185, 129, 0.2), rgba(0, 0, 0, 0.4));
+    border-top: 4px solid var(--primary-green);
+    color: #34d399;
+}
+
+.purple-card .q-header {
+    background: linear-gradient(to bottom, rgba(139, 92, 246, 0.2), rgba(0, 0, 0, 0.4));
+    border-top: 4px solid #8b5cf6;
+    color: #c4b5fd;
+}
+
+.red-card .q-header {
+    background: linear-gradient(to bottom, rgba(239, 68, 68, 0.2), rgba(0, 0, 0, 0.4));
+    border-top: 4px solid var(--primary-red);
+    color: #fca5a5;
+}
+
+.blue-card .q-header {
+    background: linear-gradient(to bottom, rgba(59, 130, 246, 0.2), rgba(0, 0, 0, 0.4));
+    border-top: 4px solid #3b82f6;
+    color: #93c5fd;
+}
+
+.q-body {
+    padding: 20px;
+}
+
+.q-body p {
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+.q-body strong {
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .uniform-card-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .uniform-image {
+        width: 120px;
     }
 }

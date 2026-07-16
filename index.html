@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,295 +11,631 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="particles" id="particles-js"></div>
-    <!-- Tela de Entrada -->
-    <div id="entry-screen" class="entry-screen">
-        
-        <div class="entry-bottom-content">
-            <div class="click-indicator" id="enter-site-btn" title="Entrar no site">
-                <div class="pulse-ring"></div>
-                <div class="pulse-dot"></div>
-            </div>
+    <!-- Global Navigation -->
+    <nav class="global-navbar">
+        <div class="nav-brand">
+            <img src="assets/fotos/logo-capital.png" alt="Logo" class="nav-logo">
+            <span class="nav-title">PORTAL CBM</span>
         </div>
-        
-        <div class="entry-footer">
-            <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
+        <ul class="nav-tabs">
+            <li class="nav-item active" data-global-target="view-inicio">INÍCIO</li>
+            <li class="nav-item" data-global-target="view-cursos">CURSOS</li>
+            <li class="nav-item" data-global-target="view-uniformes">UNIFORMES</li>
+            <li class="nav-item" data-global-target="view-modulacao">MODULAÇÃO</li>
+            <li class="nav-item" data-global-target="view-avisos">AVISOS GERAIS</li>
+            <li class="nav-item" data-global-target="view-planilhas">PLANILHAS</li>
+            <li class="nav-item" data-global-target="view-viaturas">VIATURAS</li>
+            <li class="nav-item" data-global-target="view-regras">REGRAS</li>
+            <li class="nav-item" data-global-target="view-galeria">GALERIA</li>
+        </ul>
+    </nav>
+
+    <div class="particles" id="particles-js"></div>
+
+    <!-- Tela de Início (Temporária) -->
+    <div id="view-inicio" class="global-view temp-view active">
+        <div class="background-overlay bg-inicio"></div>
+    </div>
+
+    <!-- Novas Abas Temporárias -->
+    <div id="view-cursos" class="global-view" style="display: none;">
+        <div class="background-overlay bg-cursos"></div>
+        <div class="app-container">
+            <!-- Sidebar Cursos -->
+            <aside class="sidebar sidebar-cursos">
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li class="active" data-target="curso-aereo">
+                            <svg class="anim-icon icon-aereo" viewBox="0 0 24 24" stroke="#3b82f6">
+                                <circle class="radar-circle" cx="12" cy="12" r="10"></circle>
+                                <path class="radar-line" d="M12 2v20M2 12h20"></path>
+                            </svg> Resgate Aéreo
+                        </li>
+                        <li data-target="curso-aquatico">
+                            <svg class="anim-icon icon-water" viewBox="0 0 24 24" stroke="#0ea5e9">
+                                <path class="water-wave1" d="M2 12c2 0 4-4 8-4s6 4 8 4 6-4 8-4"></path>
+                                <path class="water-wave2" d="M2 16c2 0 4-4 8-4s6 4 8 4 6-4 8-4"></path>
+                            </svg> Resgate Aquático
+                        </li>
+                        <li data-target="curso-montanha">
+                            <svg class="anim-icon icon-mountain" viewBox="0 0 24 24" stroke="#10b981">
+                                <path class="mountain-path" d="M1 20l7-12 5 8 4-5 6 9z"></path>
+                            </svg> Resgate Montanha
+                        </li>
+                        <li data-target="curso-paraquedismo">
+                            <svg class="anim-icon icon-parachute" viewBox="0 0 24 24" stroke="#f59e0b">
+                                <path class="parachute-top" d="M12 2C6.48 2 2 6.48 2 12h20c0-5.52-4.48-10-10-10z">
+                                </path>
+                                <path class="parachute-cord" d="M12 12v10"></path>
+                            </svg> Paraquedismo
+                        </li>
+                        <li data-target="curso-piloto">
+                            <svg class="anim-icon icon-pilot" viewBox="0 0 24 24" stroke="#ef4444">
+                                <circle class="pilot-head" cx="12" cy="8" r="4"></circle>
+                                <path class="pilot-body" d="M4 22v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"></path>
+                            </svg> Piloto
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content Cursos -->
+            <main class="main-content">
+                <section id="curso-aereo" class="content-section active">
+                    <header class="section-header">
+                        <h1>Resgate Aéreo</h1>
+                        <p>"Quando o acesso terrestre termina, começa a missão da equipe aérea."</p>
+                    </header>
+
+                    <div class="content-box" style="padding: 10px; background: transparent; border: none; box-shadow: none; display: flex; justify-content: center;">
+                        <img src="assets/cursos/aereo/1.png" alt="Curso de Resgate Aéreo" style="width: 100%; max-width: 600px; border-radius: 8px;">
+                    </div>
+
+                    <div class="cards-grid" style="margin-top: 20px;">
+                        <div class="card info-card blue-card" style="grid-column: 1 / -1;">
+                            <h3>O Curso de Resgate Aéreo</h3>
+                            <p>É uma das especializações mais prestigiadas do Corpo de Bombeiros, destinada aos militares que desejam atuar em operações de alta complexidade utilizando aeronaves como principal meio de resposta.<br><br>
+                            A formação prepara o operador para realizar resgates em locais de difícil acesso, prestar apoio em grandes ocorrências, transportar vítimas em estado crítico e atuar em conjunto com pilotos e equipes terrestres. Cada missão exige disciplina, preparo técnico, comunicação eficiente e total comprometimento com a segurança operacional.<br><br>
+                            Ao concluir todas as etapas, o militar estará apto a integrar oficialmente a equipe de Resgate Aéreo da corporação.</p>
+                        </div>
+                        
+                        <div class="card info-card green-card">
+                            <h3>Objetivo do Curso</h3>
+                            <p>Capacitar o militar para atuar em operações aéreas de salvamento, desenvolvendo conhecimentos técnicos, habilidades práticas e capacidade de tomada de decisão em ambientes de alta complexidade.</p>
+                        </div>
+                        
+                        <div class="card info-card orange-card">
+                            <h3>Requisitos</h3>
+                            <p>Para ingressar no Curso de Resgate Aéreo, o militar deverá:</p>
+                            <ul style="margin-top: 8px; margin-left: 20px; color: var(--text-muted);">
+                                <li>Estar devidamente ativo na corporação;</li>
+                                <li>Demonstrar disciplina e comprometimento;</li>
+                                <li>Possuir bom desempenho operacional;</li>
+                                <li>Ter aprovação da coordenação de cursos, quando necessário.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h2 style="margin: 30px 0 15px; font-size: 1.5rem; color: #fff;">Estrutura do Curso</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">O Curso de Resgate Aéreo é dividido em três fases eliminatórias, onde cada etapa avalia diferentes competências do aluno. Somente os militares aprovados em uma fase poderão prosseguir para a seguinte.</p>
+
+                    <div class="cards-grid">
+                        <!-- FASE I -->
+                        <div class="card info-card purple-card" style="grid-column: 1 / -1;">
+                            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+                                <img src="assets/cursos/aereo/2.png" alt="Fase I - Solo" style="width: 100%; max-width: 350px; border-radius: 8px;">
+                                <div style="flex: 1; min-width: 300px;">
+                                    <h3>FASE I — Solo (Doutrina Operacional)</h3>
+                                    <p><strong>Objetivo:</strong> Apresentar ao aluno todos os fundamentos necessários para atuação em operações aéreas.</p>
+                                    <p style="margin-top: 10px;"><strong>Conteúdo:</strong></p>
+                                    <ul style="margin-top: 5px; margin-left: 20px; color: var(--text-muted);">
+                                        <li>Introdução ao Resgate Aéreo;</li>
+                                        <li>Normas de segurança operacional;</li>
+                                        <li>Equipamentos utilizados;</li>
+                                        <li>Comunicação entre piloto e operador;</li>
+                                        <li>Procedimentos de embarque e desembarque;</li>
+                                        <li>Organização da equipe durante a missão.</li>
+                                    </ul>
+                                    <p style="margin-top: 10px;"><strong>Avaliação:</strong> O militar deverá demonstrar conhecimento teórico e executar corretamente todos os procedimentos básicos apresentados durante a instrução.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FASE II -->
+                        <div class="card info-card yellow-card" style="grid-column: 1 / -1;">
+                            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+                                <img src="assets/cursos/aereo/3.png" alt="Fase II - Asas" style="width: 100%; max-width: 350px; border-radius: 8px;">
+                                <div style="flex: 1; min-width: 300px;">
+                                    <h3>FASE II — Asas (Adaptação Aérea)</h3>
+                                    <p>Após concluir a etapa de fundamentos, o militar inicia o treinamento prático em operações aéreas, enfrentando cenários que exigem precisão na pilotagem, estabilidade da aeronave e perfeita coordenação entre piloto e operador.</p>
+                                    <p style="margin-top: 10px;">Nesta fase, o foco é desenvolver a confiança em voo e preparar a equipe para atuar em ambientes complexos, principalmente sobre áreas aquáticas e regiões de difícil acesso.</p>
+                                    <p style="margin-top: 10px;"><strong>Durante esta etapa serão realizados treinamentos como:</strong></p>
+                                    <ul style="margin-top: 5px; margin-left: 20px; color: var(--text-muted);">
+                                        <li>Sobrevoo em baixa altitude sobre rios, lagos e áreas costeiras;</li>
+                                        <li>Passagem controlada sob pontes e obstáculos para avaliação da estabilidade da aeronave;</li>
+                                        <li>Simulações de resgate aquático utilizando o helicóptero como plataforma de apoio;</li>
+                                        <li>Extração e transporte de vítimas em áreas alagadas ou de difícil acesso;</li>
+                                        <li>Coordenação entre equipes aéreas, aquáticas e terrestres durante a operação;</li>
+                                        <li>Procedimentos de comunicação e tomada de decisão sob pressão.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FASE III -->
+                        <div class="card info-card red-card" style="grid-column: 1 / -1;">
+                            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+                                <img src="assets/cursos/aereo/4.png" alt="Fase III - Águia" style="width: 100%; max-width: 350px; border-radius: 8px;">
+                                <div style="flex: 1; min-width: 300px;">
+                                    <h3>FASE III — Águia (Missão de Certificação)</h3>
+                                    <p>A última fase representa uma operação completa. O aluno será colocado diante de diferentes cenários de emergência onde deverá aplicar todos os conhecimentos adquiridos durante o curso.</p>
+                                    <p style="margin-top: 10px;"><strong>As ocorrências poderão envolver:</strong></p>
+                                    <ul style="margin-top: 5px; margin-left: 20px; color: var(--text-muted);">
+                                        <li>Acidentes em áreas de difícil acesso;</li>
+                                        <li>Resgates em montanhas;</li>
+                                        <li>Apoio em desastres naturais;</li>
+                                        <li>Evacuação aeromédica;</li>
+                                        <li>Transporte emergencial de vítimas.</li>
+                                    </ul>
+                                    <p style="margin-top: 10px;">Nesta etapa será avaliada toda a postura operacional do militar.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 style="margin: 30px 0 15px; font-size: 1.5rem; color: #fff;">Critérios de Aprovação & Certificação</h2>
+
+                    <div class="cards-grid">
+                        <div class="card info-card green-card">
+                            <h3>Critérios Avaliados</h3>
+                            <p>O militar deverá obter desempenho satisfatório em todas as fases para receber sua certificação, sendo avaliado em:</p>
+                            <ul style="margin-top: 8px; margin-left: 20px; color: var(--text-muted);">
+                                <li>Disciplina e Trabalho em equipe;</li>
+                                <li>Comunicação e Segurança operacional;</li>
+                                <li>Conhecimento técnico e Cumprimento dos protocolos;</li>
+                                <li>Controle emocional e Tomada de decisão.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card info-card blue-card">
+                            <h3>Competências Desenvolvidas</h3>
+                            <ul style="margin-top: 8px; margin-left: 20px; color: var(--text-muted);">
+                                <li>Liderança operacional;</li>
+                                <li>Comunicação eficiente;</li>
+                                <li>Trabalho em equipe e Gestão de riscos;</li>
+                                <li>Rapidez na tomada de decisões;</li>
+                                <li>Precisão técnica e Organização operacional;</li>
+                                <li>Controle emocional em situações críticas.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="cards-grid" style="margin-top: 20px;">
+                        <div class="card info-card purple-card" style="grid-column: 1 / -1;">
+                            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                                <img src="assets/cursos/aereo/5.png" alt="Certificação" style="width: 100%; max-width: 400px; border-radius: 8px;">
+                                <div style="flex: 1; min-width: 300px;">
+                                    <h3>Após a Certificação</h3>
+                                    <p>Ao concluir o Curso de Resgate Aéreo, o militar estará autorizado a integrar oficialmente a equipe, participar de operações com aeronaves, apoiar ocorrências complexas, realizar transporte aeromédico e auxiliar outras equipes especializadas.</p>
+                                    <h3 style="margin-top: 15px;">Importância da Especialização</h3>
+                                    <p>O Resgate Aéreo representa uma das áreas mais estratégicas da corporação. Sua atuação possibilita alcançar locais inacessíveis por vias terrestres, reduzir significativamente o tempo de resposta e aumentar as chances de sucesso em operações de salvamento.</p>
+                                    <p style="margin-top: 10px; font-size: 1.1rem; color: var(--primary-green); font-style: italic; text-align: center;">"Voamos acima dos obstáculos para chegar onde a esperança ainda precisa pousar."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="curso-aquatico" class="content-section">
+                    <header class="section-header">
+                        <h1>Resgate Aquático</h1>
+                        <p>Técnicas de salvamento em mar, rios e áreas alagadas.</p>
+                    </header>
+                    <div class="content-box">
+                        <p><em>(Conteúdo em construção)</em></p>
+                    </div>
+                </section>
+
+                <section id="curso-montanha" class="content-section">
+                    <header class="section-header">
+                        <h1>Resgate Montanha</h1>
+                        <p>Operações de busca e salvamento em altura e terrenos irregulares.</p>
+                    </header>
+                    <div class="content-box">
+                        <p><em>(Conteúdo em construção)</em></p>
+                    </div>
+                </section>
+
+                <section id="curso-paraquedismo" class="content-section">
+                    <header class="section-header">
+                        <h1>Paraquedismo</h1>
+                        <p>Formação e capacitação em saltos táticos e de resgate.</p>
+                    </header>
+                    <div class="content-box">
+                        <p><em>(Conteúdo em construção)</em></p>
+                    </div>
+                </section>
+
+                <section id="curso-piloto" class="content-section">
+                    <header class="section-header">
+                        <h1>Piloto</h1>
+                        <p>Instruções e qualificações para pilotagem de aeronaves do CBM.</p>
+                    </header>
+                    <div class="content-box">
+                        <p><em>(Conteúdo em construção)</em></p>
+                    </div>
+                </section>
+
+                <footer class="site-footer">
+                    <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
+                </footer>
+            </main>
         </div>
     </div>
 
-    <div class="app-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <img src="assets/fotos/logo-capital.png" alt="Capital Morada" class="sidebar-logo">
-            </div>
-            
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class="active" data-target="home">
-                        <svg class="anim-icon icon-home" viewBox="0 0 24 24" stroke="#00d2ff">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                        </svg> Início
-                    </li>
-                    <li data-target="codigos-q">
-                        <svg class="anim-icon icon-q-code" viewBox="0 0 24 24" stroke="#10b981">
-                            <circle cx="9" cy="12" r="5"></circle>
-                            <line x1="12.5" y1="15.5" x2="15" y2="18"></line>
-                            <path class="wave1" d="M17 9c1 1 1 3 0 4"></path>
-                            <path class="wave2" d="M20 7c2 2 2 6 0 8"></path>
-                        </svg> Códigos Q
-                    </li>
-                    <li data-target="alfabeto-fonetico">
-                        <svg class="anim-icon icon-head" viewBox="0 0 24 24" stroke="#b142ff">
-                            <circle cx="8" cy="8" r="4"></circle>
-                            <path d="M8 14c-4 0-6 2-6 6h12c0-4-2-6-6-6z"></path>
-                            <path class="wave1" d="M15 8c1.5 1.5 1.5 4.5 0 6"></path>
-                            <path class="wave2" d="M18 5c3 3 3 9 0 12"></path>
-                        </svg> Alfabeto Fonético
-                    </li>
-                    <li data-target="numeracao-fonetica">
-                        <svg class="anim-icon icon-number" viewBox="0 0 24 24" stroke="#ff8c00">
-                            <text x="4" y="18" font-size="18" font-family="monospace" font-weight="bold" fill="none" stroke="#ff8c00">7</text>
-                            <path class="wave1" d="M14 8c1.5 1.5 1.5 4.5 0 6"></path>
-                            <path class="wave2" d="M17 5c3 3 3 9 0 12"></path>
-                        </svg> Numeração Fonética
-                    </li>
-                    <li data-target="padrao-radio">
-                        <svg class="anim-icon icon-radio" viewBox="0 0 24 24" stroke="#fde047">
-                            <rect x="6" y="8" width="10" height="14" rx="2"></rect>
-                            <line x1="9" y1="8" x2="9" y2="3"></line>
-                            <path class="wave1" d="M14 4c1 1 1 3 0 4"></path>
-                            <path class="wave2" d="M17 2c2 2 2 6 0 8"></path>
-                        </svg> Padrão de Rádio
-                    </li>
-                    <li data-target="viaturas-qsv">
-                        <svg class="anim-icon icon-car" viewBox="0 0 24 24" stroke="#ef4444">
-                            <path class="siren-blue" d="M10 8h1.5v2h-1.5z" stroke="#3b82f6" fill="#3b82f6"></path>
-                            <path class="siren-red" d="M12.5 8h1.5v2h-1.5z" stroke="#ef4444" fill="#ef4444"></path>
-                            <path class="car-body" d="M5 13l1.5-4.5A2 2 0 0 1 8.4 7h7.2a2 2 0 0 1 1.9 1.5L19 13"></path>
-                            <path class="car-body" d="M2 13h20v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4z"></path>
-                            <circle class="car-wheel" cx="6" cy="19" r="2" stroke="#fff"></circle>
-                            <circle class="car-wheel" cx="18" cy="19" r="2" stroke="#fff"></circle>
-                            <line class="speed-line1" x1="0" y1="15" x2="-4" y2="15" stroke="#fff"></line>
-                            <line class="speed-line2" x1="2" y1="17" x2="-2" y2="17" stroke="#fff"></line>
-                        </svg> Viaturas (QSV)
-                    </li>
-                    <li data-target="regras-condutas">
-                        <svg class="anim-icon icon-rules" viewBox="0 0 24 24" stroke="#e5e7eb">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line class="pen-write1" x1="8" y1="13" x2="16" y2="13"></line>
-                            <line class="pen-write2" x1="8" y1="17" x2="12" y2="17"></line>
-                        </svg> Regras
-                    </li>
-                    <li data-target="galeria">
-                        <svg class="anim-icon icon-camera" viewBox="0 0 24 24" stroke="#ec4899">
-                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                            <circle cx="12" cy="13" r="4"></circle>
-                            <circle class="flash" cx="19" cy="10" r="1.5" fill="#fff" stroke="none"></circle>
-                        </svg> Galeria
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <div class="background-overlay"></div>
-            
-            <section id="home" class="content-section active">
+    <div id="view-uniformes" class="global-view" style="display: none;">
+        <div class="background-overlay bg-uniformes"></div>
+        <main class="main-content" style="height: 100%; overflow-y: auto;">
+            <section class="content-section active">
                 <header class="section-header">
-                    <h1>Apresentação</h1>
-                    <p>Apostila Geral de Modulação - Capital Morada</p>
+                    <h1>Uniformes e Fardamentos</h1>
+                    <p>Catálogo oficial de uniformes do Corpo de Bombeiros Capital Morada.</p>
                 </header>
                 <div class="cards-grid">
-                    <div class="card info-card red-card">
-                        <h3>Objetivo da Apostila</h3>
-                        <p>Orientar os membros sobre como modular corretamente, como organizar informações pelo rádio, códigos a utilizar, e como reconhecer as principais viaturas. Guia prático atualizável.</p>
-                    </div>
                     <div class="card info-card green-card">
-                        <h3>O que é modulação?</h3>
-                        <p>Forma correta de se comunicar pelo rádio. Significa transmitir informações de maneira clara, objetiva, organizada e compreensível para todos na ocorrência.</p>
+                        <h3>SOLDADO E CABO</h3>
+                        <img src="assets/uniformes/1.png" alt="Soldado e Cabo" data-title="SOLDADO E CABO"
+                            data-desc="<div class='modal-info-item'><strong style='color: #3b82f6;'>Masculino:</strong><p>Mãos - 30<br>Calça - 341 2<br>Sapato - 150<br>Mochila - 163<br>Jaqueta - 796<br>Mascara - 120 (Opcional)<br>Chapéu - 280 (Opcional)<br>Brincos - 1</p></div><div class='modal-info-item'><strong style='color: #ec4899;'>Feminino:</strong><p>Mãos - 44<br>Calça - 471<br>Sapato - 159<br>Camisa - 15<br>Jaqueta - 1047 2<br>Mochila - 197<br>Brincos - 1</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
                     <div class="card info-card blue-card">
-                        <h3>Princípios Básicos</h3>
-                        <p><strong>Clareza:</strong> Fale sem pressa e sem cortar palavras.<br>
-                        <strong>Objetividade:</strong> Transmita somente o necessário.<br>
-                        <strong>Organização:</strong> Identifique quem chama e quem recebe.<br>
-                        <strong>Respeito:</strong> Postura profissional na frequência.</p>
-                    </div>
-                    <div class="card info-card orange-card">
-                        <h3>Na prática, modular é informar:</h3>
-                        <p>1. Quem está falando<br>2. Para quem é a mensagem<br>3. Qual é a situação<br>4. Onde está acontecendo<br>5. Qual apoio é necessário</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="codigos-q" class="content-section">
-                <header class="section-header">
-                    <h1>Códigos Q</h1>
-                    <p>Conjunto de abreviações para tornar a comunicação rápida e padronizada.</p>
-                </header>
-                <div class="content-box" style="padding: 10px; background: transparent; border: none; box-shadow: none; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-                    <img src="assets/codigos de comunicaçao/codigoq.png" alt="Guia Visual Código Q" style="max-width: 48%; border-radius: 8px; cursor: pointer; flex: 1 1 300px;">
-                    <img src="assets/codigos de comunicaçao/codigo_de_intensidade.png" alt="Código de Intensidade" style="max-width: 48%; border-radius: 8px; cursor: pointer; flex: 1 1 300px;">
-                </div>
-                
-                <h2 style="margin: 20px 0 10px; font-size: 1.2rem; color: #fff;">Códigos Mais Importantes</h2>
-                <div class="cards-grid">
-                    <div class="card info-card blue-card">
-                        <h3>QAP</h3>
-                        <p>Está na escuta? Verifica se alguém está ouvindo.<br><em>"Bombeiro 01, QAP?"</em></p>
-                    </div>
-                    <div class="card info-card green-card">
-                        <h3>QSL</h3>
-                        <p>Entendido / Mensagem recebida.<br><em>"QSL, em deslocamento."</em></p>
-                    </div>
-                    <div class="card info-card yellow-card">
-                        <h3>QTH</h3>
-                        <p>Localização / Endereço.<br><em>"Informe seu QTH."</em></p>
-                    </div>
-                    <div class="card info-card orange-card">
-                        <h3>QTI</h3>
-                        <p>Rota / Deslocamento.<br><em>"Equipe em QTI sentido hospital."</em></p>
+                        <h3>SARGENTO 2, SARGENTO 1 E SUBTENENTE</h3>
+                        <img src="assets/uniformes/2.png" alt="Sargento e Subtenente"
+                            data-title="SARGENTO 2, SARGENTO 1 E SUBTENENTE"
+                            data-desc="<div class='modal-info-item'><strong style='color: #3b82f6;'>Masculino:</strong><p>Mãos - 30<br>Calça - 341 2<br>Sapato - 150<br>Camisa - 288 1<br>Jaqueta - 799<br>Brincos - 1</p></div><div class='modal-info-item'><strong style='color: #ec4899;'>Feminino:</strong><p>Mãos - 44<br>Calça - 471<br>Sapato - 159<br>Camisa - 576 2<br>Jaqueta - 1050<br>Brincos - 1</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
                     <div class="card info-card purple-card">
-                        <h3>QRR</h3>
-                        <p>Pedido de apoio / Reforço.<br><em>"Solicito QRR no QTH."</em></p>
+                        <h3>ASPIRANTE, TENENTE 2 E TENENTE 1</h3>
+                        <img src="assets/uniformes/3.png" alt="Tenente" data-title="ASPIRANTE, TENENTE 2 E TENENTE 1"
+                            data-desc="<div class='modal-info-item'><strong style='color: #3b82f6;'>Masculino:</strong><p>Mãos - 30<br>Calça - 341 2<br>Sapato - 150<br>Camisa - 288 1<br>Jaqueta - 796 1<br>Brincos - 1</p></div><div class='modal-info-item'><strong style='color: #ec4899;'>Feminino:</strong><p>Mãos - 44<br>Calça - 471<br>Sapato - 159<br>Camisa - 576 2<br>Jaqueta - 1047 2<br>Brincos - 1</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
+                    </div>
+                    <div class="card info-card orange-card">
+                        <h3>UNIFORME DE RESGATE AÉREO 1</h3>
+                        <img src="assets/uniformes/4.png" alt="Resgate Aéreo" data-title="UNIFORME DE RESGATE AÉREO 1"
+                            data-desc="<div class='modal-info-item'><strong style='color: #3b82f6;'>Masculino:</strong><p>Mãos - 31<br>Calça - 195 1<br>Sapato - 145 1<br>Colar - 112<br>Camisa - 297<br>Jaqueta - 797<br>Chapéu - 115 (Opcional)<br>Brincos - 1</p></div><div class='modal-info-item'><strong style='color: #ec4899;'>Feminino:</strong><p>Mãos - 44<br>Calça - 474<br>Sapato - 159<br>Jaqueta - 1048<br>Brincos - 1</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
                     <div class="card info-card red-card">
-                        <h3>QSM</h3>
-                        <p>Repita a mensagem. Usado quando falha.<br><em>"QSM, transmissão cortada."</em></p>
-                    </div>
-                    <div class="card info-card blue-card">
-                        <h3>QRX</h3>
-                        <p>Aguarde. Momento antes de responder.<br><em>"QRX, verificando a vítima."</em></p>
-                    </div>
-                    <div class="card info-card yellow-card">
-                        <h3>QTO / QTX / QRT</h3>
-                        <p><strong>QTO:</strong> Deslocando/Saindo.<br><strong>QTX:</strong> Manter acompanhamento.<br><strong>QRT:</strong> Encerrar transmissão.</p>
+                        <h3>UNIFORME DE RESGATE AÉREO 2</h3>
+                        <img src="assets/uniformes/5.png" alt="Resgate Aéreo 2" data-title="UNIFORME DE RESGATE AÉREO 2"
+                            data-desc="<div class='modal-info-item'><strong style='color: #3b82f6;'>Masculino:</strong><p>Mãos - 33<br>Calça - 341 2<br>Sapato - 150<br>Camisa - 294<br>Jaqueta - 798<br>Brincos - 1</p></div><div class='modal-info-item'><strong style='color: #ec4899;'>Feminino:</strong><p>Mãos - 36<br>Calça - 474<br>Sapato - 159<br>Camisa - 2<br>Jaqueta - 1049<br>Brincos - 1</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
                 </div>
             </section>
+        </main>
+    </div>
 
-            <section id="alfabeto-fonetico" class="content-section">
-                <header class="section-header">
-                    <h1>Alfabeto Fonético</h1>
-                    <p>Utilizado para soletrar nomes, placas, e endereços com precisão.</p>
-                </header>
-                <div class="content-box" style="padding: 10px; background: transparent; border: none; box-shadow: none;">
-                    <img src="assets/codigos de comunicaçao/fonetico.png" alt="Guia Alfabeto Fonético" style="max-width: 100%; border-radius: 8px;">
-                </div>
-                
-                <h2 style="margin: 20px 0 10px; font-size: 1.2rem; color: #fff;">Tabela Fonética</h2>
-                <div class="card info-card purple-card" style="width: 100%;">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 15px; text-align: center;">
-                        <div><strong style="color: var(--primary-green);">A</strong><br>Alfa</div>
-                        <div><strong style="color: var(--primary-green);">B</strong><br>Bravo</div>
-                        <div><strong style="color: var(--primary-green);">C</strong><br>Charlie</div>
-                        <div><strong style="color: var(--primary-green);">D</strong><br>Delta</div>
-                        <div><strong style="color: var(--primary-green);">E</strong><br>Echo</div>
-                        <div><strong style="color: var(--primary-green);">F</strong><br>Fox</div>
-                        <div><strong style="color: var(--primary-green);">G</strong><br>Golf</div>
-                        <div><strong style="color: var(--primary-green);">H</strong><br>Hotel</div>
-                        <div><strong style="color: var(--primary-green);">I</strong><br>Índia</div>
-                        <div><strong style="color: var(--primary-green);">J</strong><br>Juliet</div>
-                        <div><strong style="color: var(--primary-green);">K</strong><br>Kilo</div>
-                        <div><strong style="color: var(--primary-green);">L</strong><br>Lima</div>
-                        <div><strong style="color: var(--primary-green);">M</strong><br>Mike</div>
-                        <div><strong style="color: var(--primary-green);">N</strong><br>November</div>
-                        <div><strong style="color: var(--primary-green);">O</strong><br>Oscar</div>
-                        <div><strong style="color: var(--primary-green);">P</strong><br>Papa</div>
-                        <div><strong style="color: var(--primary-green);">Q</strong><br>Quebec</div>
-                        <div><strong style="color: var(--primary-green);">R</strong><br>Romeu</div>
-                        <div><strong style="color: var(--primary-green);">S</strong><br>Sierra</div>
-                        <div><strong style="color: var(--primary-green);">T</strong><br>Tango</div>
-                        <div><strong style="color: var(--primary-green);">U</strong><br>Uniform</div>
-                        <div><strong style="color: var(--primary-green);">V</strong><br>Victor</div>
-                        <div><strong style="color: var(--primary-green);">W</strong><br>Whiskey</div>
-                        <div><strong style="color: var(--primary-green);">X</strong><br>X-Ray</div>
-                        <div><strong style="color: var(--primary-green);">Y</strong><br>Yankee</div>
-                        <div><strong style="color: var(--primary-green);">Z</strong><br>Zulu</div>
-                    </div>
-                </div>
-            </section>
+    <div id="view-avisos" class="global-view temp-view">
+        <div class="background-overlay bg-default"></div>
+        <h1 style="color: #fff; font-size: 4rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2);">
+            AVISOS GERAIS</h1>
+    </div>
 
-            <section id="numeracao-fonetica" class="content-section">
-                <header class="section-header">
-                    <h1>Numeração Fonética</h1>
-                    <p>Padroniza a transmissão dos números pelo rádio.</p>
-                </header>
-                <div class="content-box" style="padding: 10px; background: transparent; border: none; box-shadow: none;">
-                    <img src="assets/codigos de comunicaçao/numeros.png" alt="Guia Numeração Fonética" style="max-width: 100%; border-radius: 8px;">
-                </div>
-                
-                <h2 style="margin: 20px 0 10px; font-size: 1.2rem; color: #fff;">Tabela Numérica</h2>
-                <div class="card info-card blue-card" style="width: 100%;">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 15px; text-align: center;">
-                        <div><strong style="color: var(--primary-green); font-size: 1.2rem;">1</strong><br>Primeiro</div>
-                        <div><strong style="color: var(--primary-green); font-size: 1.2rem;">2</strong><br>Segundo</div>
-                        <div><strong style="color: var(--primary-green); font-size: 1.2rem;">3</strong><br>Terceiro</div>
-                        <div><strong style="color: var(--primary-green); font-size: 1.2rem;">4</strong><br>Quarto</div>
-                        <div><strong style="color: var(--primary-green); font-size: 1.2rem;">5</strong><br>Quinto</div>
-                        <div><strong style="color: var(--primary-green); font-size: 1.2rem;">6</strong><br>Sexto</div>
-                        <div><strong style="color: var(--primary-green); font-size: 1.2rem;">7</strong><br>Sétimo</div>
-                        <div><strong style="color: var(--primary-green); font-size: 1.2rem;">8</strong><br>Oitavo</div>
-                        <div><strong style="color: var(--primary-green); font-size: 1.2rem;">9</strong><br>Nono</div>
-                        <div><strong style="color: var(--primary-green); font-size: 1.2rem;">0</strong><br>Nulo / Negativo</div>
-                    </div>
-                </div>
-            </section>
+    <div id="view-planilhas" class="global-view temp-view">
+        <div class="background-overlay bg-default"></div>
+        <h1 style="color: #fff; font-size: 4rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2);">
+            PLANILHAS</h1>
+    </div>
 
-            <section id="padrao-radio" class="content-section">
-                <header class="section-header">
-                    <h1>Padrão de Comunicações CBM</h1>
-                    <p>Modelos visuais de comunicação para situações comuns de serviço.</p>
-                </header>
-                <div class="cards-grid" style="padding: 10px;">
-                    <img src="assets/comunicaçao de entrada e saida de serviço/comunicaçao.png" alt="Comunicação CBM" style="max-width: 100%; border-radius: 8px;">
-                    <img src="assets/comunicaçao de entrada e saida de serviço/radio_entrada_e_saida.png" alt="Entrada e Saída" style="max-width: 100%; border-radius: 8px;">
-                    <img src="assets/comunicaçao de entrada e saida de serviço/pausa.png" alt="Pausa" style="max-width: 100%; border-radius: 8px;">
-                    <img src="assets/comunicaçao de entrada e saida de serviço/deslocamento.png" alt="Deslocamento" style="max-width: 100%; border-radius: 8px;">
-                </div>
-                <div class="cards-grid" style="margin-top: 20px;">
-                    <div class="card info-card purple-card">
-                        <h3>Comunicação Voltada ao Bombeiro</h3>
-                        <p>Foco em assistência, orientação, cuidado e segurança da vítima. Diferente da policial, o contato inicial deve buscar acalmar e prestar apoio. Informe apenas dados necessários: local, tipo, vítimas, riscos, apoio.</p>
+    <div id="view-modulacao" class="global-view" style="display: none;">
+        <div class="background-overlay bg-default"></div>
+
+        <div class="app-container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li class="active" data-target="home">
+                            <svg class="anim-icon icon-home" viewBox="0 0 24 24" stroke="#00d2ff">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg> Início
+                        </li>
+                        <li data-target="codigos-q">
+                            <svg class="anim-icon icon-q-code" viewBox="0 0 24 24" stroke="#10b981">
+                                <circle cx="9" cy="12" r="5"></circle>
+                                <line x1="12.5" y1="15.5" x2="15" y2="18"></line>
+                                <path class="wave1" d="M17 9c1 1 1 3 0 4"></path>
+                                <path class="wave2" d="M20 7c2 2 2 6 0 8"></path>
+                            </svg> Códigos Q
+                        </li>
+                        <li data-target="alfabeto-fonetico">
+                            <svg class="anim-icon icon-head" viewBox="0 0 24 24" stroke="#b142ff">
+                                <circle cx="8" cy="8" r="4"></circle>
+                                <path d="M8 14c-4 0-6 2-6 6h12c0-4-2-6-6-6z"></path>
+                                <path class="wave1" d="M15 8c1.5 1.5 1.5 4.5 0 6"></path>
+                                <path class="wave2" d="M18 5c3 3 3 9 0 12"></path>
+                            </svg> Alfabeto Fonético
+                        </li>
+                        <li data-target="numeracao-fonetica">
+                            <svg class="anim-icon icon-number" viewBox="0 0 24 24" stroke="#ff8c00">
+                                <text x="4" y="18" font-size="18" font-family="monospace" font-weight="bold" fill="none"
+                                    stroke="#ff8c00">7</text>
+                                <path class="wave1" d="M14 8c1.5 1.5 1.5 4.5 0 6"></path>
+                                <path class="wave2" d="M17 5c3 3 3 9 0 12"></path>
+                            </svg> Numeração Fonética
+                        </li>
+                        <li data-target="padrao-radio">
+                            <svg class="anim-icon icon-radio" viewBox="0 0 24 24" stroke="#fde047">
+                                <rect x="6" y="8" width="10" height="14" rx="2"></rect>
+                                <line x1="9" y1="8" x2="9" y2="3"></line>
+                                <path class="wave1" d="M14 4c1 1 1 3 0 4"></path>
+                                <path class="wave2" d="M17 2c2 2 2 6 0 8"></path>
+                            </svg> Padrão de Rádio
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+
+                <section id="home" class="content-section active">
+                    <header class="section-header">
+                        <h1>Apresentação</h1>
+                        <p>Apostila Geral de Modulação - Capital Morada</p>
+                    </header>
+                    <div class="cards-grid">
+                        <div class="card info-card red-card">
+                            <h3>Objetivo da Apostila</h3>
+                            <p>Orientar os membros sobre como modular corretamente, como organizar informações pelo
+                                rádio, códigos a utilizar, e como reconhecer as principais viaturas. Guia prático
+                                atualizável.</p>
+                        </div>
+                        <div class="card info-card green-card">
+                            <h3>O que é modulação?</h3>
+                            <p>Forma correta de se comunicar pelo rádio. Significa transmitir informações de maneira
+                                clara, objetiva, organizada e compreensível para todos na ocorrência.</p>
+                        </div>
+                        <div class="card info-card blue-card">
+                            <h3>Princípios Básicos</h3>
+                            <p><strong>Clareza:</strong> Fale sem pressa e sem cortar palavras.<br>
+                                <strong>Objetividade:</strong> Transmita somente o necessário.<br>
+                                <strong>Organização:</strong> Identifique quem chama e quem recebe.<br>
+                                <strong>Respeito:</strong> Postura profissional na frequência.
+                            </p>
+                        </div>
+                        <div class="card info-card orange-card">
+                            <h3>Na prática, modular é informar:</h3>
+                            <p>1. Quem está falando<br>2. Para quem é a mensagem<br>3. Qual é a situação<br>4. Onde está
+                                acontecendo<br>5. Qual apoio é necessário</p>
+                        </div>
                     </div>
-                    <div class="card info-card yellow-card">
-                        <h3>Boas Práticas</h3>
-                        <p>Mantenha tom calmo; evite expor dados desnecessários; não grite; não discuta; confirme com QSL; peça QSM quando necessário.</p>
+                </section>
+
+                <section id="codigos-q" class="content-section">
+                    <header class="section-header">
+                        <h1>Códigos Q</h1>
+                        <p>Conjunto de abreviações para tornar a comunicação rápida e padronizada.</p>
+                    </header>
+                    <div class="content-box"
+                        style="padding: 10px; background: transparent; border: none; box-shadow: none; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                        <img src="assets/codigos de comunicaçao/codigoq.png" alt="Guia Visual Código Q"
+                            style="max-width: 48%; border-radius: 8px; cursor: pointer; flex: 1 1 300px;">
+                        <img src="assets/codigos de comunicaçao/codigo_de_intensidade.png" alt="Código de Intensidade"
+                            style="max-width: 48%; border-radius: 8px; cursor: pointer; flex: 1 1 300px;">
                     </div>
-                </div>
-                
-                <h2 style="margin: 20px 0 10px; font-size: 1.2rem; color: #fff;">Exemplo de Comunicação Correta</h2>
-                <div class="card info-card green-card" style="width: 100%;">
-                    <p style="margin-bottom: 12px; color: var(--text-muted); font-style: italic;"><strong>Narrador:</strong> Uma solicitação de chamada é aberta na rede. A Central aciona a unidade disponível para deslocamento até a última QRU informada.</p>
-                    
-                    <p style="margin-bottom: 8px;"><strong>Central:</strong> “QAP Subtenente RJ?”</p>
-                    <p style="margin-bottom: 15px;"><strong>Subtenente RJ:</strong> “QAP Central, Subtenente RJ na escuta. Indo na última QRU, QSL.”</p>
-                    
-                    <p style="margin-bottom: 8px;"><strong>Central:</strong> “QSL RJ. Desloque até a última QRU informada e, ao chegar na QTH, repasse a situação na rede.”</p>
-                    <p style="margin-bottom: 15px;"><strong>Subtenente RJ:</strong> “QSL Central. Subtenente RJ em QTI sentido à QRU.”</p>
-                    
-                    <p style="margin-bottom: 12px; color: var(--text-muted); font-style: italic;"><strong>Narrador:</strong> O Subtenente RJ realiza o deslocamento até o local da ocorrência e, ao chegar na área, faz o primeiro informe para a Central.</p>
-                    
-                    <p style="margin-bottom: 8px;"><strong>Subtenente RJ:</strong> “QAP Central, Subtenente RJ já estou na QTH. Há muitos feridos no local, irei realizar o salvamento dos mesmos. QSL.”</p>
-                    <p style="margin-bottom: 8px;"><strong>Central:</strong> “QSL RJ. Qualquer informe, joga na rede. QSL.”</p>
-                    <p style="margin-bottom: 15px;"><strong>Subtenente RJ:</strong> “QSL Central.”</p>
-                    
-                    <p style="margin-bottom: 12px; color: var(--text-muted); font-style: italic;"><strong>Narrador:</strong> Após o atendimento, salvamento e estabilização da área, o Subtenente RJ informa o encerramento da ocorrência.</p>
-                    
-                    <p style="margin-bottom: 8px;"><strong>Subtenente RJ:</strong> “QAP Central, código 4 na área. Subtenente RJ retornando à QTI da base. QSL.”</p>
-                    <p style="margin-bottom: 15px;"><strong>Central:</strong> “QSL RJ. TKS pelo informe.”</p>
-                    
-                    <p style="margin-bottom: 0; color: var(--text-muted); font-style: italic;"><strong>Narrador:</strong> Com o código 4 informado, a ocorrência é finalizada e a unidade retorna para a base em segurança.</p>
-                </div>
-            </section>
-            
-            <section id="viaturas-qsv" class="content-section">
+
+                    <h2 style="margin: 20px 0 10px; font-size: 1.2rem; color: #fff;">Códigos Mais Importantes</h2>
+                    <div class="cards-grid">
+                        <div class="card info-card blue-card">
+                            <h3>QAP</h3>
+                            <p>Está na escuta? Verifica se alguém está ouvindo.<br><em>"Bombeiro 01, QAP?"</em></p>
+                        </div>
+                        <div class="card info-card green-card">
+                            <h3>QSL</h3>
+                            <p>Entendido / Mensagem recebida.<br><em>"QSL, em deslocamento."</em></p>
+                        </div>
+                        <div class="card info-card yellow-card">
+                            <h3>QTH</h3>
+                            <p>Localização / Endereço.<br><em>"Informe seu QTH."</em></p>
+                        </div>
+                        <div class="card info-card orange-card">
+                            <h3>QTI</h3>
+                            <p>Rota / Deslocamento.<br><em>"Equipe em QTI sentido hospital."</em></p>
+                        </div>
+                        <div class="card info-card purple-card">
+                            <h3>QRR</h3>
+                            <p>Pedido de apoio / Reforço.<br><em>"Solicito QRR no QTH."</em></p>
+                        </div>
+                        <div class="card info-card red-card">
+                            <h3>QSM</h3>
+                            <p>Repita a mensagem. Usado quando falha.<br><em>"QSM, transmissão cortada."</em></p>
+                        </div>
+                        <div class="card info-card blue-card">
+                            <h3>QRX</h3>
+                            <p>Aguarde. Momento antes de responder.<br><em>"QRX, verificando a vítima."</em></p>
+                        </div>
+                        <div class="card info-card yellow-card">
+                            <h3>QTO / QTX / QRT</h3>
+                            <p><strong>QTO:</strong> Deslocando/Saindo.<br><strong>QTX:</strong> Manter
+                                acompanhamento.<br><strong>QRT:</strong> Encerrar transmissão.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="alfabeto-fonetico" class="content-section">
+                    <header class="section-header">
+                        <h1>Alfabeto Fonético</h1>
+                        <p>Utilizado para soletrar nomes, placas, e endereços com precisão.</p>
+                    </header>
+                    <div class="content-box"
+                        style="padding: 10px; background: transparent; border: none; box-shadow: none;">
+                        <img src="assets/codigos de comunicaçao/fonetico.png" alt="Guia Alfabeto Fonético"
+                            style="max-width: 100%; border-radius: 8px;">
+                    </div>
+
+                    <h2 style="margin: 20px 0 10px; font-size: 1.2rem; color: #fff;">Tabela Fonética</h2>
+                    <div class="card info-card purple-card" style="width: 100%;">
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 15px; text-align: center;">
+                            <div><strong style="color: var(--primary-green);">A</strong><br>Alfa</div>
+                            <div><strong style="color: var(--primary-green);">B</strong><br>Bravo</div>
+                            <div><strong style="color: var(--primary-green);">C</strong><br>Charlie</div>
+                            <div><strong style="color: var(--primary-green);">D</strong><br>Delta</div>
+                            <div><strong style="color: var(--primary-green);">E</strong><br>Echo</div>
+                            <div><strong style="color: var(--primary-green);">F</strong><br>Fox</div>
+                            <div><strong style="color: var(--primary-green);">G</strong><br>Golf</div>
+                            <div><strong style="color: var(--primary-green);">H</strong><br>Hotel</div>
+                            <div><strong style="color: var(--primary-green);">I</strong><br>Índia</div>
+                            <div><strong style="color: var(--primary-green);">J</strong><br>Juliet</div>
+                            <div><strong style="color: var(--primary-green);">K</strong><br>Kilo</div>
+                            <div><strong style="color: var(--primary-green);">L</strong><br>Lima</div>
+                            <div><strong style="color: var(--primary-green);">M</strong><br>Mike</div>
+                            <div><strong style="color: var(--primary-green);">N</strong><br>November</div>
+                            <div><strong style="color: var(--primary-green);">O</strong><br>Oscar</div>
+                            <div><strong style="color: var(--primary-green);">P</strong><br>Papa</div>
+                            <div><strong style="color: var(--primary-green);">Q</strong><br>Quebec</div>
+                            <div><strong style="color: var(--primary-green);">R</strong><br>Romeu</div>
+                            <div><strong style="color: var(--primary-green);">S</strong><br>Sierra</div>
+                            <div><strong style="color: var(--primary-green);">T</strong><br>Tango</div>
+                            <div><strong style="color: var(--primary-green);">U</strong><br>Uniform</div>
+                            <div><strong style="color: var(--primary-green);">V</strong><br>Victor</div>
+                            <div><strong style="color: var(--primary-green);">W</strong><br>Whiskey</div>
+                            <div><strong style="color: var(--primary-green);">X</strong><br>X-Ray</div>
+                            <div><strong style="color: var(--primary-green);">Y</strong><br>Yankee</div>
+                            <div><strong style="color: var(--primary-green);">Z</strong><br>Zulu</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="numeracao-fonetica" class="content-section">
+                    <header class="section-header">
+                        <h1>Numeração Fonética</h1>
+                        <p>Padroniza a transmissão dos números pelo rádio.</p>
+                    </header>
+                    <div class="content-box"
+                        style="padding: 10px; background: transparent; border: none; box-shadow: none;">
+                        <img src="assets/codigos de comunicaçao/numeros.png" alt="Guia Numeração Fonética"
+                            style="max-width: 100%; border-radius: 8px;">
+                    </div>
+
+                    <h2 style="margin: 20px 0 10px; font-size: 1.2rem; color: #fff;">Tabela Numérica</h2>
+                    <div class="card info-card blue-card" style="width: 100%;">
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 15px; text-align: center;">
+                            <div><strong style="color: var(--primary-green); font-size: 1.2rem;">1</strong><br>Primeiro
+                            </div>
+                            <div><strong style="color: var(--primary-green); font-size: 1.2rem;">2</strong><br>Segundo
+                            </div>
+                            <div><strong style="color: var(--primary-green); font-size: 1.2rem;">3</strong><br>Terceiro
+                            </div>
+                            <div><strong style="color: var(--primary-green); font-size: 1.2rem;">4</strong><br>Quarto
+                            </div>
+                            <div><strong style="color: var(--primary-green); font-size: 1.2rem;">5</strong><br>Quinto
+                            </div>
+                            <div><strong style="color: var(--primary-green); font-size: 1.2rem;">6</strong><br>Sexto
+                            </div>
+                            <div><strong style="color: var(--primary-green); font-size: 1.2rem;">7</strong><br>Sétimo
+                            </div>
+                            <div><strong style="color: var(--primary-green); font-size: 1.2rem;">8</strong><br>Oitavo
+                            </div>
+                            <div><strong style="color: var(--primary-green); font-size: 1.2rem;">9</strong><br>Nono
+                            </div>
+                            <div><strong style="color: var(--primary-green); font-size: 1.2rem;">0</strong><br>Nulo /
+                                Negativo</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="padrao-radio" class="content-section">
+                    <header class="section-header">
+                        <h1>Padrão de Comunicações CBM</h1>
+                        <p>Modelos visuais de comunicação para situações comuns de serviço.</p>
+                    </header>
+                    <div class="cards-grid" style="padding: 10px;">
+                        <img src="assets/comunicaçao de entrada e saida de serviço/comunicaçao.png"
+                            alt="Comunicação CBM" style="max-width: 100%; border-radius: 8px;">
+                        <img src="assets/comunicaçao de entrada e saida de serviço/radio_entrada_e_saida.png"
+                            alt="Entrada e Saída" style="max-width: 100%; border-radius: 8px;">
+                        <img src="assets/comunicaçao de entrada e saida de serviço/pausa.png" alt="Pausa"
+                            style="max-width: 100%; border-radius: 8px;">
+                        <img src="assets/comunicaçao de entrada e saida de serviço/deslocamento.png" alt="Deslocamento"
+                            style="max-width: 100%; border-radius: 8px;">
+                    </div>
+                    <div class="cards-grid" style="margin-top: 20px;">
+                        <div class="card info-card purple-card">
+                            <h3>Comunicação Voltada ao Bombeiro</h3>
+                            <p>Foco em assistência, orientação, cuidado e segurança da vítima. Diferente da policial, o
+                                contato inicial deve buscar acalmar e prestar apoio. Informe apenas dados necessários:
+                                local, tipo, vítimas, riscos, apoio.</p>
+                        </div>
+                        <div class="card info-card yellow-card">
+                            <h3>Boas Práticas</h3>
+                            <p>Mantenha tom calmo; evite expor dados desnecessários; não grite; não discuta; confirme
+                                com QSL; peça QSM quando necessário.</p>
+                        </div>
+                    </div>
+
+                    <h2 style="margin: 20px 0 10px; font-size: 1.2rem; color: #fff;">Exemplo de Comunicação Correta</h2>
+                    <div class="card info-card green-card" style="width: 100%;">
+                        <p style="margin-bottom: 12px; color: var(--text-muted); font-style: italic;">
+                            <strong>Narrador:</strong> Uma solicitação de chamada é aberta na rede. A Central aciona a
+                            unidade disponível para deslocamento até a última QRU informada.</p>
+
+                        <p style="margin-bottom: 8px;"><strong>Central:</strong> “QAP Subtenente RJ?”</p>
+                        <p style="margin-bottom: 15px;"><strong>Subtenente RJ:</strong> “QAP Central, Subtenente RJ na
+                            escuta. Indo na última QRU, QSL.”</p>
+
+                        <p style="margin-bottom: 8px;"><strong>Central:</strong> “QSL RJ. Desloque até a última QRU
+                            informada e, ao chegar na QTH, repasse a situação na rede.”</p>
+                        <p style="margin-bottom: 15px;"><strong>Subtenente RJ:</strong> “QSL Central. Subtenente RJ em
+                            QTI sentido à QRU.”</p>
+
+                        <p style="margin-bottom: 12px; color: var(--text-muted); font-style: italic;">
+                            <strong>Narrador:</strong> O Subtenente RJ realiza o deslocamento até o local da ocorrência
+                            e, ao chegar na área, faz o primeiro informe para a Central.</p>
+
+                        <p style="margin-bottom: 8px;"><strong>Subtenente RJ:</strong> “QAP Central, Subtenente RJ já
+                            estou na QTH. Há muitos feridos no local, irei realizar o salvamento dos mesmos. QSL.”</p>
+                        <p style="margin-bottom: 8px;"><strong>Central:</strong> “QSL RJ. Qualquer informe, joga na
+                            rede. QSL.”</p>
+                        <p style="margin-bottom: 15px;"><strong>Subtenente RJ:</strong> “QSL Central.”</p>
+
+                        <p style="margin-bottom: 12px; color: var(--text-muted); font-style: italic;">
+                            <strong>Narrador:</strong> Após o atendimento, salvamento e estabilização da área, o
+                            Subtenente RJ informa o encerramento da ocorrência.</p>
+
+                        <p style="margin-bottom: 8px;"><strong>Subtenente RJ:</strong> “QAP Central, código 4 na área.
+                            Subtenente RJ retornando à QTI da base. QSL.”</p>
+                        <p style="margin-bottom: 15px;"><strong>Central:</strong> “QSL RJ. TKS pelo informe.”</p>
+
+                        <p style="margin-bottom: 0; color: var(--text-muted); font-style: italic;">
+                            <strong>Narrador:</strong> Com o código 4 informado, a ocorrência é finalizada e a unidade
+                            retorna para a base em segurança.</p>
+                    </div>
+                </section>
+
+                </section>
+
+                <!-- Rodapé Centralizado -->
+                <footer class="site-footer">
+                    <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <!-- Novas Abas Extras com Conteúdo Movido -->
+    <div id="view-viaturas" class="global-view" style="display: none;">
+        <div class="background-overlay bg-default"></div>
+        <main class="main-content" style="height: 100%; overflow-y: auto;">
+            <section id="viaturas-qsv" class="content-section active">
                 <header class="section-header">
                     <h1>Posições e Viaturas (QSV)</h1>
                     <p>Funções na viatura e catálogo oficial.</p>
@@ -310,53 +647,110 @@
                     </div>
                     <div class="card info-card orange-card">
                         <h3>P2 - Comunicação</h3>
-                        <p>Pode modular com a Central, repassar informações importantes e auxiliar na organização da ocorrência.</p>
+                        <p>Pode modular com a Central, repassar informações importantes e auxiliar na organização da
+                            ocorrência.</p>
                     </div>
                     <div class="card info-card green-card">
                         <h3>P3 - Apoio Operacional</h3>
                         <p>Auxilia na sinalização, atendimento, equipamentos, segurança do local e demais funções.</p>
                     </div>
                 </div>
-                <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
-                    <div style="flex: 2; min-width: 300px;">
-                        <div class="cards-grid">
+                <div class="cards-grid">
                     <div class="card info-card red-card">
                         <h3>QSV-01: Protesto</h3>
-                        <img src="assets/viaturas/protesto.png" alt="QSV-01" data-title="QSV-01: Protesto" data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da viatura para protesto.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Empregada em ações de protesto e presença preventiva em ocorrências de grande público ou risco elevado.</p></div>" style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
+                        <img src="assets/viaturas/protesto.png" alt="QSV-01" data-title="QSV-01: Protesto"
+                            data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da viatura para protesto.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Empregada em ações de protesto e presença preventiva em ocorrências de grande público ou risco elevado.</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
                     <div class="card info-card red-card">
                         <h3>QSV-02: SUV de Resgate</h3>
-                        <img src="assets/viaturas/jaguar.png" alt="QSV-02" data-title="QSV-02: SUV de Resgate" data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da viatura SUV de Resgate.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Viatura de resposta rápida, ágil e versátil, com capacidade para carregar equipamentos essenciais de Suporte Básico de Vida (SBV) e trauma.</p></div>" style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
+                        <img src="assets/viaturas/jaguar.png" alt="QSV-02" data-title="QSV-02: SUV de Resgate"
+                            data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da viatura SUV de Resgate.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Viatura de resposta rápida, ágil e versátil, com capacidade para carregar equipamentos essenciais de Suporte Básico de Vida (SBV) e trauma.</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
                     <div class="card info-card red-card">
                         <h3>QSV-03: Moto Resgate</h3>
-                        <img src="assets/viaturas/moto.png" alt="QSV-03" data-title="QSV-03: Moto Resgate" data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da viatura Moto Resgate.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Viatura de altíssima agilidade (batedor). Primeira resposta em locais de trânsito intenso, garantindo atendimento imediato até a chegada da viatura principal.</p></div>" style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
+                        <img src="assets/viaturas/moto.png" alt="QSV-03" data-title="QSV-03: Moto Resgate"
+                            data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da viatura Moto Resgate.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Viatura de altíssima agilidade (batedor). Primeira resposta em locais de trânsito intenso, garantindo atendimento imediato até a chegada da viatura principal.</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
                     <div class="card info-card red-card">
                         <h3>QSV-04: Pickup Resgate</h3>
-                        <img src="assets/viaturas/caminhotes.png" alt="QSV-04" data-title="QSV-04: Pickup Resgate" data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da viatura Pickup Resgate.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Viatura utilitária para transporte de pranchas longas, equipamentos pesados de desencarceramento e apoio logístico em terrenos irregulares.</p></div>" style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
+                        <img src="assets/viaturas/caminhotes.png" alt="QSV-04" data-title="QSV-04: Pickup Resgate"
+                            data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da viatura Pickup Resgate.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Viatura utilitária para transporte de pranchas longas, equipamentos pesados de desencarceramento e apoio logístico em terrenos irregulares.</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
                     <div class="card info-card red-card">
-                        <h3>QSV-05: Alto Comando</h3>
-                        <img src="assets/viaturas/comando.png" alt="QSV-05" data-title="QSV-05: Alto Comando" data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da viatura Alto Comando.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Empregada em ações estratégicas, coordenação de ocorrências e apoio à tomada de decisão.</p></div>" style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
+                        <h3>QSV-05: Aspirante</h3>
+                        <img src="assets/viaturas/aspirante.png" alt="QSV-05" data-title="QSV-05: Aspirante"
+                            data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da viatura Aspirante.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Empregada em ações estratégicas, coordenação de ocorrências e apoio à tomada de decisão.</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
                     <div class="card info-card red-card">
                         <h3>QSV-06: Helicóptero</h3>
-                        <img src="assets/viaturas/helicoptero.png" alt="QSV-06" data-title="QSV-06: Helicóptero" data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da aeronave oficial do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Empregada em missões de resgate, busca e salvamento e transporte aeromédico em áreas de difícil acesso.</p></div>" style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
+                        <img src="assets/viaturas/helicoptero.png" alt="QSV-06" data-title="QSV-06: Helicóptero"
+                            data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da aeronave oficial do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Empregada em missões de resgate, busca e salvamento e transporte aeromédico em áreas de difícil acesso.</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
-                        </div>
+                    <div class="card info-card red-card">
+                        <h3>QSV-07: Tenente</h3>
+                        <img src="assets/viaturas/caminhonete_tenente.png" alt="QSV-07" data-title="QSV-07: Tenente"
+                            data-desc="<div class='modal-info-item'><strong>📖 CATÁLOGO DE QSV</strong><p>Registro visual oficial dos veículos operacionais do Corpo de Bombeiros Capital Morada.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Imagem padrão para identificação da viatura Tenente.</p></div><div class='modal-info-item'><strong>🔥 USO OPERACIONAL</strong><p>Empregada em ações estratégicas, coordenação de ocorrências e apoio à tomada de decisão.</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
-                    
-                    <div style="flex: 1; min-width: 300px;">
-                        <h2 style="margin: 0 0 10px; font-size: 1.2rem; color: #fff;">Comandos da QSV</h2>
-                        <div class="content-box" style="padding: 10px; background: transparent; border: none; box-shadow: none; text-align: center;">
-                            <img src="assets/viaturas/comandos_da_qsv.png" alt="Comandos da QSV" style="max-width: 100%; border-radius: 8px; cursor: pointer;">
-                        </div>
+                    <div class="card info-card yellow-card">
+                        <h3>Comandos da QSV</h3>
+                        <img src="assets/viaturas/comandos_da_qsv.png" alt="Comandos da QSV"
+                            data-title="Comandos da QSV"
+                            data-desc="<div class='modal-info-item'><strong>📖 INSTRUÇÃO DE QSV</strong><p>Guia visual com os atalhos e comandos oficiais para as viaturas do Corpo de Bombeiros.</p></div><div class='modal-info-item'><strong>👁️ REFERÊNCIA VISUAL</strong><p>Controles de giroflex, rádio, sirenes e demais sistemas integrados do veículo.</p></div>"
+                            style="width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer;">
                     </div>
                 </div>
             </section>
+        </main>
+    </div>
 
-            <section id="galeria" class="content-section">
+    <div id="view-regras" class="global-view" style="display: none;">
+        <div class="background-overlay bg-default"></div>
+        <main class="main-content" style="height: 100%; overflow-y: auto;">
+            <section id="regras-condutas" class="content-section active">
+                <header class="section-header">
+                    <h1>Regras e Condutas</h1>
+                    <p>Postura operacional, restrições e diretrizes do departamento.</p>
+                </header>
+                <div class="cards-grid">
+                    <div class="card info-card red-card">
+                        <h3>Conduta Sobre Armamento</h3>
+                        <p>O Bombeiro/Resgate <strong>não possui função de confronto</strong>, abordagem armada ou
+                            atuação ofensiva. O uso de armamento é responsabilidade de forças policiais.<br><br>
+                            Caso a equipe se depare com uma situação de risco armado, deverá priorizar a segurança da
+                            guarnição, afastar-se do risco e solicitar apoio (QRR) da força competente.</p>
+                    </div>
+                    <div class="card info-card orange-card">
+                        <h3>Uso Correto do Rádio</h3>
+                        <p>O rádio <strong>não deve ser usado para conversas paralelas</strong>, brincadeiras,
+                            discussões ou informações desnecessárias. A frequência deve permanecer limpa para que
+                            mensagens de emergência sejam transmitidas com prioridade.</p>
+                    </div>
+                    <div class="card info-card blue-card">
+                        <h3>Tom de Voz e Emoção</h3>
+                        <p>Durante uma ocorrência, o operador deve manter a calma, falar em tom firme e evitar gritos.
+                            Uma mensagem curta e bem feita é mais eficiente do que uma fala longa e confusa. Controle
+                            emocional é fundamental.</p>
+                    </div>
+                    <div class="card info-card green-card">
+                        <h3>Tópicos Futuros</h3>
+                        <p>Em breve.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="view-galeria" class="global-view" style="display: none;">
+        <div class="background-overlay bg-default"></div>
+        <main class="main-content" style="height: 100%; overflow-y: auto;">
+            <section id="galeria" class="content-section active">
                 <header class="section-header">
                     <h1>Galeria da Corporação</h1>
                     <p>Registros fotográficos (Fotos Vermelhas).</p>
@@ -365,37 +759,6 @@
                     <p><em>(Espaço reservado para futuras imagens e registros da corporação)</em></p>
                 </div>
             </section>
-
-            <section id="regras-condutas" class="content-section">
-                <header class="section-header">
-                    <h1>Regras e Condutas</h1>
-                    <p>Postura operacional, restrições e diretrizes do departamento.</p>
-                </header>
-                <div class="cards-grid">
-                    <div class="card info-card red-card">
-                        <h3>Conduta Sobre Armamento</h3>
-                        <p>O Bombeiro/Resgate <strong>não possui função de confronto</strong>, abordagem armada ou atuação ofensiva. O uso de armamento é responsabilidade de forças policiais.<br><br>
-                        Caso a equipe se depare com uma situação de risco armado, deverá priorizar a segurança da guarnição, afastar-se do risco e solicitar apoio (QRR) da força competente.</p>
-                    </div>
-                    <div class="card info-card orange-card">
-                        <h3>Uso Correto do Rádio</h3>
-                        <p>O rádio <strong>não deve ser usado para conversas paralelas</strong>, brincadeiras, discussões ou informações desnecessárias. A frequência deve permanecer limpa para que mensagens de emergência sejam transmitidas com prioridade.</p>
-                    </div>
-                    <div class="card info-card blue-card">
-                        <h3>Tom de Voz e Emoção</h3>
-                        <p>Durante uma ocorrência, o operador deve manter a calma, falar em tom firme e evitar gritos. Uma mensagem curta e bem feita é mais eficiente do que uma fala longa e confusa. Controle emocional é fundamental.</p>
-                    </div>
-                    <div class="card info-card green-card">
-                        <h3>Tópicos Futuros</h3>
-                        <p>Em breve.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Rodapé Centralizado -->
-            <footer class="site-footer">
-                <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
-            </footer>
         </main>
     </div>
 
@@ -416,4 +779,5 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>
