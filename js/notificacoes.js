@@ -1,0 +1,261 @@
+(() => {
+  const INTERVALO_ATUALIZACAO = 60_000;
+
+  const prioridades = {
+    urgente: 1,
+    importante: 2,
+    normal: 3
+  };
+
+  let container = null;
+
+  function escaparHtml(valor = "") {
+    return String(valor)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function obterContainer() {
+    if (container) {
+      return container;
+    }
+
+    container = document.createElement("aside");
+    container.id = "central-notificacoes";
+    container.setAttribute(
+      "aria-label",
+      "Avisos importantes"
+    );
+
+    document.body.appendChild(container);
+
+    return container;
+  }
+
+  function estaAtivo(aviso, agora) {
+    if (!aviso.ativo || !aviso.mostrarPopup) {
+      return false;
+    }
+
+    const inicio = new Date(aviso.inicio);
+    const fim = new Date(aviso.fim);
+
+    if (
+      Number.isNaN(inicio.getTime()) ||
+      Number.isNaN(fim.getTime())
+    ) {
+      return false;
+    }
+
+    return agora >= inicio && agora < fim;
+  }
+
+  function formatarEncerramento(valor) {
+    return new Intl.DateTimeFormat("pt-BR", {
+      dateStyle: "short",
+      timeStyle: "short",
+      timeZone: "America/Sao_Paulo"
+    }).format(new Date(valor));
+  }
+
+  function montarAviso(aviso) {
+    const elemento = document.createElement("article");
+
+    elemento.className = [
+      "notificacao-site",
+      `notificacao-${aviso.prioridade}`,
+      aviso.piscar ? "notificacao-destaque" : ""
+    ]
+      .filter(Boolean)
+      .join(" ");
+
+    elemento.dataset.avisoId = aviso.id;
+
+    const link = aviso.link
+      ? `
+        <a
+          class="notificacao-link"
+          href="${escaparHtml(aviso.link)}"
+        >
+          Ver informações
+        </a>
+      `
+      : "";
+
+    elemento.innerHTML = `
+      <button
+        type="button"
+        class="notificacao-fechar"
+        aria-label="Fechar aviso"
+      >
+        ×
+      </button>
+
+      <div class="notificacao-cabecalho">
+        <span class="notificacao-categoria">
+          ${escaparHtml(aviso.categoria)}
+        </span>
+
+        <span class="notificacao-prioridade">
+          ${escaparHtml(aviso.prioridade)}
+        </span>
+      </div>
+
+      <h2>${escaparHtml(aviso.titulo)}</h2>
+
+      <p>${escaparHtml(aviso.descricao)}</p>
+
+      <div class="notificacao-rodape">
+        <small>
+          Disponível até
+          ${formatarEncerramento(aviso.fim)}
+        </small>
+
+        ${link}
+      </div>
+    `;
+
+    elemento
+      .querySelector(".notificacao-fechar")
+      .addEventListener("click", () => {
+        elemento.remove();
+      });
+
+    return elemento;
+  }
+
+  function renderizar(avisos) {
+    const central = obterContainer();
+
+    central.innerHTML = "";
+
+    avisos.forEach((aviso) => {
+      central.appendChild(montarAviso(aviso));
+    });
+
+    central.hidden = avisos.length === 0;
+  }
+
+  async function carregarAvisos() {
+    try {
+      const resposta = await fetch(
+        `/dados/avisos.json?v=${Date.now()}`,
+        {
+          cache: "no-store"
+        }
+      );
+
+      if (!resposta.ok) {
+        throw new Error(
+          `Erro ao carregar avisos: ${resposta.status}`
+        );
+      }
+
+      const avisos = await resposta.json();
+
+      if (!Array.isArray(avisos)) {
+        throw new Error(
+          "O conteúdo de avisos.json é inválido."
+        );
+      }
+
+      const agora = new Date();
+
+      const ativos = avisos
+        .filter((aviso) => estaAtivo(aviso, agora))
+        .sort((a, b) => {
+          return (
+            (prioridades[a.prioridade] || 99) -
+            (prioridades[b.prioridade] || 99)
+          );
+        });
+
+      renderizar(ativos);
+    } catch (erro) {
+      console.error(erro);
+
+      if (container) {
+        container.hidden = true;
+      }
+    }
+  }
+
+  function iniciar() {
+    carregarAvisos();
+
+    window.setInterval(
+      carregarAvisos,
+      INTERVALO_ATUALIZACAO
+    );
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciar);
+  } else {
+    iniciar();
+  }
+})();
+
+async function carregarAvisosGerais() {
+  const container = document.getElementById(
+    "lista-avisos-gerais"
+  );
+
+  if (!container) return;
+
+  try {
+    const resposta = await fetch(
+      `/dados/avisos.json?v=${Date.now()}`,
+      {
+        cache: "no-store"
+      }
+    );
+
+    const avisos = await resposta.json();
+    const agora = new Date();
+
+    const avisosGerais = avisos
+      .filter((aviso) => {
+        const inicio = new Date(aviso.inicio);
+        const fim = new Date(aviso.fim);
+
+        return (
+          aviso.ativo &&
+          aviso.mostrarAvisosGerais &&
+          agora >= inicio &&
+          agora < fim
+        );
+      })
+      .sort((a, b) => {
+        return new Date(b.inicio) - new Date(a.inicio);
+      });
+
+    if (avisosGerais.length === 0) {
+      container.innerHTML = `
+        <p>Nenhum aviso disponível no momento.</p>
+      `;
+
+      return;
+    }
+
+    container.innerHTML = avisosGerais
+      .map((aviso) => {
+        return `
+          <article class="aviso-geral">
+            <span class="aviso-badge">${aviso.categoria}</span>
+            <h3>${aviso.titulo}</h3>
+            <p>${aviso.descricao}</p>
+          </article>
+        `;
+      })
+      .join("");
+  } catch (erro) {
+    console.error("Erro ao carregar avisos gerais:", erro);
+  }
+}
+
+// Ensure carregarAvisosGerais runs when DOM is loaded, and also whenever #view-avisos is shown
+document.addEventListener('DOMContentLoaded', carregarAvisosGerais);

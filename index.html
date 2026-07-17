@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/notificacoes.css">
 </head>
 
 <body>
@@ -749,10 +750,13 @@
         </main>
     </div>
 
-    <div id="view-avisos" class="global-view temp-view">
+    <div id="view-avisos" class="global-view temp-view" style="display: none; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px;">
         <div class="background-overlay bg-default"></div>
-        <h1 style="color: #fff; font-size: 4rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2);">
+        <h1 style="color: #fff; font-size: 3rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2); margin-top: 50px;">
             AVISOS GERAIS</h1>
+        <section class="avisos-gerais" style="width: 100%; max-width: 800px; overflow-y: auto; max-height: 60vh;">
+            <div id="lista-avisos-gerais"></div>
+        </section>
         <footer class="site-footer" style="position: absolute; bottom: 0; width: 100%; border-top: none; margin-top: 0; padding-bottom: 20px;">
             <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
         </footer>
@@ -1360,6 +1364,7 @@
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/notificacoes.js" defer></script>
 </body>
 
 </html>

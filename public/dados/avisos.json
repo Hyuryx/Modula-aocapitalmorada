@@ -1,0 +1,16 @@
+[
+  {
+    "id": "curso-de-resgate-1721234567890",
+    "titulo": "Curso de Resgate",
+    "descricao": "Inscrições abertas para o Curso de Resgate.",
+    "categoria": "curso",
+    "prioridade": "urgente",
+    "inicio": "2026-07-20T08:00:00-03:00",
+    "fim": "2026-07-25T12:00:00-03:00",
+    "link": "/cursos.html",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  }
+]

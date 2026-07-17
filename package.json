@@ -1,0 +1,15 @@
+{
+  "name": "capitalmorada-avisos",
+  "version": "1.0.0",
+  "description": "Painel de avisos",
+  "main": "painel-avisos/servidor.js",
+  "scripts": {
+    "painel-avisos": "node painel-avisos/servidor.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

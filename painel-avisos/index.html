@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Painel de Avisos</title>
+
+  <link rel="stylesheet" href="./painel.css">
+</head>
+
+<body>
+  <main class="painel">
+    <header class="cabecalho">
+      <div>
+        <span class="etiqueta">Painel local</span>
+        <h1>Gerenciador de avisos</h1>
+
+        <p>
+          Crie, edite e exclua os avisos que serão
+          publicados no site.
+        </p>
+      </div>
+
+      <div id="statusServidor" class="status">
+        Carregando avisos...
+      </div>
+    </header>
+
+    <section class="card">
+      <h2 id="tituloFormulario">Novo aviso</h2>
+
+      <form id="formularioAviso">
+        <input type="hidden" id="avisoId">
+
+        <div class="campo campo-completo">
+          <label for="titulo">Título</label>
+
+          <input
+            type="text"
+            id="titulo"
+            maxlength="100"
+            required
+            placeholder="Ex.: Curso de Resgate"
+          >
+        </div>
+
+        <div class="campo campo-completo">
+          <label for="descricao">Descrição</label>
+
+          <textarea
+            id="descricao"
+            maxlength="500"
+            required
+            placeholder="Digite as informações do aviso"
+          ></textarea>
+        </div>
+
+        <div class="campo">
+          <label for="categoria">Categoria</label>
+
+          <select id="categoria" required>
+            <option value="curso">Curso</option>
+            <option value="informacao">Informação</option>
+            <option value="comunicado">Comunicado</option>
+            <option value="evento">Evento</option>
+            <option value="manutencao">Manutenção</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="prioridade">Prioridade</label>
+
+          <select id="prioridade" required>
+            <option value="normal">Normal</option>
+            <option value="importante">Importante</option>
+            <option value="urgente">Urgente</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="inicio">Início</label>
+
+          <input
+            type="datetime-local"
+            id="inicio"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label for="fim">Encerramento</label>
+
+          <input
+            type="datetime-local"
+            id="fim"
+            required
+          >
+        </div>
+
+        <div class="campo campo-completo">
+          <label for="link">Link do aviso</label>
+
+          <input
+            type="text"
+            id="link"
+            placeholder="/cursos.html ou #curso-resgate"
+          >
+        </div>
+
+        <fieldset class="campo-completo opcoes">
+          <legend>Onde exibir</legend>
+
+          <label>
+            <input
+              type="checkbox"
+              id="mostrarPopup"
+              checked
+            >
+            Mostrar como pop-up
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              id="mostrarAvisosGerais"
+              checked
+            >
+            Mostrar em Avisos Gerais
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              id="piscar"
+            >
+            Aplicar animação de destaque
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              id="ativo"
+              checked
+            >
+            Aviso ativo
+          </label>
+        </fieldset>
+
+        <div class="acoes campo-completo">
+          <button type="submit" class="botao primario">
+            Salvar aviso
+          </button>
+
+          <button
+            type="button"
+            id="cancelarEdicao"
+            class="botao secundario"
+            hidden
+          >
+            Cancelar edição
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="titulo-lista">
+        <div>
+          <h2>Avisos cadastrados</h2>
+          <p id="quantidadeAvisos">Nenhum aviso</p>
+        </div>
+
+        <button
+          type="button"
+          id="salvarArquivo"
+          class="botao primario"
+        >
+          Salvar avisos.json
+        </button>
+      </div>
+
+      <div id="listaAvisos" class="lista-avisos"></div>
+    </section>
+  </main>
+
+  <script src="./painel.js"></script>
+</body>
+</html>

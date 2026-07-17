@@ -1,0 +1,203 @@
+#central-notificacoes {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(380px, calc(100vw - 32px));
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  padding: 4px;
+}
+
+#central-notificacoes[hidden] {
+  display: none;
+}
+
+.notificacao-site {
+  position: relative;
+  padding: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-left: 6px solid #697581;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+  color: #1e242a;
+  animation: notificacao-entrada 0.35s ease;
+}
+
+.notificacao-importante {
+  border-left-color: #d68b00;
+}
+
+.notificacao-urgente {
+  border-left-color: #b62020;
+}
+
+.notificacao-destaque {
+  animation:
+    notificacao-entrada 0.35s ease,
+    notificacao-pulso 1.8s ease-in-out infinite;
+}
+
+.notificacao-fechar {
+  position: absolute;
+  top: 7px;
+  right: 9px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #3f464d;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.notificacao-fechar:hover {
+  background: #e8ebee;
+}
+
+.notificacao-cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding-right: 35px;
+}
+
+.notificacao-cabecalho span {
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #e7ebef;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.notificacao-site h2 {
+  margin: 13px 0 7px;
+  font-size: 20px;
+  color: #111;
+}
+
+.notificacao-site p {
+  margin: 0;
+  color: #505962;
+  line-height: 1.5;
+}
+
+.notificacao-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.notificacao-rodape small {
+  color: #68727c;
+}
+
+.notificacao-link {
+  flex-shrink: 0;
+  color: #212a33;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.notificacao-link:hover {
+  text-decoration: underline;
+}
+
+@keyframes notificacao-entrada {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes notificacao-pulso {
+  0%,
+  100% {
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 12px 45px rgba(180, 25, 25, 0.38);
+    transform: scale(1.015);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notificacao-site,
+  .notificacao-destaque {
+    animation: none;
+  }
+}
+
+@media (max-width: 600px) {
+  #central-notificacoes {
+    top: auto;
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    width: auto;
+    max-height: 70vh;
+  }
+
+  .notificacao-rodape {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Estilos para a listagem na aba Avisos Gerais */
+.avisos-gerais {
+    padding: 20px;
+}
+
+#lista-avisos-gerais {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.aviso-geral {
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    color: #fff;
+}
+
+.aviso-geral h3 {
+    margin: 10px 0;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.aviso-geral p {
+    color: #d1d5db;
+    margin: 0;
+}
+
+.aviso-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: var(--primary-red);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
