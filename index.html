@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bombeiros - Modulação</title>
     <meta name="description" content="Sistema de modulação e consulta de códigos operacionais.">
-    <link rel="stylesheet" href="css/style.css?v=4">
+    <link rel="stylesheet" href="css/style.css?v=8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/notificacoes.css">
+    <link rel="stylesheet" href="css/notificacoes.css?v=6">
 </head>
 
 <body>
@@ -75,9 +75,15 @@
                 <nav class="sidebar-nav">
                     <ul>
                         <li class="active" data-target="curso-aereo">
-                            <svg class="anim-icon icon-aereo" viewBox="0 0 24 24" stroke="#3b82f6">
-                                <circle class="radar-circle" cx="12" cy="12" r="10"></circle>
-                                <path class="radar-line" d="M12 2v20M2 12h20"></path>
+                            <svg class="anim-icon icon-aereo" viewBox="0 0 24 24" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <line class="heli-rotor" x1="6" y1="5" x2="18" y2="5" />
+                                <line x1="12" y1="5" x2="12" y2="9" />
+                                <path d="M4 14a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v0a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" />
+                                <path d="M4 12H1" />
+                                <line class="heli-tail-rotor" x1="2" y1="10" x2="2" y2="14" />
+                                <line x1="7" y1="16" x2="7" y2="19" />
+                                <line x1="15" y1="16" x2="15" y2="19" />
+                                <line x1="5" y1="19" x2="17" y2="19" />
                             </svg> Curso de Piloto
                         </li>
                         <li data-target="curso-aquatico">
@@ -763,7 +769,7 @@
     </div>
 
     <div id="view-planilhas" class="global-view temp-view" style="display: none; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px;">
-        <div class="background-overlay bg-default"></div>
+        <div class="background-overlay bg-planilhas"></div>
         <h1 style="color: #fff; font-size: 3rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2); margin-top: 50px; position: relative; z-index: 2;">
             PLANILHAS</h1>
             

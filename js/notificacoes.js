@@ -281,7 +281,7 @@ async function carregarAvisosGerais() {
     container.innerHTML = avisosGerais
       .map((aviso, index) => {
         return `
-          <article class="aviso-geral" onclick="abrirModalAviso(${index})">
+          <article class="aviso-geral prioridade-${aviso.prioridade}" onclick="abrirModalAviso(${index})">
             <span class="aviso-badge">${aviso.categoria}</span>
             <h3>${aviso.titulo}</h3>
             <p>${aviso.descricao}</p>

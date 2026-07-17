@@ -91,6 +91,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Atualizar planilha ao abrir a aba Planilhas para garantir tempo real
+        if (targetId === 'view-planilhas') {
+            const iframe = document.getElementById('planilha-iframe');
+            if (iframe) {
+                // Remove the old src and set it again to force a reload from Google
+                const currentSrc = iframe.src;
+                iframe.src = '';
+                setTimeout(() => iframe.src = currentSrc, 10);
+            }
+        }
+
         // Gerenciar visibilidade dos pop-ups (Apenas na aba Início)
         const centralNotificacoes = document.getElementById('central-notificacoes');
         if (centralNotificacoes) {

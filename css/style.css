@@ -503,17 +503,31 @@ body {
 .flash { animation: cameraFlash 3.5s infinite; transform-origin: 19px 10px; }
 
 /* --- Animações Cursos --- */
-/* Resgate Aéreo (Radar) */
-@keyframes radarSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+/* Resgate Aéreo (Helicóptero) */
+@keyframes heliRotorSpin {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(0.1); }
+    100% { transform: scaleX(1); }
 }
-.sidebar-nav li:hover .icon-aereo .radar-line, .sidebar-nav li.active .icon-aereo .radar-line {
+.sidebar-nav li .icon-aereo .heli-rotor {
     transform-origin: center;
-    animation: radarSpin 2s linear infinite;
+    animation: heliRotorSpin 0.15s linear infinite;
 }
-.sidebar-nav li:hover .icon-aereo .radar-circle, .sidebar-nav li.active .icon-aereo .radar-circle {
-    animation: pulseScale 2s infinite ease-in-out;
+@keyframes heliTailRotorSpin {
+    0% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); }
+    100% { transform: scaleY(1); }
+}
+.sidebar-nav li .icon-aereo .heli-tail-rotor {
+    transform-origin: center;
+    animation: heliTailRotorSpin 0.15s linear infinite;
+}
+@keyframes heliHover {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+.sidebar-nav li .icon-aereo {
+    animation: heliHover 3s ease-in-out infinite;
 }
 
 /* Resgate Aquático (Ondas) */
@@ -521,10 +535,10 @@ body {
     0%, 100% { transform: translateX(0); }
     50% { transform: translateX(-3px); }
 }
-.sidebar-nav li:hover .icon-water .water-wave1, .sidebar-nav li.active .icon-water .water-wave1 {
+.sidebar-nav li .icon-water .water-wave1 {
     animation: waveFlow 1.5s infinite ease-in-out;
 }
-.sidebar-nav li:hover .icon-water .water-wave2, .sidebar-nav li.active .icon-water .water-wave2 {
+.sidebar-nav li .icon-water .water-wave2 {
     animation: waveFlow 1.5s infinite ease-in-out 0.75s;
 }
 
@@ -533,7 +547,7 @@ body {
     0%, 100% { transform: scaleY(1); }
     50% { transform: scaleY(1.15); }
 }
-.sidebar-nav li:hover .icon-mountain, .sidebar-nav li.active .icon-mountain {
+.sidebar-nav li .icon-mountain {
     transform-origin: bottom;
     animation: mountGrow 2s infinite ease-in-out;
 }
@@ -544,7 +558,7 @@ body {
     25% { transform: translateY(-2px) rotate(-5deg); }
     75% { transform: translateY(2px) rotate(5deg); }
 }
-.sidebar-nav li:hover .icon-parachute, .sidebar-nav li.active .icon-parachute {
+.sidebar-nav li .icon-parachute {
     transform-origin: top;
     animation: parachuteFloat 3s infinite ease-in-out;
 }
@@ -587,6 +601,12 @@ body {
 
 .bg-avisos {
     background-image: url('../assets/avisos-gerais/background.png');
+    background-size: 100% 100% !important;
+    background-position: center top !important;
+}
+
+.bg-planilhas {
+    background-image: url('../assets/planilhas/background.png');
     background-size: 100% 100% !important;
     background-position: center top !important;
 }
