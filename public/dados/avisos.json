@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": "titulo-1784327872218",
+    "titulo": "TÍTULO",
+    "descricao": "Descrição",
+    "categoria": "curso",
+    "prioridade": "urgente",
+    "inicio": "2026-07-18T19:36:00-03:00",
+    "fim": "2026-07-20T19:36:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  }
+]
