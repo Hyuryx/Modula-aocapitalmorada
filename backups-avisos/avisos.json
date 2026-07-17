@@ -12,5 +12,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "titulo-1784327992270",
+    "titulo": "TÍTULO",
+    "descricao": "Descrição",
+    "categoria": "informacao",
+    "prioridade": "urgente",
+    "inicio": "2026-07-17T19:39:00-03:00",
+    "fim": null,
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
