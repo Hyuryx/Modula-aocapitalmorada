@@ -585,6 +585,12 @@ body {
     background-image: url('../assets/background/background.png');
 }
 
+.bg-avisos {
+    background-image: url('../assets/avisos-gerais/background.png');
+    background-size: 100% 100% !important;
+    background-position: center top !important;
+}
+
 .bg-cursos {
     background-image: url('../assets/cursos/background.png');
     background-size: 100% 100% !important;

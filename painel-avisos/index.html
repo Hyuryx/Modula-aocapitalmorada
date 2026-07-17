@@ -100,10 +100,23 @@
             id="fim"
             required
           >
-          <label style="margin-top: 8px; display: block; font-size: 0.9rem;">
+          <style>
+            #semFim {
+              width: auto !important;
+              height: auto !important;
+              padding: 0 !important;
+              margin: 0 !important;
+              border: none !important;
+              background: transparent !important;
+              box-shadow: none !important;
+            }
+          </style>
+          <div style="margin-top: 8px; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 8px;">
             <input type="checkbox" id="semFim">
-            Sem limite de tempo
-          </label>
+            <label for="semFim" style="margin: 0; font-size: 0.9rem; font-weight: normal; cursor: pointer;">
+              Sem limite de tempo
+            </label>
+          </div>
         </div>
 
         <div class="campo campo-completo">

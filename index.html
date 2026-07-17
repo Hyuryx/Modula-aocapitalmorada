@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bombeiros - Modulação</title>
     <meta name="description" content="Sistema de modulação e consulta de códigos operacionais.">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -750,9 +750,8 @@
         </main>
     </div>
 
-    <div id="view-avisos" class="global-view temp-view" style="display: none; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px;">
-        <div class="background-overlay bg-default"></div>
-        <h1 style="color: #fff; font-size: 3rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2); margin-top: 50px;">
+    <div id="view-avisos" class="global-view temp-view" style="display: none; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px; background-image: url('assets/avisos-gerais/background.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <h1 style="color: #fff; font-size: 3rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2); margin-top: 50px; position: relative; z-index: 2;">
             AVISOS GERAIS</h1>
         <section class="avisos-gerais" style="width: 100%; max-width: 800px; overflow-y: auto; max-height: 60vh;">
             <div id="lista-avisos-gerais"></div>

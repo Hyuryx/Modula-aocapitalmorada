@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const globalViews = document.querySelectorAll('.global-view');
 
     function switchGlobalView(targetId) {
+        localStorage.setItem('activeTab', targetId);
         globalNavItems.forEach(nav => {
             if(nav.getAttribute('data-global-target') === targetId) {
                 nav.classList.add('active');
@@ -344,4 +345,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicia o relógio
     setInterval(updateClock, 1000);
     updateClock(); // Chama imediatamente para não esperar 1s
+
+    // Restaura a aba salva ao recarregar a página
+    const activeTab = localStorage.getItem('activeTab');
+    if (activeTab) {
+        switchGlobalView(activeTab);
+    }
 });
