@@ -12,5 +12,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "resgate-aquatico-1784321988187",
+    "titulo": "Resgate Aquático",
+    "descricao": "curso de piloto nesse final de semana",
+    "categoria": "curso",
+    "prioridade": "importante",
+    "inicio": "2026-07-17T17:53:00-03:00",
+    "fim": null,
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
