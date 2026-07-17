@@ -306,12 +306,7 @@ window.excluirAviso = function(id) {
 
 function limparFormulario() {
   idEmEdicao = null;
-
-  formulario.reset();
-
-  document.getElementById("mostrarPopup").checked = true;
-  document.getElementById("mostrarAvisosGerais").checked = true;
-  document.getElementById("ativo").checked = true;
+  document.getElementById("avisoId").value = "";
 
   tituloFormulario.textContent = "Novo aviso";
   cancelarEdicao.hidden = true;
