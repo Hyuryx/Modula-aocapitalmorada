@@ -5,6 +5,19 @@ const quantidadeAvisos = document.getElementById("quantidadeAvisos");
 const tituloFormulario = document.getElementById("tituloFormulario");
 const cancelarEdicao = document.getElementById("cancelarEdicao");
 const salvarArquivo = document.getElementById("salvarArquivo");
+const semFimCheckbox = document.getElementById("semFim");
+const fimInput = document.getElementById("fim");
+const inicioInput = document.getElementById("inicio");
+
+semFimCheckbox.addEventListener("change", (e) => {
+  if (e.target.checked) {
+    fimInput.disabled = true;
+    fimInput.removeAttribute("required");
+  } else {
+    fimInput.disabled = false;
+    fimInput.setAttribute("required", "required");
+  }
+});
 
 let avisos = [];
 let idEmEdicao = null;
@@ -133,7 +146,7 @@ function renderizarAvisos() {
 
               ${
                 aviso.ativo
-                  ? '<span class="situacao ativo">Ativo</span>'
+                  ? (new Date(aviso.inicio) > new Date() ? '<span class="situacao ativo" style="background-color: #f59e0b; color: #fff;">Programado</span>' : '<span class="situacao ativo">Ativo</span>')
                   : '<span class="situacao inativo">Inativo</span>'
               }
             </div>
@@ -150,7 +163,7 @@ function renderizarAvisos() {
 
               <span>
                 <strong>Fim:</strong>
-                ${formatarData(aviso.fim)}
+                ${aviso.fim ? formatarData(aviso.fim) : "Sem limite"}
               </span>
             </div>
 
@@ -192,22 +205,27 @@ formulario.addEventListener("submit", (evento) => {
   evento.preventDefault();
 
   const inicio = document.getElementById("inicio").value;
-  const fim = document.getElementById("fim").value;
+  let fim = document.getElementById("fim").value;
+  const semFim = document.getElementById("semFim").checked;
 
-  if (new Date(inicio) >= new Date(fim)) {
-    alert(
-      "A data de encerramento precisa ser posterior à data inicial."
-    );
-
-    return;
-  }
-
-  if (new Date(fim) <= new Date()) {
-    alert(
-      "A data e hora de encerramento já passou. O sistema não permite publicar avisos expirados."
-    );
-
-    return;
+  if (semFim) {
+    fim = "";
+  } else {
+    if (new Date(inicio) >= new Date(fim)) {
+      alert(
+        "A data de encerramento precisa ser posterior à data inicial."
+      );
+  
+      return;
+    }
+  
+    if (new Date(fim) <= new Date()) {
+      alert(
+        "A data e hora de encerramento já passou. O sistema não permite publicar avisos expirados."
+      );
+  
+      return;
+    }
   }
 
   const titulo = document.getElementById("titulo").value.trim();
@@ -225,7 +243,7 @@ formulario.addEventListener("submit", (evento) => {
     categoria: document.getElementById("categoria").value,
     prioridade: document.getElementById("prioridade").value,
     inicio: converterParaISOComFuso(inicio),
-    fim: converterParaISOComFuso(fim),
+    fim: semFim ? null : converterParaISOComFuso(fim),
     link: document.getElementById("link").value.trim(),
     mostrarPopup: document
       .getElementById("mostrarPopup")
@@ -268,8 +286,17 @@ window.editarAviso = function(id) {
   document.getElementById("prioridade").value = aviso.prioridade;
   document.getElementById("inicio").value =
     converterParaCampoData(aviso.inicio);
-  document.getElementById("fim").value =
-    converterParaCampoData(aviso.fim);
+  if (aviso.fim) {
+    document.getElementById("fim").value = converterParaCampoData(aviso.fim);
+    document.getElementById("semFim").checked = false;
+    document.getElementById("fim").disabled = false;
+    document.getElementById("fim").setAttribute("required", "required");
+  } else {
+    document.getElementById("fim").value = "";
+    document.getElementById("semFim").checked = true;
+    document.getElementById("fim").disabled = true;
+    document.getElementById("fim").removeAttribute("required");
+  }
   document.getElementById("link").value = aviso.link || "";
   document.getElementById("mostrarPopup").checked =
     aviso.mostrarPopup;
@@ -316,6 +343,15 @@ window.excluirAviso = function(id) {
 function limparFormulario() {
   idEmEdicao = null;
   document.getElementById("avisoId").value = "";
+
+  const agora = new Date();
+  agora.setMinutes(agora.getMinutes() - agora.getTimezoneOffset());
+  document.getElementById("inicio").value = agora.toISOString().slice(0, 16);
+
+  document.getElementById("semFim").checked = false;
+  document.getElementById("fim").disabled = false;
+  document.getElementById("fim").setAttribute("required", "required");
+  document.getElementById("fim").value = "";
 
   tituloFormulario.textContent = "Novo aviso";
   cancelarEdicao.hidden = true;
@@ -365,7 +401,7 @@ function removerAvisosExpirados() {
   const agora = new Date();
   const tamanhoAnterior = avisos.length;
   
-  avisos = avisos.filter(a => new Date(a.fim) > agora);
+  avisos = avisos.filter(a => !a.fim || new Date(a.fim) > agora);
   
   if (avisos.length !== tamanhoAnterior) {
     if (idEmEdicao !== null && !avisos.some(a => a.id === idEmEdicao)) {

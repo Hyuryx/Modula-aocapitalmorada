@@ -41,16 +41,18 @@
     }
 
     const inicio = new Date(aviso.inicio);
-    const fim = new Date(aviso.fim);
 
-    if (
-      Number.isNaN(inicio.getTime()) ||
-      Number.isNaN(fim.getTime())
-    ) {
+    if (Number.isNaN(inicio.getTime())) {
       return false;
     }
 
-    return agora >= inicio && agora < fim;
+    if (aviso.fim) {
+      const fim = new Date(aviso.fim);
+      if (Number.isNaN(fim.getTime())) return false;
+      return agora >= inicio && agora < fim;
+    }
+    
+    return agora >= inicio;
   }
 
   function formatarEncerramento(valor) {
@@ -99,10 +101,9 @@
 
       <div class="notificacao-rodape" style="display: flex; justify-content: space-between; align-items: center;">
         <small>
-          Disponível até
-          ${formatarEncerramento(aviso.fim)}
+          ${aviso.fim ? `Disponível até ${formatarEncerramento(aviso.fim)}` : `Sem limite de tempo`}
         </small>
-        <small class="cronometro-aviso" data-fim="${aviso.fim}" style="font-weight: bold;"></small>
+        ${aviso.fim ? `<small class="cronometro-aviso" data-fim="${aviso.fim}" style="font-weight: bold;"></small>` : ''}
       </div>
     `;
 
@@ -241,13 +242,13 @@ async function carregarAvisosGerais() {
     const avisosGerais = avisos
       .filter((aviso) => {
         const inicio = new Date(aviso.inicio);
-        const fim = new Date(aviso.fim);
+        const fim = aviso.fim ? new Date(aviso.fim) : null;
 
         return (
           aviso.ativo &&
           aviso.mostrarAvisosGerais &&
           agora >= inicio &&
-          agora < fim
+          (!fim || agora < fim)
         );
       })
       .sort((a, b) => {
@@ -314,7 +315,7 @@ function abrirModalAviso(index) {
       <p class="modal-aviso-desc">${aviso.descricao}</p>
       <div class="modal-aviso-datas">
         <p><strong>Início:</strong> ${formatarDataModal(aviso.inicio)}</p>
-        <p><strong>Encerramento:</strong> ${formatarDataModal(aviso.fim)}</p>
+        <p><strong>Encerramento:</strong> ${aviso.fim ? formatarDataModal(aviso.fim) : 'Sem limite de tempo'}</p>
       </div>
       ${linkHTML}
     </div>
