@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "id": "teste-normal-1784291612027",
+    "titulo": "TESTE NORMAL",
+    "descricao": "ESTE E UMA AVISO DE TESTE NORMAL",
+    "categoria": "comunicado",
+    "prioridade": "normal",
+    "inicio": "2026-07-17T00:00:00-03:00",
+    "fim": "2026-07-18T00:00:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  },
+  {
+    "id": "teste-normal-1784291616828",
+    "titulo": "TESTE NORMAL",
+    "descricao": "ESTE E UMA AVISO DE TESTE NORMAL",
+    "categoria": "comunicado",
+    "prioridade": "urgente",
+    "inicio": "2026-07-17T00:00:00-03:00",
+    "fim": "2026-07-18T00:00:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  },
+  {
+    "id": "teste-normal-com-link-1784291641933",
+    "titulo": "TESTE NORMAL - COM LINK",
+    "descricao": "ESTE E UMA AVISO DE TESTE NORMAL",
+    "categoria": "comunicado",
+    "prioridade": "normal",
+    "inicio": "2026-07-17T00:00:00-03:00",
+    "fim": "2026-07-18T00:00:00-03:00",
+    "link": "https://www.youtube.com/",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  },
+  {
+    "id": "curso-de-resgate-aquatico-1784291994621",
+    "titulo": "CURSO DE RESGATE AQUATICO",
+    "descricao": "ESSE AVISO E PRA INFORMAR O CURSO DE RESGATE AQUATICO QUE SERA REALIZADO NESTA SEXTA FEIRA",
+    "categoria": "curso",
+    "prioridade": "importante",
+    "inicio": "2026-07-17T00:00:00-03:00",
+    "fim": "2026-07-20T00:00:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  }
+]
