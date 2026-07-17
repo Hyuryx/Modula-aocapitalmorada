@@ -262,4 +262,48 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Lógica para esconder/mostrar a sidebar de Cursos
+    const toggleBtnCursos = document.getElementById('toggle-sidebar-cursos');
+    const sidebarCursos = document.getElementById('sidebar-cursos');
+
+    if (toggleBtnCursos && sidebarCursos) {
+        toggleBtnCursos.addEventListener('mouseenter', () => {
+            sidebarCursos.classList.toggle('collapsed');
+        });
+    }
+
+    // Lógica para esconder/mostrar a sidebar de Modulação
+    const toggleBtnModulacao = document.getElementById('toggle-sidebar-modulacao');
+    const sidebarModulacao = document.getElementById('sidebar-modulacao');
+
+    if (toggleBtnModulacao && sidebarModulacao) {
+        toggleBtnModulacao.addEventListener('mouseenter', () => {
+            sidebarModulacao.classList.toggle('collapsed');
+        });
+    }
+
+    // Lógica do Relógio Digital
+    function updateClock() {
+        const clockTime = document.getElementById('clock-time');
+        const clockDate = document.getElementById('clock-date');
+        
+        if (clockTime && clockDate) {
+            const now = new Date();
+            
+            // Hora formatada: 00:00:00
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            clockTime.textContent = `${hours}:${minutes}:${seconds}`;
+            
+            // Data formatada
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            clockDate.textContent = now.toLocaleDateString('pt-BR', options);
+        }
+    }
+    
+    // Inicia o relógio
+    setInterval(updateClock, 1000);
+    updateClock(); // Chama imediatamente para não esperar 1s
 });

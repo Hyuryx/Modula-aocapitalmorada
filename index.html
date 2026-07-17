@@ -28,6 +28,7 @@
             <li class="nav-item" data-global-target="view-planilhas">PLANILHAS</li>
             <li class="nav-item" data-global-target="view-viaturas">VIATURAS</li>
             <li class="nav-item" data-global-target="view-regras">REGRAS</li>
+            <li class="nav-item" data-global-target="view-hierarquia">HIERARQUIA</li>
             <li class="nav-item" data-global-target="view-galeria">GALERIA</li>
         </ul>
     </nav>
@@ -37,6 +38,15 @@
     <!-- Tela de Início (Temporária) -->
     <div id="view-inicio" class="global-view temp-view active">
         <div class="background-overlay bg-inicio"></div>
+        
+        <!-- Relógio Digital -->
+        <div id="digital-clock" class="digital-clock">
+            <div id="clock-time">00:00:00</div>
+            <div id="clock-date">Data</div>
+        </div>
+        <footer class="site-footer" style="position: absolute; bottom: 0; width: 100%; border-top: none; margin-top: 0; padding-bottom: 20px;">
+            <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
+        </footer>
     </div>
 
     <!-- Novas Abas Temporárias -->
@@ -44,14 +54,20 @@
         <div class="background-overlay bg-cursos"></div>
         <div class="app-container">
             <!-- Sidebar Cursos -->
-            <aside class="sidebar sidebar-cursos">
+            <aside class="sidebar sidebar-cursos" id="sidebar-cursos">
+                <!-- Toggle Button -->
+                <button class="sidebar-toggle-btn" id="toggle-sidebar-cursos">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="toggle-icon">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
                 <nav class="sidebar-nav">
                     <ul>
                         <li class="active" data-target="curso-aereo">
                             <svg class="anim-icon icon-aereo" viewBox="0 0 24 24" stroke="#3b82f6">
                                 <circle class="radar-circle" cx="12" cy="12" r="10"></circle>
                                 <path class="radar-line" d="M12 2v20M2 12h20"></path>
-                            </svg> Resgate Aéreo
+                            </svg> Curso de Piloto
                         </li>
                         <li data-target="curso-aquatico">
                             <svg class="anim-icon icon-water" viewBox="0 0 24 24" stroke="#0ea5e9">
@@ -71,12 +87,6 @@
                                 <path class="parachute-cord" d="M12 12v10"></path>
                             </svg> Paraquedismo
                         </li>
-                        <li data-target="curso-piloto">
-                            <svg class="anim-icon icon-pilot" viewBox="0 0 24 24" stroke="#ef4444">
-                                <circle class="pilot-head" cx="12" cy="8" r="4"></circle>
-                                <path class="pilot-body" d="M4 22v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"></path>
-                            </svg> Piloto
-                        </li>
                     </ul>
                 </nav>
             </aside>
@@ -85,11 +95,11 @@
             <main class="main-content">
                 <section id="curso-aereo" class="content-section active">
                     <header class="section-header">
-                        <h1>Resgate Aéreo</h1>
+                        <h1>Curso de Piloto</h1>
                         <p>"Quando o acesso terrestre termina, começa a missão da equipe aérea."</p>
                     </header>
 
-                    <div class="content-box" style="padding: 10px; background: transparent; border: none; box-shadow: none; display: flex; justify-content: center;">
+                    <div class="content-box" style="padding: 10px; background: transparent; border: none; box-shadow: none; backdrop-filter: none; display: flex; justify-content: center;">
                         <img src="assets/cursos/aereo/1.png" alt="Curso de Resgate Aéreo" style="width: 100%; max-width: 600px; border-radius: 8px;">
                     </div>
 
@@ -673,17 +683,6 @@
                         </div>
                     </div>
                 </section>
-
-                <section id="curso-piloto" class="content-section">
-                    <header class="section-header">
-                        <h1>Piloto</h1>
-                        <p>Instruções e qualificações para pilotagem de aeronaves do CBM.</p>
-                    </header>
-                    <div class="content-box">
-                        <p><em>(Conteúdo em construção)</em></p>
-                    </div>
-                </section>
-
                 <footer class="site-footer">
                     <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
                 </footer>
@@ -733,6 +732,10 @@
                     </div>
                 </div>
             </section>
+            <!-- Rodapé Centralizado -->
+            <footer class="site-footer">
+                <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
+            </footer>
         </main>
     </div>
 
@@ -740,20 +743,32 @@
         <div class="background-overlay bg-default"></div>
         <h1 style="color: #fff; font-size: 4rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2);">
             AVISOS GERAIS</h1>
+        <footer class="site-footer" style="position: absolute; bottom: 0; width: 100%; border-top: none; margin-top: 0; padding-bottom: 20px;">
+            <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
+        </footer>
     </div>
 
     <div id="view-planilhas" class="global-view temp-view">
         <div class="background-overlay bg-default"></div>
         <h1 style="color: #fff; font-size: 4rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2);">
             PLANILHAS</h1>
+        <footer class="site-footer" style="position: absolute; bottom: 0; width: 100%; border-top: none; margin-top: 0; padding-bottom: 20px;">
+            <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
+        </footer>
     </div>
 
     <div id="view-modulacao" class="global-view" style="display: none;">
-        <div class="background-overlay bg-default"></div>
+        <div class="background-overlay bg-modulacao"></div>
 
         <div class="app-container">
             <!-- Sidebar -->
-            <aside class="sidebar">
+            <aside class="sidebar" id="sidebar-modulacao">
+                <!-- Toggle Button -->
+                <button class="sidebar-toggle-btn" id="toggle-sidebar-modulacao">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="toggle-icon">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
                 <nav class="sidebar-nav">
                     <ul>
                         <li class="active" data-target="home">
@@ -1049,7 +1064,7 @@
 
     <!-- Novas Abas Extras com Conteúdo Movido -->
     <div id="view-viaturas" class="global-view" style="display: none;">
-        <div class="background-overlay bg-default"></div>
+        <div class="background-overlay bg-viaturas"></div>
         <main class="main-content" style="height: 100%; overflow-y: auto;">
             <section id="viaturas-qsv" class="content-section active">
                 <header class="section-header">
@@ -1123,11 +1138,15 @@
                     </div>
                 </div>
             </section>
+            <!-- Rodapé Centralizado -->
+            <footer class="site-footer">
+                <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
+            </footer>
         </main>
     </div>
 
     <div id="view-regras" class="global-view" style="display: none;">
-        <div class="background-overlay bg-default"></div>
+        <div class="background-overlay bg-regras"></div>
         <main class="main-content" style="height: 100%; overflow-y: auto;">
             <section id="regras-condutas" class="content-section active">
                 <header class="section-header">
@@ -1135,31 +1154,164 @@
                     <p>Postura operacional, restrições e diretrizes do departamento.</p>
                 </header>
                 <div class="cards-grid">
-                    <div class="card info-card red-card">
-                        <h3>Conduta Sobre Armamento</h3>
-                        <p>O Bombeiro/Resgate <strong>não possui função de confronto</strong>, abordagem armada ou
-                            atuação ofensiva. O uso de armamento é responsabilidade de forças policiais.<br><br>
-                            Caso a equipe se depare com uma situação de risco armado, deverá priorizar a segurança da
-                            guarnição, afastar-se do risco e solicitar apoio (QRR) da força competente.</p>
-                    </div>
-                    <div class="card info-card orange-card">
-                        <h3>Uso Correto do Rádio</h3>
-                        <p>O rádio <strong>não deve ser usado para conversas paralelas</strong>, brincadeiras,
-                            discussões ou informações desnecessárias. A frequência deve permanecer limpa para que
-                            mensagens de emergência sejam transmitidas com prioridade.</p>
-                    </div>
                     <div class="card info-card blue-card">
-                        <h3>Tom de Voz e Emoção</h3>
-                        <p>Durante uma ocorrência, o operador deve manter a calma, falar em tom firme e evitar gritos.
-                            Uma mensagem curta e bem feita é mais eficiente do que uma fala longa e confusa. Controle
-                            emocional é fundamental.</p>
+                        <h3>Respeito e Hierarquia</h3>
+                        <p>➤ Todo militar deverá respeitar superiores, subordinados e civis.<br>
+                        ➤ A hierarquia deverá ser seguida em qualquer situação operacional.<br>
+                        ➤ Discussões, desrespeito ou insubordinação serão punidos.<br>
+                        ➤ Ordens diretas só poderão ser contestadas após a ocorrência.</p>
                     </div>
+                    
+                    <div class="card info-card orange-card">
+                        <h3>Conduta Operacional</h3>
+                        <p>➤ É obrigatório manter postura profissional em serviço.<br>
+                        ➤ O uso correto do rádio é essencial durante ocorrências.<br>
+                        ➤ É proibido abandonar viaturas sem autorização.<br>
+                        ➤ Todo chamado deverá ser atendido com prioridade e responsabilidade.<br>
+                        ➤ Código 4 deverá ser informado ao finalizar qualquer ocorrência.<br>
+                        ➤ É extremamente proibido qualquer tipo de corrupção dentro da corporação.<br>
+                        ➤ Favorecimentos, abuso de autoridade, recebimento de vantagens ilegais ou quebra de conduta ética resultarão em expulsão imediata.</p>
+                    </div>
+                    
                     <div class="card info-card green-card">
-                        <h3>Tópicos Futuros</h3>
-                        <p>Em breve.</p>
+                        <h3>Comunicação via Rádio</h3>
+                        <p>➤ Evitar flood, gritos ou brincadeiras no rádio.<br>
+                        ➤ Utilizar linguagem operacional e objetiva.<br>
+                        ➤ Sempre identificar patente e nome ao iniciar transmissão.</p>
+                    </div>
+                    
+                    <div class="card info-card purple-card">
+                        <h3>Viaturas e Aeronaves</h3>
+                        <p>➤ Viaturas deverão ser utilizadas apenas em serviço.<br>
+                        ➤ É proibido dirigir de forma irresponsável sem necessidade operacional.<br>
+                        ➤ Abastecimento e organização da viatura são responsabilidade da equipe.<br>
+                        ➤ Danos causados por mau uso poderão gerar punição.<br>
+                        ➤ É extremamente proibido utilizar helicópteros da corporação sem possuir a habilitação/licença necessária.<br>
+                        ➤ O uso indevido de aeronaves poderá resultar em suspensão severa ou expulsão da corporação.</p>
+                    </div>
+                    
+                    <div class="card info-card yellow-card">
+                        <h3>Fardamento</h3>
+                        <p>➤ O uso do fardamento é obrigatório em serviço.<br>
+                        ➤ É proibido misturar peças inadequadas ou usar acessórios exagerados.<br>
+                        ➤ O militar deverá manter aparência organizada e profissional.</p>
+                    </div>
+                    
+                    <div class="card info-card red-card">
+                        <h3>Punições</h3>
+                        <p>➤ As punições poderão incluir:</p>
+                        <ul style="margin-top: 5px; margin-left: 20px;">
+                            <li>Advertência verbal</li>
+                            <li>Advertência escrita</li>
+                            <li>Suspensão</li>
+                            <li>Rebaixamento</li>
+                            <li>Expulsão</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card info-card blue-card">
+                        <h3>Disposições Finais</h3>
+                        <p>➤ Todo integrante do CBM deverá prezar pela disciplina, honra e compromisso.<br>
+                        ➤ O desconhecimento das regras não isenta punições.<br>
+                        ➤ Este regulamento poderá ser atualizado pelo Comando Geral.</p>
                     </div>
                 </div>
             </section>
+            <!-- Rodapé Centralizado -->
+            <footer class="site-footer">
+                <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
+            </footer>
+        </main>
+    </div>
+
+    <div id="view-hierarquia" class="global-view" style="display: none;">
+        <div class="background-overlay bg-hierarquia"></div>
+        <main class="main-content" style="height: 100%; overflow-y: auto;">
+            <section id="hierarquia-lista" class="content-section active">
+                <header class="section-header">
+                    <h1>Hierarquia e Patentes</h1>
+                    <p>Estrutura organizacional e patentes do Corpo de Bombeiros.</p>
+                </header>
+                <div class="cards-grid">
+                    <div class="card info-card red-card" style="grid-column: 1 / -1;">
+                        <h3>Hierarquia do Bombeiro</h3>
+                        <p>A hierarquia é um sistema de organização que distribui pessoas em diferentes níveis de autoridade e responsabilidade. Ela estabelece uma cadeia de comando em que os níveis superiores coordenam e supervisionam os inferiores, garantindo disciplina, organização, respeito e eficiência nas operações do Corpo de Bombeiro.<br><br>
+                        O respeito à hierarquia é um dos princípios fundamentais da corporação. Cada bombeiro possui funções e responsabilidades específicas, contribuindo para o trabalho em equipe e para o bom funcionamento das operações de emergência.</p>
+                    </div>
+
+                    <div class="card info-card red-card">
+                        <h3>Comandante <span style="font-size: 0.7em; opacity: 0.6; font-weight: normal; margin-left: 8px;">(CMD)</span></h3>
+                        <p>É a maior autoridade da corporação, responsável por definir diretrizes, administrar o efetivo e comandar todas as operações do Corpo de Bombeiro.</p>
+                    </div>
+
+                    <div class="card info-card orange-card">
+                        <h3>Coronel <span style="font-size: 0.7em; opacity: 0.6; font-weight: normal; margin-left: 8px;">(CEL)</span></h3>
+                        <p>Oficial de alta patente responsável pelo planejamento estratégico, coordenação de grandes unidades e apoio direto ao comando da corporação.</p>
+                    </div>
+
+                    <div class="card info-card yellow-card">
+                        <h3>Tenente-Coronel <span style="font-size: 0.7em; opacity: 0.6; font-weight: normal; margin-left: 8px;">(TCEL)</span></h3>
+                        <p>Auxilia o Coronel na administração da corporação, supervisionando batalhões e garantindo o cumprimento das normas e missões.</p>
+                    </div>
+
+                    <div class="card info-card green-card">
+                        <h3>Major <span style="font-size: 0.7em; opacity: 0.6; font-weight: normal; margin-left: 8px;">(MAJ)</span></h3>
+                        <p>Responsável pela coordenação operacional e administrativa de companhias e batalhões, garantindo a execução das atividades da unidade.</p>
+                    </div>
+
+                    <div class="card info-card blue-card">
+                        <h3>Capitão <span style="font-size: 0.7em; opacity: 0.6; font-weight: normal; margin-left: 8px;">(CAP)</span></h3>
+                        <p>Comanda companhias e equipes operacionais, coordenando missões, treinamentos e supervisionando o trabalho dos militares.</p>
+                    </div>
+
+                    <div class="card info-card purple-card">
+                        <h3>Tenente <span style="font-size: 0.7em; opacity: 0.6; font-weight: normal; margin-left: 8px;">(TEN)</span></h3>
+                        <p>Lidera pelotões e equipes de serviço, sendo responsável pelo comando direto das ocorrências e pela orientação dos subordinados.</p>
+                    </div>
+
+                    <div class="card info-card orange-card">
+                        <h3>Aspirante <span style="font-size: 0.7em; opacity: 0.6; font-weight: normal; margin-left: 8px;">(ASP)</span></h3>
+                        <p>Oficial em fase inicial da carreira, desenvolvendo experiência prática e preparando-se para assumir funções de comando.</p>
+                    </div>
+
+                    <div class="card info-card blue-card">
+                        <h3>Subtenente <span style="font-size: 0.7em; opacity: 0.6; font-weight: normal; margin-left: 8px;">(SUB)</span></h3>
+                        <p>Praça de maior graduação, responsável por auxiliar o comando, orientar os militares mais novos e transmitir sua experiência à tropa.</p>
+                    </div>
+
+                    <div class="card info-card green-card">
+                        <h3>Sargento <span style="font-size: 0.7em; opacity: 0.6; font-weight: normal; margin-left: 8px;">(SGT)</span></h3>
+                        <p>Supervisiona equipes operacionais, auxilia na instrução dos bombeiros e garante a execução correta das atividades da unidade.</p>
+                    </div>
+
+                    <div class="card info-card yellow-card">
+                        <h3>Cabo <span style="font-size: 0.7em; opacity: 0.6; font-weight: normal; margin-left: 8px;">(CB)</span></h3>
+                        <p>Lidera pequenas equipes, auxilia os superiores e serve como referência direta para os soldados durante o serviço.</p>
+                    </div>
+
+                    <div class="card info-card red-card">
+                        <h3>Soldado <span style="font-size: 0.7em; opacity: 0.6; font-weight: normal; margin-left: 8px;">(SD)</span></h3>
+                        <p>Base da corporação, responsável pela execução das atividades operacionais, atendimento às ocorrências, salvamentos, combate a incêndios e demais missões do Corpo de Bombeiro.</p>
+                    </div>
+
+                    <div class="card info-card purple-card" style="grid-column: 1 / -1;">
+                        <h3>Princípios da Hierarquia</h3>
+                        <p>➤ Respeitar os superiores e tratar os subordinados com profissionalismo.<br>
+                        ➤ Cumprir ordens legais e manter a disciplina.<br>
+                        ➤ Trabalhar em equipe para garantir a segurança de todos.<br>
+                        ➤ Agir com ética, responsabilidade e comprometimento.<br>
+                        ➤ Representar a corporação com respeito dentro e fora do serviço.</p>
+                    </div>
+
+                    <div class="card info-card blue-card" style="grid-column: 1 / -1; text-align: center;">
+                        <p style="font-size: 1.15rem; font-style: italic;">"A hierarquia e a disciplina são os pilares que sustentam a organização, a eficiência e a excelência do Corpo de Bombeiro."</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Rodapé Centralizado -->
+            <footer class="site-footer">
+                <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
+            </footer>
         </main>
     </div>
 
@@ -1175,6 +1327,10 @@
                     <p><em>(Espaço reservado para futuras imagens e registros da corporação)</em></p>
                 </div>
             </section>
+            <!-- Rodapé Centralizado -->
+            <footer class="site-footer">
+                <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
+            </footer>
         </main>
     </div>
 
