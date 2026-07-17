@@ -54,5 +54,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "teste-5-1784330541156",
+    "titulo": "TESTE 5",
+    "descricao": "TESTE 5",
+    "categoria": "comunicado",
+    "prioridade": "importante",
+    "inicio": "2026-07-17T20:22:00-03:00",
+    "fim": null,
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
