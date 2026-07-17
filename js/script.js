@@ -95,8 +95,25 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', () => {
             const targetId = item.getAttribute('data-global-target');
             switchGlobalView(targetId);
+            
+            // Fechar menu mobile ao clicar em um item
+            const navTabs = document.getElementById('nav-tabs');
+            if (navTabs && navTabs.classList.contains('open')) {
+                navTabs.classList.remove('open');
+            }
         });
     });
+
+    // Lógica do botão de menu mobile (Global Navbar)
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            const navTabs = document.getElementById('nav-tabs');
+            if (navTabs) {
+                navTabs.classList.toggle('open');
+            }
+        });
+    }
 
     // Ação de clique na logo da sidebar para voltar à tela inicial (Início)
     // Atualizado para pegar todas as logos de sidebars no site
@@ -137,6 +154,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     section.style.display = 'none';
                 }
             });
+
+            // Se for mobile, fecha a gaveta lateral ao selecionar um item
+            if (window.innerWidth <= 768) {
+                const sidebar = item.closest('.sidebar');
+                if (sidebar) {
+                    sidebar.classList.add('collapsed');
+                }
+            }
         });
     });
 
@@ -263,23 +288,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Lógica para esconder/mostrar a sidebar de Cursos
-    const toggleBtnCursos = document.getElementById('toggle-sidebar-cursos');
-    const sidebarCursos = document.getElementById('sidebar-cursos');
-
-    if (toggleBtnCursos && sidebarCursos) {
-        toggleBtnCursos.addEventListener('mouseenter', () => {
-            sidebarCursos.classList.toggle('collapsed');
+    // Lógica genérica para esconder/mostrar qualquer sidebar
+    const sidebarToggleBtns = document.querySelectorAll('.sidebar-toggle-btn');
+    sidebarToggleBtns.forEach(btn => {
+        // Usar click para funcionar bem no mobile e no PC
+        btn.addEventListener('click', (e) => {
+            const sidebar = e.currentTarget.closest('.sidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('collapsed');
+            }
         });
-    }
+    });
 
-    // Lógica para esconder/mostrar a sidebar de Modulação
-    const toggleBtnModulacao = document.getElementById('toggle-sidebar-modulacao');
-    const sidebarModulacao = document.getElementById('sidebar-modulacao');
-
-    if (toggleBtnModulacao && sidebarModulacao) {
-        toggleBtnModulacao.addEventListener('mouseenter', () => {
-            sidebarModulacao.classList.toggle('collapsed');
+    // Se a tela for de celular/tablet ao carregar, iniciar as sidebars recolhidas para não cobrir o conteúdo
+    if (window.innerWidth <= 768) {
+        document.querySelectorAll('.sidebar').forEach(sidebar => {
+            sidebar.classList.add('collapsed');
         });
     }
 
