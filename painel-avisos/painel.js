@@ -81,6 +81,7 @@ async function carregarAvisos() {
     statusServidor.textContent = "Arquivo carregado";
     statusServidor.className = "status sucesso";
 
+    removerAvisosExpirados();
     renderizarAvisos();
   } catch (erro) {
     statusServidor.textContent = erro.message;
@@ -201,6 +202,14 @@ formulario.addEventListener("submit", (evento) => {
     return;
   }
 
+  if (new Date(fim) <= new Date()) {
+    alert(
+      "A data e hora de encerramento já passou. O sistema não permite publicar avisos expirados."
+    );
+
+    return;
+  }
+
   const titulo = document.getElementById("titulo").value.trim();
 
   const avisoExistente =
@@ -314,7 +323,7 @@ function limparFormulario() {
 
 cancelarEdicao.addEventListener("click", limparFormulario);
 
-salvarArquivo.addEventListener("click", async () => {
+async function salvarAvisosNoServidor(silencioso = false) {
   try {
     salvarArquivo.disabled = true;
     salvarArquivo.textContent = "Salvando...";
@@ -338,9 +347,9 @@ salvarArquivo.addEventListener("click", async () => {
     statusServidor.textContent = "Arquivo salvo com sucesso";
     statusServidor.className = "status sucesso";
 
-    alert(
-      "Os avisos foram salvos e um backup foi criado."
-    );
+    if (!silencioso) {
+      alert("Os avisos foram salvos e um backup foi criado.");
+    }
   } catch (erro) {
     statusServidor.textContent = erro.message;
     statusServidor.className = "status erro";
@@ -348,6 +357,24 @@ salvarArquivo.addEventListener("click", async () => {
     salvarArquivo.disabled = false;
     salvarArquivo.textContent = "Salvar avisos.json";
   }
-});
+}
+
+salvarArquivo.addEventListener("click", () => salvarAvisosNoServidor(false));
+
+function removerAvisosExpirados() {
+  const agora = new Date();
+  const tamanhoAnterior = avisos.length;
+  
+  avisos = avisos.filter(a => new Date(a.fim) > agora);
+  
+  if (avisos.length !== tamanhoAnterior) {
+    if (idEmEdicao !== null && !avisos.some(a => a.id === idEmEdicao)) {
+      limparFormulario();
+    }
+    renderizarAvisos();
+    salvarAvisosNoServidor(true);
+  }
+}
 
 carregarAvisos();
+window.setInterval(removerAvisosExpirados, 60000);

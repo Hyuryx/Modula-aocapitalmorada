@@ -54,5 +54,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "teste-de-minutos-1784292917766",
+    "titulo": "teste de minutos",
+    "descricao": "jjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+    "categoria": "curso",
+    "prioridade": "normal",
+    "inicio": "2026-07-17T09:55:00-03:00",
+    "fim": "2026-07-17T09:56:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
