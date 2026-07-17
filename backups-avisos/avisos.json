@@ -40,5 +40,33 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "natan-1784317616453",
+    "titulo": "NATAN",
+    "descricao": "ELE TA NO MERCADO FAZENDO COMPRAS",
+    "categoria": "comunicado",
+    "prioridade": "importante",
+    "inicio": "2026-07-17T16:50:00-03:00",
+    "fim": null,
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  },
+  {
+    "id": "natan-1784317621554",
+    "titulo": "NATAN",
+    "descricao": "ELE TA NO MERCADO FAZENDO COMPRAS",
+    "categoria": "comunicado",
+    "prioridade": "importante",
+    "inicio": "2026-07-17T16:46:00-03:00",
+    "fim": null,
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
