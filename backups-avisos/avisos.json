@@ -26,5 +26,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "natan-1784317343681",
+    "titulo": "NATAN",
+    "descricao": "ELE TA NO MERCADO FAZENDO COMPRAS",
+    "categoria": "comunicado",
+    "prioridade": "importante",
+    "inicio": "2026-07-17T16:42:00-03:00",
+    "fim": "2026-07-17T18:42:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
