@@ -19,6 +19,3 @@ Clique em Salvar avisos.json.
 O arquivo será atualizado.
 Um backup será criado.
 Envie a alteração ao GitHub.
-git add public/dados/avisos.json
-git commit -m "Atualiza avisos do site"
-git push 
