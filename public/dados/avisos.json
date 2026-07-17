@@ -26,5 +26,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "teste-3-1784330485747",
+    "titulo": "TESTE 3",
+    "descricao": "TESTE 3",
+    "categoria": "manutencao",
+    "prioridade": "importante",
+    "inicio": "2026-07-17T20:21:00-03:00",
+    "fim": "2026-07-20T20:21:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
