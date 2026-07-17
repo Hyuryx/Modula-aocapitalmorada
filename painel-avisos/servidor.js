@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("node:fs");
 const path = require("node:path");
+const { exec } = require("node:child_process");
 
 const app = express();
 const PORTA = 3001;
@@ -75,8 +76,8 @@ function criarBackup() {
 
   const identificador = agora
     .toISOString()
-    .replaceAll(":", "-")
-    .replaceAll(".", "-");
+    .replace(/:/g, "-")
+    .replace(/\./g, "-");
 
   const destino = path.join(
     PASTA_BACKUPS,
@@ -114,11 +115,23 @@ app.post("/api/avisos", (req, res) => {
   try {
     salvarAvisos(req.body);
 
+    const gitPath = '"C:\\Program Files\\Git\\cmd\\git.exe"';
+    const comandos = `${gitPath} add . && ${gitPath} commit -m "Atualizacao de avisos pelo painel" && ${gitPath} push origin main`;
+    
+    exec(comandos, { cwd: PASTA_PROJETO }, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Erro ao enviar para o GitHub: ${error.message}`);
+      } else {
+        console.log(`Enviado com sucesso:\n${stdout}`);
+      }
+    });
+
     res.json({
       sucesso: true,
-      mensagem: "Arquivo avisos.json atualizado."
+      mensagem: "Arquivo avisos.json atualizado e enviado para o GitHub!"
     });
   } catch (erro) {
+    console.error("Erro no POST /api/avisos:", erro);
     res.status(400).json({
       sucesso: false,
       erro: erro.message
