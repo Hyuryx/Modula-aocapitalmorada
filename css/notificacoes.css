@@ -28,8 +28,7 @@
   color: #fff;
   animation: 
     notificacao-entrada 0.35s ease,
-    pulso-opacidade 4s ease-in-out infinite,
-    flutuando 4s ease-in-out infinite;
+    pulse-border-green 2s infinite;
   overflow: hidden;
   padding-bottom: 17px;
   transition: all 0.2s ease;
@@ -57,10 +56,34 @@
 
 .notificacao-importante {
   border-left-color: #ffc107; /* Amarelo */
+  animation: 
+    notificacao-entrada 0.35s ease,
+    pulse-border-yellow 2s infinite;
 }
 
 .notificacao-urgente {
   border-left-color: #dc3545; /* Vermelho */
+  animation: 
+    notificacao-entrada 0.35s ease,
+    pulse-border-red-urgente 2s infinite;
+}
+
+@keyframes pulse-border-green {
+  0% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(40, 167, 69, 0.4); }
+  70% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 10px rgba(40, 167, 69, 0); }
+  100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(40, 167, 69, 0); }
+}
+
+@keyframes pulse-border-yellow {
+  0% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(255, 193, 7, 0.4); }
+  70% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 10px rgba(255, 193, 7, 0); }
+  100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(255, 193, 7, 0); }
+}
+
+@keyframes pulse-border-red-urgente {
+  0% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(220, 53, 69, 0.4); }
+  70% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 10px rgba(220, 53, 69, 0); }
+  100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(220, 53, 69, 0); }
 }
 
 @keyframes rgb-border {
