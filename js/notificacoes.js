@@ -97,11 +97,12 @@
 
       <p>${escaparHtml(aviso.descricao)}</p>
 
-      <div class="notificacao-rodape">
+      <div class="notificacao-rodape" style="display: flex; justify-content: space-between; align-items: center;">
         <small>
           Disponível até
           ${formatarEncerramento(aviso.fim)}
         </small>
+        <small class="cronometro-aviso" data-fim="${aviso.fim}" style="font-weight: bold;"></small>
       </div>
     `;
 
@@ -170,6 +171,29 @@
     }
   }
 
+  function atualizarCronometros() {
+    const cronometros = document.querySelectorAll('.cronometro-aviso');
+    const agora = new Date().getTime();
+
+    cronometros.forEach(cron => {
+      const fim = new Date(cron.dataset.fim).getTime();
+      const diff = fim - agora;
+
+      if (diff <= 0) {
+        const notificacao = cron.closest('.notificacao-site');
+        if (notificacao && notificacao.style.display !== 'none') {
+          notificacao.style.display = 'none';
+        }
+      } else {
+        const horas = Math.floor(diff / (1000 * 60 * 60));
+        const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        cron.textContent = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+      }
+    });
+  }
+
   function iniciar() {
     carregarAvisos();
 
@@ -177,6 +201,8 @@
       carregarAvisos,
       INTERVALO_ATUALIZACAO
     );
+
+    window.setInterval(atualizarCronometros, 1000);
   }
 
   if (document.readyState === "loading") {
