@@ -200,16 +200,16 @@ textarea {
   gap: 20px;
   padding: 20px;
   border: 1px solid #dce1e6;
-  border-left: 6px solid #77818c;
+  border-left: 6px solid #28a745; /* Normal is green */
   border-radius: 12px;
 }
 
 .item-aviso.prioridade-importante {
-  border-left-color: #d89400;
+  border-left-color: #ffc107;
 }
 
 .item-aviso.prioridade-urgente {
-  border-left-color: #b82020;
+  border-left-color: #dc3545;
 }
 
 .item-aviso h3 {

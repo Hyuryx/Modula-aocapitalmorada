@@ -89,6 +89,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 view.style.display = 'none';
             }
         });
+
+        // Gerenciar visibilidade dos pop-ups (Apenas na aba Início)
+        const centralNotificacoes = document.getElementById('central-notificacoes');
+        if (centralNotificacoes) {
+            if (targetId === 'view-inicio') {
+                centralNotificacoes.style.display = '';
+                // Se a pessoa fechou o popup no 'X' e voltou para o Início, faz ele reaparecer
+                centralNotificacoes.querySelectorAll('.notificacao-site').forEach(notif => {
+                    notif.style.display = '';
+                });
+            } else {
+                centralNotificacoes.style.display = 'none';
+            }
+        }
     }
 
     globalNavItems.forEach(item => {

@@ -108,7 +108,7 @@
     elemento
       .querySelector(".notificacao-fechar")
       .addEventListener("click", () => {
-        elemento.remove();
+        elemento.style.display = "none";
       });
 
     return elemento;
