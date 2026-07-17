@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": "teste-1784330430949",
+    "titulo": "TESTE",
+    "descricao": "TESTE 1",
+    "categoria": "curso",
+    "prioridade": "normal",
+    "inicio": "2026-07-17T20:20:00-03:00",
+    "fim": "2026-07-18T20:20:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  }
+]

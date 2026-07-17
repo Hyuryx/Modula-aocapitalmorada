@@ -138,12 +138,14 @@ async function fetchAvisosData() {
 
       <p>${escaparHtml(aviso.descricao)}</p>
 
+      ${["curso", "evento", "manutencao"].includes(aviso.categoria) && aviso.fim ? `
       <div class="notificacao-rodape" style="display: flex; justify-content: space-between; align-items: center;">
         <small>
-          ${aviso.fim ? `Disponível até ${formatarEncerramento(aviso.fim)}` : `Sem limite de tempo`}
+          Disponível até ${formatarEncerramento(aviso.fim)}
         </small>
-        ${aviso.fim ? `<small class="cronometro-aviso" data-fim="${aviso.fim}" style="font-weight: bold;"></small>` : ''}
+        <small class="cronometro-aviso" data-fim="${aviso.fim}" style="font-weight: bold;"></small>
       </div>
+      ` : ''}
     `;
 
     elemento
@@ -328,8 +330,9 @@ function abrirModalAviso(index) {
       <p class="modal-aviso-desc">${aviso.descricao}</p>
       <div class="modal-aviso-datas">
         <p><strong>Início:</strong> ${formatarDataModal(aviso.inicio)}</p>
-        <p><strong>Encerramento:</strong> ${aviso.fim ? formatarDataModal(aviso.fim) : 'Sem limite de tempo'}</p>
-      </div>
+        ${["curso", "evento", "manutencao"].includes(aviso.categoria) && aviso.fim ? `
+        <p><strong>Encerramento:</strong> ${formatarDataModal(aviso.fim)}</p>
+        ` : ''}</div>
       ${linkHTML}
     </div>
   `;

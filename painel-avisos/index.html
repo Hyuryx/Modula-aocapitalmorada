@@ -10,20 +10,22 @@
 
   <title>Painel de Avisos</title>
 
+  <link rel="icon" type="image/png" href="/assets/iconesite/icone.png?v=2">
   <link rel="stylesheet" href="./painel.css">
 </head>
 
 <body>
   <main class="painel">
     <header class="cabecalho">
-      <div>
-        <span class="etiqueta">Painel local</span>
-        <h1>Gerenciador de avisos</h1>
-
-        <p>
-          Crie, edite e exclua os avisos que serão
-          publicados no site.
-        </p>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <img src="/assets/iconesite/icone.png" alt="Logo Bombeiros" style="width: 80px; height: 80px; object-fit: contain;">
+        <div>
+          <span class="etiqueta">Painel local</span>
+          <h1 style="margin-top: 5px;">Gerenciador de avisos</h1>
+          <p style="margin-top: 5px;">
+            Crie, edite e exclua os avisos que serão publicados no site.
+          </p>
+        </div>
       </div>
 
       <div id="statusServidor" class="status">
@@ -99,7 +101,7 @@
           >
         </div>
 
-        <div class="campo">
+        <div class="campo" id="grupoEncerramento">
           <label for="fim">Encerramento</label>
 
           <input

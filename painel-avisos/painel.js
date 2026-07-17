@@ -160,11 +160,12 @@ function renderizarAvisos() {
                 <strong>Início:</strong>
                 ${formatarData(aviso.inicio)}
               </span>
-
+              ${["curso", "evento", "manutencao"].includes(aviso.categoria) ? `
               <span>
                 <strong>Fim:</strong>
                 ${aviso.fim ? formatarData(aviso.fim) : "Sem limite"}
               </span>
+              ` : ''}
             </div>
 
             <div class="formas-exibicao">
@@ -308,6 +309,8 @@ window.editarAviso = function(id) {
   tituloFormulario.textContent = "Editar aviso";
   cancelarEdicao.hidden = false;
 
+  document.getElementById("categoria").dispatchEvent(new Event("change"));
+
   window.scrollTo({
     top: 0,
     behavior: "smooth"
@@ -355,6 +358,7 @@ function limparFormulario() {
 
   tituloFormulario.textContent = "Novo aviso";
   cancelarEdicao.hidden = true;
+  document.getElementById("categoria").dispatchEvent(new Event("change"));
 }
 
 cancelarEdicao.addEventListener("click", limparFormulario);
@@ -414,3 +418,20 @@ function removerAvisosExpirados() {
 
 carregarAvisos();
 window.setInterval(removerAvisosExpirados, 60000);
+
+document.getElementById("categoria").addEventListener("change", (e) => {
+  const categoria = e.target.value;
+  const mostrarTempo = ["curso", "evento", "manutencao"].includes(categoria);
+  const grupoEncerramento = document.getElementById("grupoEncerramento");
+  
+  if (mostrarTempo) {
+    grupoEncerramento.style.display = "flex"; // or block depending on CSS, it's a div class="campo" which is usually flex col
+  } else {
+    grupoEncerramento.style.display = "none";
+    document.getElementById("semFim").checked = true;
+    document.getElementById("fim").disabled = true;
+    document.getElementById("fim").removeAttribute("required");
+  }
+});
+// Run once on load to set initial state
+document.getElementById("categoria").dispatchEvent(new Event("change"));

@@ -32,6 +32,11 @@ app.use(
   express.static(path.join(__dirname))
 );
 
+app.use(
+  "/assets",
+  express.static(path.join(PASTA_PROJETO, "assets"))
+);
+
 function garantirEstrutura() {
   const pastaDados = path.dirname(ARQUIVO_AVISOS);
 
