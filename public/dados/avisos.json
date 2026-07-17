@@ -40,5 +40,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "teste-4-1784330516895",
+    "titulo": "TESTE 4",
+    "descricao": "TESTE 4",
+    "categoria": "informacao",
+    "prioridade": "importante",
+    "inicio": "2026-07-17T20:21:00-03:00",
+    "fim": null,
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
