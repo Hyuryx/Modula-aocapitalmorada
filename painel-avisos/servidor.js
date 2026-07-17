@@ -22,6 +22,12 @@ const PASTA_BACKUPS = path.join(
 
 app.use(express.json({ limit: "1mb" }));
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(
   express.static(path.join(__dirname))
 );
@@ -95,13 +101,16 @@ function salvarAvisos(avisos) {
 }
 
 app.get("/api/avisos", (req, res) => {
-  try {
-    res.json(lerAvisos());
-  } catch (erro) {
-    res.status(500).json({
-      erro: erro.message
-    });
-  }
+  const gitPath = '"C:\\Program Files\\Git\\cmd\\git.exe"';
+  exec(`${gitPath} pull origin main`, { cwd: PASTA_PROJETO }, (error, stdout, stderr) => {
+    try {
+      res.json(lerAvisos());
+    } catch (erro) {
+      res.status(500).json({
+        erro: erro.message
+      });
+    }
+  });
 });
 
 app.post("/api/avisos", (req, res) => {
@@ -109,7 +118,7 @@ app.post("/api/avisos", (req, res) => {
     salvarAvisos(req.body);
 
     const gitPath = '"C:\\Program Files\\Git\\cmd\\git.exe"';
-    const comandos = `${gitPath} add . && ${gitPath} commit -m "Atualizacao de avisos pelo painel" && ${gitPath} push origin main`;
+    const comandos = `${gitPath} pull origin main && ${gitPath} add . && ${gitPath} commit -m "Atualizacao de avisos pelo painel" && ${gitPath} push origin main`;
     
     exec(comandos, { cwd: PASTA_PROJETO }, (error, stdout, stderr) => {
       if (error) {

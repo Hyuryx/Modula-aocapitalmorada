@@ -1,3 +1,42 @@
+async function fetchAvisosData() {
+  let avisos = null;
+  if (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    try {
+      const resLocal = await fetch('http://localhost:3001/api/avisos');
+      if (resLocal.ok) {
+        avisos = await resLocal.json();
+      }
+    } catch (e) {
+      // Ignora erro e tenta buscar o arquivo local
+    }
+  }
+
+  if (!avisos) {
+    try {
+      const respostaApi = await fetch(`/api/avisos`);
+      if (respostaApi.ok) {
+        avisos = await respostaApi.json();
+      }
+    } catch (e) {
+      // Ignora erro da API
+    }
+  }
+
+  if (!avisos) {
+    const resposta = await fetch(`public/dados/avisos.json?v=${Date.now()}`, { cache: "no-store" });
+    if (!resposta.ok) {
+      throw new Error(`Erro ao carregar avisos: ${resposta.status}`);
+    }
+    avisos = await resposta.json();
+  }
+
+  if (!Array.isArray(avisos)) {
+    throw new Error("O conteúdo de avisos é inválido.");
+  }
+
+  return avisos;
+}
+
 (() => {
   const INTERVALO_ATUALIZACAO = 60_000;
 
@@ -130,26 +169,7 @@
 
   async function carregarAvisos() {
     try {
-      const resposta = await fetch(
-        `public/dados/avisos.json?v=${Date.now()}`,
-        {
-          cache: "no-store"
-        }
-      );
-
-      if (!resposta.ok) {
-        throw new Error(
-          `Erro ao carregar avisos: ${resposta.status}`
-        );
-      }
-
-      const avisos = await resposta.json();
-
-      if (!Array.isArray(avisos)) {
-        throw new Error(
-          "O conteúdo de avisos.json é inválido."
-        );
-      }
+      const avisos = await fetchAvisosData();
 
       const agora = new Date();
 
@@ -229,14 +249,7 @@ async function carregarAvisosGerais() {
   if (!container) return;
 
   try {
-    const resposta = await fetch(
-      `public/dados/avisos.json?v=${Date.now()}`,
-      {
-        cache: "no-store"
-      }
-    );
-
-    const avisos = await resposta.json();
+    const avisos = await fetchAvisosData();
     const agora = new Date();
 
     const avisosGerais = avisos
