@@ -7,7 +7,7 @@ const cancelarEdicao = document.getElementById("cancelarEdicao");
 const salvarArquivo = document.getElementById("salvarArquivo");
 
 let avisos = [];
-let indiceEmEdicao = null;
+let idEmEdicao = null;
 
 function escaparHtml(valor = "") {
   return String(valor)
@@ -167,7 +167,7 @@ function renderizarAvisos() {
           <div class="item-acoes">
             <button
               type="button"
-              onclick="editarAviso(${indiceOriginal})"
+              onclick="editarAviso('${aviso.id}')"
               class="botao secundario"
             >
               Editar
@@ -175,7 +175,7 @@ function renderizarAvisos() {
 
             <button
               type="button"
-              onclick="excluirAviso(${indiceOriginal})"
+              onclick="excluirAviso('${aviso.id}')"
               class="botao perigo"
             >
               Excluir
@@ -204,7 +204,7 @@ formulario.addEventListener("submit", (evento) => {
   const titulo = document.getElementById("titulo").value.trim();
 
   const avisoExistente =
-    indiceEmEdicao !== null ? avisos[indiceEmEdicao] : null;
+    idEmEdicao !== null ? avisos.find((a) => a.id === idEmEdicao) : null;
 
   const aviso = {
     id: avisoExistente?.id || criarId(titulo),
@@ -228,10 +228,13 @@ formulario.addEventListener("submit", (evento) => {
     ativo: document.getElementById("ativo").checked
   };
 
-  if (indiceEmEdicao === null) {
+  if (idEmEdicao === null) {
     avisos.push(aviso);
   } else {
-    avisos[indiceEmEdicao] = aviso;
+    const index = avisos.findIndex((a) => a.id === idEmEdicao);
+    if (index !== -1) {
+      avisos[index] = aviso;
+    }
   }
 
   limparFormulario();
@@ -243,10 +246,11 @@ formulario.addEventListener("submit", (evento) => {
   statusServidor.className = "status pendente";
 });
 
-window.editarAviso = function(indice) {
-  const aviso = avisos[indice];
+window.editarAviso = function(id) {
+  const aviso = avisos.find((a) => a.id === id);
+  if (!aviso) return;
 
-  indiceEmEdicao = indice;
+  idEmEdicao = id;
 
   document.getElementById("avisoId").value = aviso.id;
   document.getElementById("titulo").value = aviso.titulo;
@@ -274,8 +278,9 @@ window.editarAviso = function(indice) {
   });
 }
 
-window.excluirAviso = function(indice) {
-  const aviso = avisos[indice];
+window.excluirAviso = function(id) {
+  const aviso = avisos.find((a) => a.id === id);
+  if (!aviso) return;
 
   const confirmou = confirm(
     `Deseja excluir o aviso "${aviso.titulo}"?`
@@ -285,9 +290,9 @@ window.excluirAviso = function(indice) {
     return;
   }
 
-  avisos.splice(indice, 1);
+  avisos = avisos.filter((a) => a.id !== id);
 
-  if (indiceEmEdicao === indice) {
+  if (idEmEdicao === id) {
     limparFormulario();
   }
 
@@ -300,7 +305,7 @@ window.excluirAviso = function(indice) {
 }
 
 function limparFormulario() {
-  indiceEmEdicao = null;
+  idEmEdicao = null;
 
   formulario.reset();
 

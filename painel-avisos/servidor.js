@@ -72,16 +72,9 @@ function criarBackup() {
     return;
   }
 
-  const agora = new Date();
-
-  const identificador = agora
-    .toISOString()
-    .replace(/:/g, "-")
-    .replace(/\./g, "-");
-
   const destino = path.join(
     PASTA_BACKUPS,
-    `avisos-${identificador}.json`
+    "avisos.json"
   );
 
   fs.copyFileSync(ARQUIVO_AVISOS, destino);
@@ -92,13 +85,13 @@ function salvarAvisos(avisos) {
     throw new Error("A lista de avisos é inválida.");
   }
 
-  criarBackup();
-
   fs.writeFileSync(
     ARQUIVO_AVISOS,
     JSON.stringify(avisos, null, 2),
     "utf8"
   );
+
+  criarBackup();
 }
 
 app.get("/api/avisos", (req, res) => {
