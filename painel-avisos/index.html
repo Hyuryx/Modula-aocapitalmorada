@@ -43,10 +43,17 @@
           <input
             type="text"
             id="titulo"
+            list="opcoes-curso"
             maxlength="100"
             required
-            placeholder="Ex.: Curso de Resgate"
+            placeholder="Selecione um curso ou digite um título"
           >
+          <datalist id="opcoes-curso">
+            <option value="Curso de Piloto"></option>
+            <option value="Resgate Aquático"></option>
+            <option value="Resgate Montanha"></option>
+            <option value="Paraquedismo"></option>
+          </datalist>
         </div>
 
         <div class="campo campo-completo">

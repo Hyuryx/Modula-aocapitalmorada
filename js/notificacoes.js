@@ -338,4 +338,85 @@ function abrirModalAviso(index) {
 }
 
 // Ensure carregarAvisosGerais runs when DOM is loaded, and also whenever #view-avisos is shown
-document.addEventListener('DOMContentLoaded', carregarAvisosGerais);
+document.addEventListener('DOMContentLoaded', () => {
+  carregarAvisosGerais();
+  carregarAvisosCursos();
+});
+
+async function carregarAvisosCursos() {
+  try {
+    const avisos = await fetchAvisosData();
+    const agora = new Date();
+
+    const avisosAtivos = avisos.filter((aviso) => {
+      const inicio = new Date(aviso.inicio);
+      const fim = aviso.fim ? new Date(aviso.fim) : null;
+      return aviso.ativo && agora >= inicio && (!fim || agora < fim);
+    });
+
+    const mapaCursos = {
+      "Curso de Piloto": "aereo",
+      "Resgate Aquático": "aquatico",
+      "Resgate Montanha": "montanha",
+      "Paraquedismo": "paraquedismo"
+    };
+
+    // Reset current notifications
+    Object.values(mapaCursos).forEach(id => {
+      const el = document.getElementById(`curso-${id}`);
+      if(el) {
+        const notif = el.querySelector('.aviso-curso-banner');
+        if(notif) notif.remove();
+      }
+      const navItem = document.querySelector(`.sidebar-nav li[data-target="curso-${id}"]`);
+      if(navItem) navItem.classList.remove('tem-aviso');
+    });
+
+    // Add new notifications
+    avisosAtivos.forEach(aviso => {
+      if (mapaCursos[aviso.titulo]) {
+        const id = mapaCursos[aviso.titulo];
+        const el = document.getElementById(`curso-${id}`);
+        if(el && !el.querySelector('.aviso-curso-banner')) {
+          const banner = document.createElement('div');
+          banner.className = 'aviso-curso-banner';
+          banner.innerHTML = `
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <div>
+              <strong>Atenção:</strong> Há um aviso ativo para este curso. <br>
+              <span style="font-size: 0.85em; opacity: 0.9;">${escaparHtmlLocal(aviso.descricao)}</span>
+            </div>
+          `;
+          // Insert after header
+          const header = el.querySelector('header');
+          if (header) {
+            header.insertAdjacentElement('afterend', banner);
+          } else {
+            el.prepend(banner);
+          }
+        }
+        
+        const navItem = document.querySelector(`.sidebar-nav li[data-target="curso-${id}"]`);
+        if(navItem) {
+          navItem.classList.add('tem-aviso');
+        }
+      }
+    });
+
+  } catch (erro) {
+    console.error("Erro ao carregar avisos de cursos:", erro);
+  }
+}
+
+function escaparHtmlLocal(valor = "") {
+  return String(valor)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}

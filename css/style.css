@@ -576,7 +576,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.4;
+    opacity: 0.5;
     z-index: -1;
     pointer-events: none;
 }
@@ -1035,7 +1035,7 @@ body {
 .bg-inicio {
     background-image: url('../assets/inicio/inicio.png');
     background-position: top center !important;
-    opacity: 0.75 !important;
+    opacity: 1 !important;
 }
 
 /* Relógio Digital */

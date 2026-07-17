@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bombeiros - Modulação</title>
     <meta name="description" content="Sistema de modulação e consulta de códigos operacionais.">
-    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="css/style.css?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -32,14 +32,14 @@
 
         <ul class="nav-tabs" id="nav-tabs">
             <li class="nav-item active" data-global-target="view-inicio">INÍCIO</li>
-            <li class="nav-item" data-global-target="view-cursos">CURSOS</li>
-            <li class="nav-item" data-global-target="view-uniformes">UNIFORMES</li>
-            <li class="nav-item" data-global-target="view-modulacao">MODULAÇÃO</li>
             <li class="nav-item" data-global-target="view-avisos">AVISOS GERAIS</li>
-            <li class="nav-item" data-global-target="view-planilhas">PLANILHAS</li>
-            <li class="nav-item" data-global-target="view-viaturas">VIATURAS</li>
             <li class="nav-item" data-global-target="view-regras">REGRAS</li>
+            <li class="nav-item" data-global-target="view-uniformes">UNIFORMES</li>
+            <li class="nav-item" data-global-target="view-cursos">CURSOS</li>
+            <li class="nav-item" data-global-target="view-modulacao">MODULAÇÃO</li>
+            <li class="nav-item" data-global-target="view-viaturas">VIATURAS</li>
             <li class="nav-item" data-global-target="view-hierarquia">HIERARQUIA</li>
+            <li class="nav-item" data-global-target="view-planilhas">PLANILHAS</li>
             <li class="nav-item" data-global-target="view-galeria">GALERIA</li>
         </ul>
     </nav>
@@ -750,8 +750,9 @@
         </main>
     </div>
 
-    <div id="view-avisos" class="global-view temp-view" style="display: none; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px; background-image: url('assets/avisos-gerais/background.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-        <h1 style="color: #fff; font-size: 3rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2); margin-top: 50px; position: relative; z-index: 2;">
+    <div id="view-avisos" class="global-view temp-view" style="display: none; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px;">
+        <div class="background-overlay bg-avisos"></div>
+        <h1 style="color: #fff; font-size: 3rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2); margin-top: 50px;">
             AVISOS GERAIS</h1>
         <section class="avisos-gerais" style="width: 100%; max-width: 800px; overflow-y: auto; max-height: 60vh;">
             <div id="lista-avisos-gerais"></div>
@@ -761,10 +762,19 @@
         </footer>
     </div>
 
-    <div id="view-planilhas" class="global-view temp-view">
+    <div id="view-planilhas" class="global-view temp-view" style="display: none; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px;">
         <div class="background-overlay bg-default"></div>
-        <h1 style="color: #fff; font-size: 4rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2);">
+        <h1 style="color: #fff; font-size: 3rem; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.2); margin-top: 50px; position: relative; z-index: 2;">
             PLANILHAS</h1>
+            
+        <div style="position: relative; z-index: 2; width: 90%; max-width: 1200px; height: 60vh; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: 0 0 20px rgba(0,0,0,0.5); background: #fff;">
+            <!-- Botão de Expandir -->
+            <button onclick="document.getElementById('planilha-iframe').requestFullscreen()" style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 10; font-weight: bold; transition: all 0.3s;" onmouseover="this.style.background='rgba(0,0,0,0.9)'" onmouseout="this.style.background='rgba(0,0,0,0.7)'">
+                ⛶ Expandir Tela Cheia
+            </button>
+            <iframe id="planilha-iframe" src="https://docs.google.com/spreadsheets/d/1rnK19wQkGAWG907tO530ReVBcpRFu-4VN7QzdbIFgbo/htmlembed?widget=true&headers=false" width="100%" height="100%" frameborder="0" style="background: white;"></iframe>
+        </div>
+
         <footer class="site-footer" style="position: absolute; bottom: 0; width: 100%; border-top: none; margin-top: 0; padding-bottom: 20px;">
             <p>&copy; 2026 ERREJOTA. Todos os direitos reservados.</p>
         </footer>
