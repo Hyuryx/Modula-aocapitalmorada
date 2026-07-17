@@ -54,5 +54,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "teste-pelo-link-novo-1784298622986",
+    "titulo": "Teste pelo link novo",
+    "descricao": "Tentando pelo novo domínio",
+    "categoria": "manutencao",
+    "prioridade": "normal",
+    "inicio": "2026-07-17T11:30:00-03:00",
+    "fim": "2026-07-17T12:30:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
