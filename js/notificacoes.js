@@ -185,11 +185,19 @@
           notificacao.style.display = 'none';
         }
       } else {
-        const horas = Math.floor(diff / (1000 * 60 * 60));
+        const totalHoras = Math.floor(diff / (1000 * 60 * 60));
         const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const segundos = Math.floor((diff % (1000 * 60)) / 1000);
-        
-        cron.textContent = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+        if (totalHoras >= 24) {
+          const dias = Math.floor(totalHoras / 24);
+          const horasRestantes = totalHoras % 24;
+          const textoDias = dias === 1 ? "1 dia" : `${dias} dias`;
+          
+          cron.textContent = `${textoDias} ${horasRestantes.toString().padStart(2, '0')}h ${minutos.toString().padStart(2, '0')}m`;
+        } else {
+          const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+          cron.textContent = `${totalHoras.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+        }
       }
     });
   }
