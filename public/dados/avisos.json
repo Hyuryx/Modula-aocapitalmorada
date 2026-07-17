@@ -12,5 +12,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "desenvolvedor-errejota-1784268509205",
+    "titulo": "Desenvolvedor ErreJota",
+    "descricao": "Estou fazendo um teste de avisos e notificaçoes no site",
+    "categoria": "informacao",
+    "prioridade": "urgente",
+    "inicio": "2026-07-17T00:00:00-03:00",
+    "fim": "2026-07-18T00:00:00-03:00",
+    "link": "https://www.youtube.com/",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]

@@ -74,17 +74,6 @@
 
     elemento.dataset.avisoId = aviso.id;
 
-    const link = aviso.link
-      ? `
-        <a
-          class="notificacao-link"
-          href="${escaparHtml(aviso.link)}"
-        >
-          Ver informações
-        </a>
-      `
-      : "";
-
     elemento.innerHTML = `
       <button
         type="button"
@@ -113,8 +102,6 @@
           Disponível até
           ${formatarEncerramento(aviso.fim)}
         </small>
-
-        ${link}
       </div>
     `;
 
@@ -142,7 +129,7 @@
   async function carregarAvisos() {
     try {
       const resposta = await fetch(
-        `/dados/avisos.json?v=${Date.now()}`,
+        `public/dados/avisos.json?v=${Date.now()}`,
         {
           cache: "no-store"
         }
@@ -208,7 +195,7 @@ async function carregarAvisosGerais() {
 
   try {
     const resposta = await fetch(
-      `/dados/avisos.json?v=${Date.now()}`,
+      `public/dados/avisos.json?v=${Date.now()}`,
       {
         cache: "no-store"
       }
@@ -241,10 +228,12 @@ async function carregarAvisosGerais() {
       return;
     }
 
+    window.avisosData = avisosGerais; // Store globally for the modal
+
     container.innerHTML = avisosGerais
-      .map((aviso) => {
+      .map((aviso, index) => {
         return `
-          <article class="aviso-geral">
+          <article class="aviso-geral" onclick="abrirModalAviso(${index})">
             <span class="aviso-badge">${aviso.categoria}</span>
             <h3>${aviso.titulo}</h3>
             <p>${aviso.descricao}</p>
@@ -255,6 +244,49 @@ async function carregarAvisosGerais() {
   } catch (erro) {
     console.error("Erro ao carregar avisos gerais:", erro);
   }
+}
+
+function abrirModalAviso(index) {
+  const aviso = window.avisosData[index];
+  if (!aviso) return;
+
+  let modal = document.getElementById("modal-aviso-geral");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "modal-aviso-geral";
+    document.body.appendChild(modal);
+  }
+
+  const formatarDataModal = (valor) => {
+    return new Intl.DateTimeFormat("pt-BR", {
+      dateStyle: "short",
+      timeStyle: "short",
+      timeZone: "America/Sao_Paulo"
+    }).format(new Date(valor));
+  };
+
+  const linkHTML = aviso.link 
+    ? `<a href="${aviso.link}" class="modal-aviso-link" target="_blank">Acessar Link</a>` 
+    : `<a class="modal-aviso-link inativo">Acessar Link</a>`;
+
+  modal.innerHTML = `
+    <div class="modal-aviso-conteudo">
+      <button class="modal-aviso-fechar" onclick="document.getElementById('modal-aviso-geral').style.display='none'">×</button>
+      <h2>${aviso.titulo}</h2>
+      <div class="modal-aviso-badges">
+        <span class="aviso-badge">${aviso.categoria}</span>
+        <span class="aviso-badge prioridade-${aviso.prioridade}">${aviso.prioridade}</span>
+      </div>
+      <p class="modal-aviso-desc">${aviso.descricao}</p>
+      <div class="modal-aviso-datas">
+        <p><strong>Início:</strong> ${formatarDataModal(aviso.inicio)}</p>
+        <p><strong>Encerramento:</strong> ${formatarDataModal(aviso.fim)}</p>
+      </div>
+      ${linkHTML}
+    </div>
+  `;
+
+  modal.style.display = "flex";
 }
 
 // Ensure carregarAvisosGerais runs when DOM is loaded, and also whenever #view-avisos is shown
