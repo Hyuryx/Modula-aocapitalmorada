@@ -12,5 +12,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "teste-2-1784330464429",
+    "titulo": "TESTE 2",
+    "descricao": "TESTE 2",
+    "categoria": "evento",
+    "prioridade": "normal",
+    "inicio": "2026-07-17T20:20:00-03:00",
+    "fim": "2026-07-19T20:20:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
