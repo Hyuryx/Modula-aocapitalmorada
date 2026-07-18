@@ -1,16 +1,1 @@
-[
-  {
-    "id": "testando-1784339156850",
-    "titulo": "TESTANDO",
-    "descricao": "Natan Lindo <3",
-    "categoria": "comunicado",
-    "prioridade": "urgente",
-    "inicio": "2026-07-17T22:45:00-03:00",
-    "fim": null,
-    "link": "",
-    "mostrarPopup": true,
-    "mostrarAvisosGerais": true,
-    "piscar": true,
-    "ativo": true
-  }
-]
+[]
