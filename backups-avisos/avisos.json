@@ -13,19 +13,5 @@
     "id": "3",
     "titulo": "Teste 3",
     "fim": ""
-  },
-  {
-    "id": "teste-de-f5-1784336117790",
-    "titulo": "Resgate Aquático",
-    "descricao": "AAAAAAAAAAAAAAAAAAAAAAAAA",
-    "categoria": "curso",
-    "prioridade": "normal",
-    "inicio": "2026-07-17T21:55:00-03:00",
-    "fim": "2026-07-17T21:57:00-03:00",
-    "link": "",
-    "mostrarPopup": true,
-    "mostrarAvisosGerais": true,
-    "piscar": true,
-    "ativo": true
   }
 ]
