@@ -13,19 +13,5 @@
     "id": "3",
     "titulo": "Teste 3",
     "fim": ""
-  },
-  {
-    "id": "curso-de-piloto-1784335443787",
-    "titulo": "Curso de Piloto",
-    "descricao": "LOREM IPSUM",
-    "categoria": "curso",
-    "prioridade": "urgente",
-    "inicio": "2026-07-17T21:43:00-03:00",
-    "fim": "2026-07-17T21:45:00-03:00",
-    "link": "",
-    "mostrarPopup": true,
-    "mostrarAvisosGerais": true,
-    "piscar": false,
-    "ativo": true
   }
 ]
