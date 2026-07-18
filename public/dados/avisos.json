@@ -12,5 +12,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "resgate-montanha-1784408999119",
+    "titulo": "Resgate Montanha",
+    "descricao": "AAAAAAAAAAAAAAAAAAAAA",
+    "categoria": "curso",
+    "prioridade": "normal",
+    "inicio": "2026-07-18T18:09:00-03:00",
+    "fim": "2026-07-18T18:12:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
