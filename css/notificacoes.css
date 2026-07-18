@@ -17,6 +17,10 @@
   display: none;
 }
 
+body.locked #central-notificacoes {
+  display: none !important;
+}
+
 .notificacao-site {
   position: relative;
   padding: 14px;

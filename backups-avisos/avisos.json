@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": "curso-de-piloto-1784408900645",
+    "titulo": "Curso de Piloto",
+    "descricao": "AAAAAAAAAAAAAAA",
+    "categoria": "curso",
+    "prioridade": "normal",
+    "inicio": "2026-07-18T18:08:00-03:00",
+    "fim": "2026-07-18T18:10:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  }
+]
