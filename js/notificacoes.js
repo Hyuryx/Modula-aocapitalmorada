@@ -85,9 +85,9 @@ async function fetchAvisosData() {
       return false;
     }
 
-    if (aviso.fim) {
+    if (aviso.fim && String(aviso.fim).trim() !== "" && String(aviso.fim) !== "null") {
       const fim = new Date(aviso.fim);
-      if (Number.isNaN(fim.getTime())) return false;
+      if (Number.isNaN(fim.getTime())) return true; // keep if invalid
       return agora >= inicio && agora < fim;
     }
     
@@ -257,13 +257,22 @@ async function carregarAvisosGerais() {
     const avisosGerais = avisos
       .filter((aviso) => {
         const inicio = new Date(aviso.inicio);
-        const fim = aviso.fim ? new Date(aviso.fim) : null;
+        
+        let isValidFim = false;
+        let expired = false;
+        if (aviso.fim && String(aviso.fim).trim() !== "" && String(aviso.fim) !== "null") {
+          const fim = new Date(aviso.fim);
+          if (!Number.isNaN(fim.getTime())) {
+            isValidFim = true;
+            expired = agora >= fim;
+          }
+        }
 
         return (
           aviso.ativo &&
           aviso.mostrarAvisosGerais &&
           agora >= inicio &&
-          (!fim || agora < fim)
+          !expired
         );
       })
       .sort((a, b) => {
@@ -353,8 +362,13 @@ async function carregarAvisosCursos() {
 
     const avisosAtivos = avisos.filter((aviso) => {
       const inicio = new Date(aviso.inicio);
-      const fim = aviso.fim ? new Date(aviso.fim) : null;
-      return aviso.ativo && agora >= inicio && (!fim || agora < fim);
+      if (aviso.fim && String(aviso.fim).trim() !== "" && String(aviso.fim) !== "null") {
+        const dataFim = new Date(aviso.fim);
+        if (!isNaN(dataFim.getTime())) {
+          return aviso.ativo && agora >= inicio && agora < dataFim;
+        }
+      }
+      return aviso.ativo && agora >= inicio;
     });
 
     const mapaCursos = {

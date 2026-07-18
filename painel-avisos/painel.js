@@ -405,7 +405,15 @@ function removerAvisosExpirados() {
   const agora = new Date();
   const tamanhoAnterior = avisos.length;
   
-  avisos = avisos.filter(a => !a.fim || new Date(a.fim) > agora);
+  avisos = avisos.filter(a => {
+    if (!a.fim || String(a.fim).trim() === "" || String(a.fim) === "null") return true;
+    
+    const dataFim = new Date(a.fim);
+    // Se a data for inválida por algum motivo bizarro de navegador, não exclui!
+    if (isNaN(dataFim.getTime())) return true;
+    
+    return dataFim > agora;
+  });
   
   if (avisos.length !== tamanhoAnterior) {
     if (idEmEdicao !== null && !avisos.some(a => a.id === idEmEdicao)) {
@@ -435,3 +443,122 @@ document.getElementById("categoria").addEventListener("change", (e) => {
 });
 // Run once on load to set initial state
 document.getElementById("categoria").dispatchEvent(new Event("change"));
+
+// ==========================================
+// Lógica da Tela de Login / Bloqueio
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const loginScreen = document.getElementById('login-screen');
+    const loginPassword = document.getElementById('login-password');
+    const loginSubmit = document.getElementById('login-submit');
+    const loginError = document.getElementById('login-error');
+    
+    // A SENHA MESTRA
+    const MASTER_PASSWORD = "CAPITAL";
+
+    if (loginScreen) {
+        // Relógio da tela de login
+        const loginTime = document.getElementById('login-time');
+        const loginDate = document.getElementById('login-date');
+        
+        function updateLoginClock() {
+            if (loginTime && loginDate) {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                loginTime.textContent = `${hours}:${minutes}:${seconds}`;
+                
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                loginDate.textContent = now.toLocaleDateString('pt-BR', options);
+            }
+        }
+        setInterval(updateLoginClock, 1000);
+        updateLoginClock();
+
+        let inactivityTimer;
+        let absoluteTimer;
+        const INACTIVITY_LIMIT = 60 * 1000; // 1 min
+        const ABSOLUTE_LIMIT = 5 * 60 * 1000; // 5 min
+
+        let isUnlocked = false;
+
+        function lockScreen() {
+            isUnlocked = false;
+            loginScreen.style.display = 'flex';
+            setTimeout(() => {
+                loginScreen.style.opacity = '1';
+                loginScreen.style.visibility = 'visible';
+            }, 10);
+            document.body.classList.add('locked');
+            const digitalClock = document.getElementById('digital-clock');
+            if (digitalClock) digitalClock.style.display = 'none';
+            loginPassword.value = '';
+            loginError.style.display = 'none';
+            stopTimers();
+        }
+
+        function startTimers() {
+            stopTimers();
+            inactivityTimer = setTimeout(lockScreen, INACTIVITY_LIMIT);
+            absoluteTimer = setTimeout(lockScreen, ABSOLUTE_LIMIT);
+        }
+
+        function stopTimers() {
+            clearTimeout(inactivityTimer);
+            clearTimeout(absoluteTimer);
+        }
+
+        function resetInactivityTimer() {
+            if (isUnlocked) {
+                clearTimeout(inactivityTimer);
+                inactivityTimer = setTimeout(lockScreen, INACTIVITY_LIMIT);
+            }
+        }
+
+        ['mousemove', 'mousedown', 'keypress', 'touchmove', 'scroll'].forEach(evt => 
+            document.addEventListener(evt, resetInactivityTimer)
+        );
+
+        // Inicia bloqueado por padrão (F5 / Nova aba)
+        document.body.classList.add("locked");
+        const digitalClock = document.getElementById("digital-clock");
+        if (digitalClock) digitalClock.style.display = "none";
+
+        function handleLogin() {
+            if (loginPassword.value === MASTER_PASSWORD) {
+                // Senha Correta
+                isUnlocked = true;
+                loginError.style.display = 'none';
+                loginScreen.style.opacity = '0';
+                loginScreen.style.visibility = "hidden";
+      document.body.classList.remove("locked");
+      const digitalClock = document.getElementById("digital-clock");
+      if (digitalClock) digitalClock.style.display = "block";
+      startTimers();
+      setTimeout(() => {
+                    loginScreen.style.display = 'none';
+                }, 800);
+            } else {
+                // Senha Incorreta
+                loginError.style.display = 'block';
+                loginPassword.value = '';
+                loginPassword.focus();
+                
+                // Reinicia a animação de erro
+                loginError.style.animation = 'none';
+                loginError.offsetHeight; /* trigger reflow */
+                loginError.style.animation = null;
+            }
+        }
+
+        if (loginSubmit) loginSubmit.addEventListener('click', handleLogin);
+        if (loginPassword) loginPassword.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                // Evita que o 'Enter' envie o form do painel acidentalmente
+                e.preventDefault(); 
+                handleLogin();
+            }
+        });
+    }
+});

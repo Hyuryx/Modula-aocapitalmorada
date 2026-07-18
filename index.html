@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bombeiros - PORTAL CBM</title>
     <meta name="description" content="Sistema de modulação e consulta de códigos operacionais.">
-    <link rel="stylesheet" href="css/style.css?v=8">
+    <link rel="stylesheet" href="css/style.css?v=9">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -15,6 +15,29 @@
 </head>
 
 <body>
+    <!-- Tela de Login / Bloqueio -->
+    <div id="login-screen">
+        <div class="login-background"></div>
+        <div class="login-container">
+            <img src="assets/fotos/logo-capital.png" alt="Logo Capital" class="login-logo">
+            <div id="login-clock" style="text-align: center; color: white; margin-bottom: 20px;">
+                <div id="login-time" style="font-size: 3rem; font-weight: 800; letter-spacing: 2px; line-height: 1;">00:00:00</div>
+                <div id="login-date" style="font-size: 1rem; color: #ccc; margin-top: 5px;">Data</div>
+            </div>
+            <h2>PORTAL CBM</h2>
+            <div class="login-input-group">
+                <input type="password" id="login-password" placeholder="Digite a senha de acesso..." autocomplete="off">
+                <button id="login-submit">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+            <p id="login-error" style="display: none;">Senha incorreta. Tente novamente.</p>
+        </div>
+    </div>
+
     <!-- Global Navigation -->
     <nav class="global-navbar">
         <div class="nav-brand">

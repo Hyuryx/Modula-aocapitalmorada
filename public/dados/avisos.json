@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": "1",
+    "titulo": "Teste",
+    "fim": null
+  },
+  {
+    "id": "2",
+    "titulo": "Teste 2",
+    "fim": "2026-07-20T12:00:00-03:00"
+  },
+  {
+    "id": "3",
+    "titulo": "Teste 3",
+    "fim": ""
+  }
+]
