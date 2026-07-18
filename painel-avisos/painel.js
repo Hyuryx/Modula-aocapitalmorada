@@ -426,6 +426,7 @@ function removerAvisosExpirados() {
 
 carregarAvisos();
 window.setInterval(removerAvisosExpirados, 60000);
+window.setInterval(carregarAvisos, 30000);
 
 document.getElementById("categoria").addEventListener("change", (e) => {
   const categoria = e.target.value;

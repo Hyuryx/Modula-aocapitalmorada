@@ -102,6 +102,8 @@ async function fetchAvisosData() {
     }).format(new Date(valor));
   }
 
+  const avisosFechados = new Set();
+
   function montarAviso(aviso) {
     const elemento = document.createElement("article");
 
@@ -148,10 +150,16 @@ async function fetchAvisosData() {
       ` : ''}
     `;
 
+    // Se já foi fechado antes pelo usuário, mantem escondido
+    if (avisosFechados.has(aviso.id)) {
+      elemento.style.display = "none";
+    }
+
     elemento
       .querySelector(".notificacao-fechar")
       .addEventListener("click", () => {
         elemento.style.display = "none";
+        avisosFechados.add(aviso.id); // Registra que o usuário fechou
       });
 
     return elemento;
@@ -160,13 +168,16 @@ async function fetchAvisosData() {
   function renderizar(avisos) {
     const central = obterContainer();
 
+    // Mantem apenas os elementos novos, atualizando o html
     central.innerHTML = "";
 
     avisos.forEach((aviso) => {
       central.appendChild(montarAviso(aviso));
     });
 
-    central.hidden = avisos.length === 0;
+    // Se todos estiverem escondidos (display: none), esconde o central
+    const todosEscondidos = Array.from(central.children).every(el => el.style.display === 'none');
+    central.hidden = (avisos.length === 0 || todosEscondidos);
   }
 
   async function carregarAvisos() {
@@ -206,6 +217,9 @@ async function fetchAvisosData() {
         const notificacao = cron.closest('.notificacao-site');
         if (notificacao && notificacao.style.display !== 'none') {
           notificacao.style.display = 'none';
+          const central = obterContainer();
+          const todosEscondidos = Array.from(central.children).every(el => el.style.display === 'none');
+          central.hidden = todosEscondidos;
         }
       } else {
         const totalHoras = Math.floor(diff / (1000 * 60 * 60));
@@ -353,6 +367,12 @@ function abrirModalAviso(index) {
 document.addEventListener('DOMContentLoaded', () => {
   carregarAvisosGerais();
   carregarAvisosCursos();
+
+  // Silent refresh das abas também
+  window.setInterval(() => {
+    carregarAvisosGerais();
+    carregarAvisosCursos();
+  }, 30000);
 });
 
 async function carregarAvisosCursos() {
