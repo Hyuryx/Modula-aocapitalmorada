@@ -267,11 +267,7 @@ formulario.addEventListener("submit", (evento) => {
 
   limparFormulario();
   renderizarAvisos();
-
-  statusServidor.textContent =
-    "Alterações ainda não salvas no arquivo";
-
-  statusServidor.className = "status pendente";
+  salvarAvisosNoServidor(true); // Auto-save silencioso
 });
 
 window.editarAviso = function(id) {
@@ -336,11 +332,7 @@ window.excluirAviso = function(id) {
   }
 
   renderizarAvisos();
-
-  statusServidor.textContent =
-    "Alterações ainda não salvas no arquivo";
-
-  statusServidor.className = "status pendente";
+  salvarAvisosNoServidor(true); // Auto-save silencioso
 }
 
 function limparFormulario() {
@@ -426,7 +418,6 @@ function removerAvisosExpirados() {
 
 carregarAvisos();
 window.setInterval(removerAvisosExpirados, 60000);
-window.setInterval(carregarAvisos, 30000);
 
 document.getElementById("categoria").addEventListener("change", (e) => {
   const categoria = e.target.value;

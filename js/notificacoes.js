@@ -214,12 +214,14 @@ async function fetchAvisosData() {
       const diff = fim - agora;
 
       if (diff <= 0) {
-        const notificacao = cron.closest('.notificacao-site');
+        const notificacao = cron.closest('.notificacao-site, .aviso-geral, .aviso-curso-banner');
         if (notificacao && notificacao.style.display !== 'none') {
           notificacao.style.display = 'none';
-          const central = obterContainer();
-          const todosEscondidos = Array.from(central.children).every(el => el.style.display === 'none');
-          central.hidden = todosEscondidos;
+          if (notificacao.classList.contains('notificacao-site')) {
+            const central = obterContainer();
+            const todosEscondidos = Array.from(central.children).every(el => el.style.display === 'none');
+            central.hidden = todosEscondidos;
+          }
         }
       } else {
         const totalHoras = Math.floor(diff / (1000 * 60 * 60));
@@ -305,8 +307,10 @@ async function carregarAvisosGerais() {
 
     container.innerHTML = avisosGerais
       .map((aviso, index) => {
+        const temFim = aviso.fim && String(aviso.fim).trim() !== "" && String(aviso.fim) !== "null";
         return `
           <article class="aviso-geral prioridade-${aviso.prioridade}" onclick="abrirModalAviso(${index})">
+            ${temFim ? `<span class="cronometro-aviso" data-fim="${aviso.fim}" style="display:none;"></span>` : ''}
             <span class="aviso-badge">${aviso.categoria}</span>
             <h3>${aviso.titulo}</h3>
             <p>${aviso.descricao}</p>
@@ -415,9 +419,11 @@ async function carregarAvisosCursos() {
         const id = mapaCursos[aviso.titulo];
         const el = document.getElementById(`curso-${id}`);
         if(el && !el.querySelector('.aviso-curso-banner')) {
+          const temFim = aviso.fim && String(aviso.fim).trim() !== "" && String(aviso.fim) !== "null";
           const banner = document.createElement('div');
           banner.className = 'aviso-curso-banner';
           banner.innerHTML = `
+            ${temFim ? `<span class="cronometro-aviso" data-fim="${aviso.fim}" style="display:none;"></span>` : ''}
             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
               <line x1="12" y1="9" x2="12" y2="13"></line>
@@ -428,7 +434,6 @@ async function carregarAvisosCursos() {
               <span style="font-size: 0.85em; opacity: 0.9;">${escaparHtmlLocal(aviso.descricao)}</span>
             </div>
           `;
-          // Insert after header
           const header = el.querySelector('header');
           if (header) {
             header.insertAdjacentElement('afterend', banner);
