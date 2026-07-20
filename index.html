@@ -99,9 +99,9 @@
                         <polyline points="15 18 9 12 15 6"></polyline>
                     </svg>
                 </button>
-                <nav class="sidebar-nav">
-                    <ul>
-                        <li class="active" data-target="curso-aereo">
+                <nav class="sidebar-nav" style="display: flex; flex-direction: column; height: 100%;">
+                    <ul style="flex-grow: 1;">
+                        <li class="active" data-target="curso-aereo" style="--active-color: #3b82f6;">
                             <svg class="anim-icon icon-aereo" viewBox="0 0 24 24" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <line class="heli-rotor" x1="6" y1="5" x2="18" y2="5" />
                                 <line x1="12" y1="5" x2="12" y2="9" />
@@ -111,27 +111,47 @@
                                 <line x1="7" y1="16" x2="7" y2="19" />
                                 <line x1="15" y1="16" x2="15" y2="19" />
                                 <line x1="5" y1="19" x2="17" y2="19" />
-                            </svg> Curso de Piloto
+                            </svg> 
+                            <div style="display: flex; flex-direction: column;">
+                                <span>Curso de Piloto</span>
+                                <span style="font-size: 0.75em; opacity: 0.7;"><strong>Custo: R$ 0</strong></span>
+                            </div>
                         </li>
-                        <li data-target="curso-aquatico">
+                        <li data-target="curso-aquatico" style="--active-color: #0ea5e9;">
                             <svg class="anim-icon icon-water" viewBox="0 0 24 24" stroke="#0ea5e9">
                                 <path class="water-wave1" d="M2 12c2 0 4-4 8-4s6 4 8 4 6-4 8-4"></path>
                                 <path class="water-wave2" d="M2 16c2 0 4-4 8-4s6 4 8 4 6-4 8-4"></path>
-                            </svg> Resgate Aquático
+                            </svg> 
+                            <div style="display: flex; flex-direction: column;">
+                                <span>Resgate Aquático</span>
+                                <span style="font-size: 0.75em; opacity: 0.7;"><strong>Custo: R$ 0</strong></span>
+                            </div>
                         </li>
-                        <li data-target="curso-montanha">
+                        <li data-target="curso-montanha" style="--active-color: #10b981;">
                             <svg class="anim-icon icon-mountain" viewBox="0 0 24 24" stroke="#10b981">
                                 <path class="mountain-path" d="M1 20l7-12 5 8 4-5 6 9z"></path>
-                            </svg> Resgate Montanha
+                            </svg> 
+                            <div style="display: flex; flex-direction: column;">
+                                <span>Resgate Montanha</span>
+                                <span style="font-size: 0.75em; opacity: 0.7;"><strong>Em andamento</strong></span>
+                            </div>
                         </li>
-                        <li data-target="curso-paraquedismo">
+                        <li data-target="curso-paraquedismo" style="--active-color: #f59e0b;">
                             <svg class="anim-icon icon-parachute" viewBox="0 0 24 24" stroke="#f59e0b">
-                                <path class="parachute-top" d="M12 2C6.48 2 2 6.48 2 12h20c0-5.52-4.48-10-10-10z">
-                                </path>
+                                <path class="parachute-top" d="M12 2C6.48 2 2 6.48 2 12h20c0-5.52-4.48-10-10-10z"></path>
                                 <path class="parachute-cord" d="M12 12v10"></path>
-                            </svg> Paraquedismo
+                            </svg> 
+                            <div style="display: flex; flex-direction: column;">
+                                <span>Paraquedismo</span>
+                                <span style="font-size: 0.75em; opacity: 0.7;"><strong>Custo: R$ 20k</strong></span>
+                            </div>
                         </li>
                     </ul>
+                    <div style="margin-top: auto; padding: 20px; font-size: 0.75em; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.1); line-height: 1.4;">
+                        <strong>Curso Paraquedismo:</strong><br>
+                        10 Para-Quedas (2 para cada prova e 2 de reserva).<br>
+                        <em>Obs: Ainda pode ser pouco, só na etapa Eólica o gasto médio é de 3 a 4.</em>
+                    </div>
                 </nav>
             </aside>
 
@@ -153,6 +173,17 @@
                             <p>É uma das especializações mais prestigiadas do Corpo de Bombeiros, destinada aos militares que desejam atuar em operações de alta complexidade utilizando aeronaves como principal meio de resposta.<br><br>
                             A formação prepara o operador para realizar resgates em locais de difícil acesso, prestar apoio em grandes ocorrências, transportar vítimas em estado crítico e atuar em conjunto com pilotos e equipes terrestres. Cada missão exige disciplina, preparo técnico, comunicação eficiente e total comprometimento com a segurança operacional.<br><br>
                             Ao concluir todas as etapas, o militar estará apto a integrar oficialmente a equipe de Resgate Aéreo da corporação.</p>
+                            
+                            <div style="margin-top: 20px;">
+                                <p style="color: var(--text-muted);"><strong>Requisitos para o Curso de Piloto:</strong></p>
+                                <ul style="color: var(--text-muted); list-style: disc; margin-left: 20px; margin-top: 5px;">
+                                    <li>Curso de Paraquedismo;</li>
+                                    <li>Curso de Resgate Aquático;</li>
+                                    <li>Curso de Resgate em Montanha;</li>
+                                    <li><strong>Aspirante:</strong> Treinamento com autorização;</li>
+                                    <li><strong>Tenente 2:</strong> Pode prestar a prova.</li>
+                                </ul>
+                            </div>
                         </div>
                         
                         <div class="card info-card green-card">
@@ -207,11 +238,6 @@
                                     <p style="margin-top: 10px;">Nesta fase, o foco é desenvolver a confiança em voo e preparar a equipe para atuar em ambientes complexos, principalmente sobre áreas aquáticas e regiões de difícil acesso.</p>
                                     <p style="margin-top: 10px;"><strong>Durante esta etapa serão realizados treinamentos como:</strong></p>
                                     <ul style="margin-top: 5px; margin-left: 20px; color: var(--text-muted);">
-                                        <li>Sobrevoo em baixa altitude sobre rios, lagos e áreas costeiras;</li>
-                                        <li>Passagem controlada sob pontes e obstáculos para avaliação da estabilidade da aeronave;</li>
-                                        <li>Simulações de resgate aquático utilizando o helicóptero como plataforma de apoio;</li>
-                                        <li>Extração e transporte de vítimas em áreas alagadas ou de difícil acesso;</li>
-                                        <li>Coordenação entre equipes aéreas, aquáticas e terrestres durante a operação;</li>
                                         <li>Procedimentos de comunicação e tomada de decisão sob pressão.</li>
                                     </ul>
                                 </div>
@@ -229,11 +255,10 @@
                                     <ul style="margin-top: 5px; margin-left: 20px; color: var(--text-muted);">
                                         <li>Acidentes em áreas de difícil acesso;</li>
                                         <li>Resgates em montanhas;</li>
-                                        <li>Apoio em desastres naturais;</li>
                                         <li>Evacuação aeromédica;</li>
                                         <li>Transporte emergencial de vítimas.</li>
                                     </ul>
-                                    <p style="margin-top: 10px;">Nesta etapa será avaliada toda a postura operacional do militar.</p>
+                                    <p style="margin-top: 10px;">A pessoa será avaliada como um piloto profissional, será avaliado todos os tipos de comportamento.</p>
                                 </div>
                             </div>
                         </div>
@@ -358,10 +383,12 @@
                                         <li>Salvamento em áreas de cachoeira;</li>
                                         <li>Resgate de vítimas presas em árvores ou obstáculos naturais;</li>
                                         <li>Transporte seguro da vítima até zona de segurança;</li>
-                                        <li>Coordenação entre embarcação e equipe de apoio;</li>
+                                        <li>Coordenação entre equipe de apoio;</li>
+                                        <li>Não utiliza barco &rarr; Apenas para locomoção;</li>
+                                        <li>Não utiliza helicóptero &rarr; Apenas para locomoção;</li>
                                         <li>Atendimento sob pressão e gerenciamento de riscos.</li>
                                     </ul>
-                                    <p style="margin-top: 10px;"><strong>Objetivo da Fase:</strong> Desenvolver rapidez na tomada de decisão, domínio das técnicas de salvamento e coordenação operacional durante ocorrências em águas com forte correnteza.</p>
+                                    <p style="margin-top: 10px;"><strong>Objetivo da Fase:</strong> Atuar como um teste especializado onde os bombeiros devem desenvolver habilidades de subir correntezas longas, localizar a vítima, achar um local seguro e controlar os mecanismos de resgate (desembarcar e salvar a pessoa de forma segura).</p>
                                 </div>
                             </div>
                         </div>
@@ -376,13 +403,12 @@
                                     <p style="margin-top: 10px;">Durante a avaliação, o militar deverá demonstrar capacidade para localizar sobreviventes em áreas submersas e conduzi-los com segurança até a superfície.</p>
                                     <p style="margin-top: 10px;"><strong>Durante esta etapa serão avaliados:</strong></p>
                                     <ul style="margin-top: 5px; margin-left: 20px; color: var(--text-muted);">
-                                        <li>Técnicas de mergulho operacional;</li>
-                                        <li>Busca subaquática;</li>
-                                        <li>Orientação em ambiente submerso;</li>
-                                        <li>Localização de vítimas;</li>
-                                        <li>Extração segura para a superfície;</li>
-                                        <li>Trabalho em equipe durante operações de mergulho;</li>
-                                        <li>Controle emocional em situações críticas.</li>
+                                        <li>Resgate da vítima;</li>
+                                        <li>Trabalho em equipe;</li>
+                                        <li>Montagem de estratégia;</li>
+                                        <li>Atenção no perímetro;</li>
+                                        <li>Dedução de onde está a vítima;</li>
+                                        <li>Comunicação com a aeronave.</li>
                                     </ul>
                                     <p style="margin-top: 10px;"><strong>Objetivo da Fase:</strong> Avaliar toda a preparação técnica do militar em missões de busca e resgate subaquático, simulando operações reais de alta complexidade.</p>
                                 </div>
@@ -433,146 +459,63 @@
                     </div>
                 </section>
 
-                <section id="curso-montanha" class="content-section">
-                    <header class="section-header">
-                        <h1>Resgate Montanha</h1>
-                        <p>"Quando o terreno desafia os limites, o especialista em montanha transforma técnica em esperança."</p>
-                    </header>
-
-                    <div class="content-box" style="padding: 10px; background: transparent; border: none; box-shadow: none; display: flex; justify-content: center;">
-                        <img src="assets/cursos/montanha/capa.png" alt="Curso de Resgate em Montanha" style="width: 100%; max-width: 600px; border-radius: 8px;">
+                <section id="curso-montanha" class="content-section" style="position: relative; min-height: 500px;">
+                    <div style="position: absolute; top: 10%; left: 0; width: 100%; height: 80%; display: flex; justify-content: center; align-items: flex-start; z-index: 10; pointer-events: none;">
+                        <h2 style="color: white; font-size: 3rem; background: rgba(0,0,0,0.8); padding: 20px 40px; border-radius: 10px; border: 2px solid var(--primary-green); text-align: center; margin-top: 100px;">EM DESENVOLVIMENTO</h2>
                     </div>
+                    
+                    <div style="filter: blur(8px); pointer-events: none; user-select: none;">
+                        <header class="section-header">
+                            <h1>Resgate Montanha</h1>
+                        </header>
 
-                    <div class="cards-grid" style="margin-top: 20px;">
-                        <div class="card info-card blue-card" style="grid-column: 1 / -1;">
-                            <h3>O Curso de Resgate em Montanha</h3>
-                            <p>É destinado aos militares que desejam atuar em operações de salvamento em regiões montanhosas, penhascos, encostas, trilhas, cânions e demais áreas de difícil acesso.<br><br>
-                            Durante a formação, o militar desenvolverá técnicas de progressão em terreno íngreme, ancoragem, rapel, resgate vertical, localização de vítimas e integração com equipes terrestres e aéreas.<br><br>
-                            Cada operação exige preparo físico, precisão técnica e total controle emocional, pois pequenas decisões podem representar a diferença entre o sucesso da missão e o agravamento da ocorrência.<br><br>
-                            Ao concluir o curso, o militar estará apto a integrar oficialmente a Equipe de Resgate em Montanha da corporação.</p>
+                        <div class="content-box" style="padding: 10px; background: transparent; border: none; box-shadow: none; display: flex; justify-content: center;">
+                            <img src="assets/cursos/montanha/capa.png" alt="Curso de Resgate em Montanha" style="width: 100%; max-width: 600px; border-radius: 8px;">
                         </div>
-                        
-                        <div class="card info-card green-card">
-                            <h3>Objetivo do Curso</h3>
-                            <p>Capacitar o militar para atuar em operações de busca e salvamento em ambientes montanhosos, desenvolvendo habilidades de progressão, acesso por cordas, extração de vítimas e atuação em terrenos de alta complexidade.</p>
-                        </div>
-                        
-                        <div class="card info-card orange-card">
-                            <h3>Requisitos</h3>
-                            <p>Para ingressar no Curso de Resgate em Montanha, o militar deverá:</p>
-                            <ul style="margin-top: 8px; margin-left: 20px; color: var(--text-muted);">
-                                <li>Estar ativo na corporação;</li>
-                                <li>Demonstrar disciplina e comprometimento;</li>
-                                <li>Possuir bom condicionamento físico;</li>
-                                <li>Não possuir restrições para atividades em altura;</li>
-                                <li>Ser aprovado pela coordenação de cursos, quando necessário.</li>
-                            </ul>
-                        </div>
-                    </div>
 
-                    <h2 style="margin: 30px 0 15px; font-size: 1.5rem; color: #fff;">Estrutura do Curso</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 20px;">O Curso de Resgate em Montanha é composto por treinamentos teóricos e práticos que simulam operações reais em diferentes tipos de terreno. Durante a formação, o militar será submetido a cenários que exigem técnica, trabalho em equipe e tomada de decisão sob pressão.</p>
+                        <div class="cards-grid" style="margin-top: 20px;">
+                            <div class="card info-card blue-card" style="grid-column: 1 / -1; min-height: 150px;">
+                            </div>
+                            
+                            <div class="card info-card green-card" style="min-height: 150px;">
+                            </div>
+                            
+                            <div class="card info-card orange-card" style="min-height: 150px;">
+                            </div>
+                        </div>
 
-                    <div class="cards-grid">
-                        <!-- FASE I -->
-                        <div class="card info-card purple-card" style="grid-column: 1 / -1;">
-                            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
-                                <img src="assets/cursos/montanha/1.png" alt="Módulo I - Progressão em Terreno" style="width: 100%; max-width: 350px; border-radius: 8px;">
-                                <div style="flex: 1; min-width: 300px;">
-                                    <h3>Módulo I — Progressão em Terreno</h3>
-                                    <p><strong>Nesta etapa o militar aprenderá:</strong></p>
-                                    <ul style="margin-top: 5px; margin-left: 20px; color: var(--text-muted);">
-                                        <li>Deslocamento em trilhas;</li>
-                                        <li>Progressão em encostas;</li>
-                                        <li>Segurança em terrenos inclinados;</li>
-                                        <li>Técnicas de aproximação da vítima;</li>
-                                        <li>Avaliação do terreno;</li>
-                                        <li>Planejamento da rota de acesso.</li>
-                                    </ul>
-                                    <p style="margin-top: 10px;"><strong>Objetivo:</strong> Desenvolver segurança e eficiência durante deslocamentos em regiões montanhosas.</p>
+                        <div class="cards-grid" style="margin-top: 20px;">
+                            <div class="card info-card purple-card" style="grid-column: 1 / -1; min-height: 200px;">
+                                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+                                    <img src="assets/cursos/montanha/1.png" alt="Módulo I - Progressão em Terreno" style="width: 100%; max-width: 350px; border-radius: 8px;">
+                                </div>
+                            </div>
+
+                            <div class="card info-card yellow-card" style="grid-column: 1 / -1; min-height: 200px;">
+                                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+                                    <img src="assets/cursos/montanha/2.png" alt="Módulo II - Resgate Vertical" style="width: 100%; max-width: 350px; border-radius: 8px;">
+                                </div>
+                            </div>
+
+                            <div class="card info-card red-card" style="grid-column: 1 / -1; min-height: 200px;">
+                                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+                                    <img src="assets/cursos/montanha/4.png" alt="Módulo III - Operações Integradas" style="width: 100%; max-width: 350px; border-radius: 8px;">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- FASE II -->
-                        <div class="card info-card yellow-card" style="grid-column: 1 / -1;">
-                            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
-                                <img src="assets/cursos/montanha/2.png" alt="Módulo II - Resgate Vertical" style="width: 100%; max-width: 350px; border-radius: 8px;">
-                                <div style="flex: 1; min-width: 300px;">
-                                    <h3>Módulo II — Resgate Vertical</h3>
-                                    <p><strong>O militar será instruído em:</strong></p>
-                                    <ul style="margin-top: 5px; margin-left: 20px; color: var(--text-muted);">
-                                        <li>Rapel operacional;</li>
-                                        <li>Ancoragens;</li>
-                                        <li>Sistemas de cordas;</li>
-                                        <li>Descidas controladas;</li>
-                                        <li>Extração vertical de vítimas;</li>
-                                        <li>Trabalho em altura.</li>
-                                    </ul>
-                                    <p style="margin-top: 10px;"><strong>Objetivo:</strong> Capacitar o operador para acessar locais onde o deslocamento convencional é impossível.</p>
-                                </div>
+                        <div class="cards-grid" style="margin-top: 20px;">
+                            <div class="card info-card green-card" style="min-height: 150px;">
+                            </div>
+                            
+                            <div class="card info-card blue-card" style="min-height: 150px;">
                             </div>
                         </div>
 
-                        <!-- FASE III -->
-                        <div class="card info-card red-card" style="grid-column: 1 / -1;">
-                            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
-                                <img src="assets/cursos/montanha/4.png" alt="Módulo III - Operações Integradas" style="width: 100%; max-width: 350px; border-radius: 8px;">
-                                <div style="flex: 1; min-width: 300px;">
-                                    <h3>Módulo III — Operações Integradas</h3>
-                                    <p><strong>Nesta etapa serão simuladas missões completas envolvendo:</strong></p>
-                                    <ul style="margin-top: 5px; margin-left: 20px; color: var(--text-muted);">
-                                        <li>Resgate em penhascos;</li>
-                                        <li>Apoio de helicópteros;</li>
-                                        <li>Extração de vítimas por içamento;</li>
-                                        <li>Coordenação entre equipes terrestres e aéreas;</li>
-                                        <li>Transporte seguro até área de evacuação;</li>
-                                        <li>Gerenciamento da ocorrência.</li>
-                                    </ul>
-                                    <p style="margin-top: 10px;"><strong>Objetivo:</strong> Preparar o militar para operações reais de alta complexidade.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h2 style="margin: 30px 0 15px; font-size: 1.5rem; color: #fff;">Critérios de Aprovação & Certificação</h2>
-
-                    <div class="cards-grid">
-                        <div class="card info-card green-card">
-                            <h3>Critérios Avaliados</h3>
-                            <p>O militar deverá demonstrar domínio das técnicas apresentadas para receber sua certificação, sendo avaliado em:</p>
-                            <ul style="margin-top: 8px; margin-left: 20px; color: var(--text-muted);">
-                                <li>Disciplina e Segurança operacional;</li>
-                                <li>Técnicas de cordas e Rapel;</li>
-                                <li>Progressão em montanha;</li>
-                                <li>Trabalho em equipe e Comunicação;</li>
-                                <li>Liderança, Controle emocional e Precisão técnica.</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="card info-card blue-card">
-                            <h3>Competências Desenvolvidas</h3>
-                            <ul style="margin-top: 8px; margin-left: 20px; color: var(--text-muted);">
-                                <li>Técnicas de escalada operacional e Rapel de resgate;</li>
-                                <li>Progressão em montanhas;</li>
-                                <li>Montagem de sistemas de ancoragem;</li>
-                                <li>Gestão de riscos e Liderança;</li>
-                                <li>Trabalho em equipe e Comunicação operacional;</li>
-                                <li>Tomada rápida de decisão.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="cards-grid" style="margin-top: 20px;">
-                        <div class="card info-card purple-card" style="grid-column: 1 / -1;">
-                            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
-                                <img src="assets/cursos/montanha/certificado.png" alt="Certificação" style="width: 100%; max-width: 400px; border-radius: 8px;">
-                                <div style="flex: 1; min-width: 300px;">
-                                    <h3>Após a Certificação</h3>
-                                    <p>Ao concluir o Curso de Resgate em Montanha, o militar estará habilitado para integrar oficialmente a Equipe de Resgate em Montanha, executar operações em áreas elevadas, atuar em resgates por rapel, realizar buscas em trilhas, apoiar operações aéreas, executar extrações e integrar missões especiais.</p>
-                                    <h3 style="margin-top: 15px;">Importância da Especialização</h3>
-                                    <p>O Resgate em Montanha representa uma das áreas mais exigentes da corporação, reunindo técnicas de acesso por cordas, operações em altura e salvamento em locais remotos. O especialista atua onde veículos não chegam e onde o tempo de resposta depende da capacidade técnica da equipe. Sua missão é superar obstáculos naturais com segurança, preservando vidas em ambientes extremos.</p>
-                                    <p style="margin-top: 10px; font-size: 1.1rem; color: var(--primary-green); font-style: italic; text-align: center;">"Nenhuma montanha é grande demais quando a missão é salvar uma vida."</p>
+                        <div class="cards-grid" style="margin-top: 20px;">
+                            <div class="card info-card purple-card" style="grid-column: 1 / -1; min-height: 200px;">
+                                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                                    <img src="assets/cursos/montanha/certificado.png" alt="Certificação" style="width: 100%; max-width: 400px; border-radius: 8px;">
                                 </div>
                             </div>
                         </div>
@@ -596,6 +539,17 @@
                             Durante a formação, o militar aprenderá técnicas de salto operacional, controle em queda livre, navegação sob velame, precisão de pouso e procedimentos de emergência, preparando-se para atuar em cenários onde o acesso terrestre ou aéreo convencional é inviável.<br><br>
                             Mais do que aprender a saltar, o operador desenvolve disciplina, controle emocional e tomada de decisão em situações extremas.<br><br>
                             Ao concluir o curso, o militar estará apto a integrar oficialmente a Equipe de Paraquedismo Operacional da corporação.</p>
+                            
+                            <div style="margin-top: 20px;">
+                                <ul style="color: var(--text-muted); list-style: none; padding-left: 0;">
+                                    <li style="margin-bottom: 8px;"><strong>Etapa 1 - Cercado:</strong> Orientações e entendimento de como funciona o para-quedas.</li>
+                                    <li style="margin-bottom: 8px;"><strong>Etapa 2 - Aquático:</strong> Salto com pouso em barco em movimento (Igual como funciona no modo história do GTA) ou em solo com um caminhão de guincho (Zancudo).</li>
+                                    <li style="margin-bottom: 8px;"><strong>Etapa 3 - Ambientes Verticais:</strong> Salto com agilidade (Agência de empregos).</li>
+                                    <li style="margin-bottom: 8px;"><strong>Etapa 4 - Eólica:</strong> A soma de todo o trabalho anterior.</li>
+                                </ul>
+                                <p style="color: var(--text-muted); margin-top: 15px;"><strong>Critérios de avaliação:</strong> Passar nas 4 etapas.</p>
+                                <p style="margin-top: 15px; font-weight: bold; color: #4aa3ff; font-size: 1.1em;">[ 2 Horas ] Média do curso</p>
+                            </div>
                         </div>
                         
                         <div class="card info-card green-card">
@@ -645,20 +599,20 @@
                         <!-- Módulo II -->
                         <div class="card info-card yellow-card" style="grid-column: 1 / -1;">
                             <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
-                                <img src="assets/cursos/paraquedismo/2.png" alt="Módulo II - Inserção Aquática" style="width: 100%; max-width: 350px; border-radius: 8px;">
+                                <img src="assets/cursos/paraquedismo/2.png" alt="Módulo II - Ambientes Verticais" style="width: 100%; max-width: 350px; border-radius: 8px;">
                                 <div style="flex: 1; min-width: 300px;">
-                                    <h3>Módulo II — Inserção Aquática</h3>
-                                    <p>Após dominar os fundamentos do salto, o militar será treinado para realizar inserções sobre ambientes aquáticos.</p>
+                                    <h3>Módulo II — Ambientes Verticais</h3>
+                                    <p>Após dominar os fundamentos do salto, o militar será treinado para realizar inserções sobre ambientes verticais.</p>
                                     <p style="margin-top: 10px;"><strong>Conteúdo:</strong></p>
                                     <ul style="margin-top: 5px; margin-left: 20px; color: var(--text-muted);">
-                                        <li>Salto sobre mar e rios;</li>
-                                        <li>Controle do velame sobre a água;</li>
-                                        <li>Técnicas de flutuação;</li>
-                                        <li>Liberação rápida do equipamento;</li>
-                                        <li>Aproximação da embarcação de resgate;</li>
-                                        <li>Procedimentos de sobrevivência aquática.</li>
+                                        <li>Reconhecimento da área de inserção;</li>
+                                        <li>Saída técnica da estrutura;</li>
+                                        <li>Abertura em baixa altitude;</li>
+                                        <li>Controle e correção da trajetória;</li>
+                                        <li>Pouso de precisão;</li>
+                                        <li>Protocolos de segurança operacional.</li>
                                     </ul>
-                                    <p style="margin-top: 10px;"><strong>Objetivo:</strong> Preparar o operador para missões em ambientes aquáticos, garantindo segurança durante a descida e após o impacto na água.</p>
+                                    <p style="margin-top: 10px;"><strong>Objetivo:</strong> Preparar o operador para missões em ambientes verticais, garantindo segurança durante a descida e após o pouso.</p>
                                 </div>
                             </div>
                         </div>
@@ -666,15 +620,13 @@
                         <!-- Módulo III -->
                         <div class="card info-card red-card" style="grid-column: 1 / -1;">
                             <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
-                                <img src="assets/cursos/paraquedismo/3.png" alt="Módulo III - Inserção em Áreas de Risco" style="width: 100%; max-width: 350px; border-radius: 8px;">
+                                <img src="assets/cursos/paraquedismo/3.png" alt="Módulo III - Inserção em Áreas de Eólica" style="width: 100%; max-width: 350px; border-radius: 8px;">
                                 <div style="flex: 1; min-width: 300px;">
-                                    <h3>Módulo III — Inserção em Áreas de Risco</h3>
+                                    <h3>Módulo III — Inserção em Áreas de Eólica</h3>
                                     <p>A última etapa do curso simula missões de alta complexidade. O militar será lançado em cenários que exigem precisão absoluta no pouso, avaliando sua capacidade de controlar o paraquedas em regiões montanhosas, áreas urbanas e locais de difícil acesso.</p>
                                     <p style="margin-top: 10px;"><strong>Conteúdo:</strong></p>
                                     <ul style="margin-top: 5px; margin-left: 20px; color: var(--text-muted);">
                                         <li>Precisão de pouso;</li>
-                                        <li>Inserção em montanhas;</li>
-                                        <li>Inserção em áreas urbanas;</li>
                                         <li>Aproximação em zonas restritas;</li>
                                         <li>Controle sob condições adversas;</li>
                                         <li>Missão operacional completa.</li>

@@ -470,8 +470,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let inactivityTimer;
         let absoluteTimer;
-        const INACTIVITY_LIMIT = 60 * 1000; // 1 min
-        const ABSOLUTE_LIMIT = 5 * 60 * 1000; // 5 min
+        const INACTIVITY_LIMIT = 3 * 60 * 1000; // 3 min
+        const ABSOLUTE_LIMIT = 6 * 60 * 1000; // 6 min
 
         let isUnlocked = false;
 
