@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": "bem-vindos-1784683430115",
+    "titulo": "BEM-VINDOS!",
+    "descricao": "Aproveite ao máximo o nosso site!",
+    "categoria": "comunicado",
+    "prioridade": "normal",
+    "inicio": "2026-07-21T22:23:00-03:00",
+    "fim": null,
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  }
+]
