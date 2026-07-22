@@ -1249,9 +1249,9 @@ body {
 
     /* Relógio Digital Centralizado no mobile para não sobrepor */
     .digital-clock {
-        top: 110px;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
         text-align: center;
         background: rgba(0, 0, 0, 0.5);
         padding: 10px 20px;
@@ -1414,4 +1414,25 @@ body {
 
 body.locked {
     overflow: hidden !important;
+}
+
+/* Ajuste para usar a arte mobile correta e manter o quebra-galho onde não tem */
+@media (max-width: 768px) {
+    .bg-inicio {
+        background-image: url('../assets/inicio/celular.png') !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    
+    .login-background,
+    .entry-screen {
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+    }
+
+    /* Esconde o rodapé no mobile para não ficar por cima do texto da arte */
+    #view-inicio .site-footer {
+        display: none !important;
+    }
 }
