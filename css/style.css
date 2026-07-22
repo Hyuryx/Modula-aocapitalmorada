@@ -599,6 +599,12 @@ body {
     background-image: url('../assets/background/background.png');
 }
 
+.bg-galeria {
+    background-image: url('../assets/galeria/background.png');
+    background-size: 100% 100% !important;
+    background-position: center top !important;
+}
+
 .bg-avisos {
     background-image: url('../assets/avisos-gerais/background.png');
     background-size: 100% 100% !important;
@@ -1417,6 +1423,87 @@ body.locked {
 }
 
 /* Ajuste para usar a arte mobile correta e manter o quebra-galho onde não tem */
+
+/* Media Gallery Grid */
+.video-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.video-item {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(255, 68, 68, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.video-item:hover {
+    transform: translateY(-5px);
+    border-color: #ff4444;
+}
+
+.video-item video,
+.video-item img {
+    width: 100%;
+    border-radius: 4px;
+    outline: none;
+    object-fit: cover;
+}
+
+/* Gallery Tabs */
+.gallery-tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.gallery-tab-btn {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(255, 68, 68, 0.2);
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.gallery-tab-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.gallery-tab-btn:hover {
+    background: rgba(255, 68, 68, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 68, 68, 0.2);
+}
+
+.gallery-tab-btn.active {
+    background: rgba(255, 68, 68, 0.8);
+    border-color: #ff4444;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.4);
+}
+
+.gallery-content-tab {
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 768px) {
     .bg-inicio { background-image: url('../assets/inicio/celular.png') !important; background-size: cover !important; background-position: center !important; }
     .bg-viaturas { background-image: url('../assets/viaturas/celular.png') !important; background-size: cover !important; background-position: center !important; }
@@ -1428,6 +1515,7 @@ body.locked {
     .bg-hierarquia { background-image: url('../assets/hierarquia/celular.png') !important; background-size: cover !important; background-position: center !important; }
     .bg-avisos { background-image: url('../assets/avisos-gerais/celular.png') !important; background-size: cover !important; background-position: center !important; }
     .bg-cursos { background-image: url('../assets/cursos/celular.png') !important; background-size: cover !important; background-position: center !important; }
+    .bg-galeria { background-image: url('../assets/galeria/celular.png') !important; background-size: cover !important; background-position: center !important; }
     
     .entry-screen {
         background-size: contain !important;

@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (modal && modalImg) {
-        document.querySelectorAll('.content-section img, .cards-grid img').forEach(img => {
+        document.querySelectorAll('.content-section img:not(.no-lightbox), .cards-grid img:not(.no-lightbox)').forEach(img => {
             img.addEventListener('click', function() {
                 modal.style.display = "flex";
                 modalImg.src = this.src;
@@ -477,3 +477,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Gallery Folders Logic
+function openGalleryFolder(folderName) {
+    const galeriaMenu = document.getElementById('galeria-menu');
+    const contentArea = document.getElementById('galeria-content-area');
+    const contents = document.querySelectorAll('.gallery-content-tab');
+    
+    // Hide all tabs
+    contents.forEach(content => {
+        content.style.display = 'none';
+        content.classList.remove('active');
+    });
+
+    // Hide menu and show content area
+    if (galeriaMenu) galeriaMenu.style.display = 'none';
+    if (contentArea) contentArea.style.display = 'block';
+
+    // Show specific folder content
+    const activeContent = document.getElementById(`galeria-${folderName}`);
+    if (activeContent) {
+        activeContent.style.display = 'block';
+        setTimeout(() => {
+            activeContent.classList.add('active');
+        }, 10);
+    }
+}
+
+function closeGalleryFolder() {
+    const galeriaMenu = document.getElementById('galeria-menu');
+    const contentArea = document.getElementById('galeria-content-area');
+    
+    // Show menu and hide content area
+    if (galeriaMenu) galeriaMenu.style.display = 'grid'; // Using grid to maintain the cards-grid layout
+    if (contentArea) contentArea.style.display = 'none';
+}
