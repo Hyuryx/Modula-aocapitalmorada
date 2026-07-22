@@ -1678,3 +1678,98 @@ body.locked {
     }
 }
 
+/* Botão de Alternar Efeitos (Modo Desempenho) */
+.btn-toggle-effects {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    margin-left: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: #e5e7eb;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(8px);
+    user-select: none;
+}
+
+.btn-toggle-effects:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.btn-toggle-effects:active {
+    transform: translateY(0);
+}
+
+.btn-toggle-effects svg {
+    flex-shrink: 0;
+}
+
+/* Modo sem Efeitos (Low-Performance / Leve) */
+html.no-effects *,
+html.no-effects *::before,
+html.no-effects *::after,
+body.no-effects *,
+body.no-effects *::before,
+body.no-effects *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+}
+
+body.no-effects #particles-js {
+    display: none !important;
+}
+
+body.no-effects .background-overlay {
+    opacity: 0.12 !important;
+}
+
+body.no-effects .card,
+body.no-effects .radio-atual-container,
+body.no-effects .global-navbar,
+body.no-effects .sidebar {
+    border-style: solid !important;
+    border-width: 1px !important;
+}
+
+body.no-effects .btn-toggle-effects {
+    background: rgba(239, 68, 68, 0.2) !important;
+    border-color: rgba(239, 68, 68, 0.6) !important;
+    color: #fca5a5 !important;
+}
+
+/* Compatibilidade com Dark Reader / Extensões Escuras */
+html {
+    color-scheme: dark;
+}
+
+[data-darkreader-inline-bgimage],
+.background-overlay,
+.sidebar::before {
+    opacity: 0.35;
+}
+
+@media (max-width: 768px) {
+    .btn-toggle-effects .effects-btn-text {
+        display: none;
+    }
+    .btn-toggle-effects {
+        padding: 6px 10px;
+        margin-left: 4px;
+    }
+}
+
+

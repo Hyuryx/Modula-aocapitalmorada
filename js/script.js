@@ -661,4 +661,42 @@ function initCustomVideoPlayers() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initCustomVideoPlayers();
+
+    // Alternar Efeitos Gráficos (Modo Desempenho / Olhinho)
+    const btnToggleEffects = document.getElementById('btn-toggle-effects');
+    if (btnToggleEffects) {
+        const iconEyeOpen = btnToggleEffects.querySelector('.icon-eye-open');
+        const iconEyeClosed = btnToggleEffects.querySelector('.icon-eye-closed');
+        const effectsBtnText = btnToggleEffects.querySelector('.effects-btn-text');
+
+        function updateEffectsUI(isNoEffects) {
+            if (isNoEffects) {
+                document.documentElement.classList.add('no-effects');
+                document.body.classList.add('no-effects');
+                if (iconEyeOpen) iconEyeOpen.style.display = 'none';
+                if (iconEyeClosed) iconEyeClosed.style.display = 'inline-block';
+                if (effectsBtnText) effectsBtnText.textContent = 'Efeitos: OFF';
+                btnToggleEffects.title = 'Reativar Efeitos Gráficos (Modo Normal)';
+            } else {
+                document.documentElement.classList.remove('no-effects');
+                document.body.classList.remove('no-effects');
+                if (iconEyeOpen) iconEyeOpen.style.display = 'inline-block';
+                if (iconEyeClosed) iconEyeClosed.style.display = 'none';
+                if (effectsBtnText) effectsBtnText.textContent = 'Efeitos: ON';
+                btnToggleEffects.title = 'Desativar Efeitos Gráficos (Modo Desempenho)';
+            }
+        }
+
+        // Inicializar estado com base no localStorage ou classe existente no documentElement
+        const initialNoEffects = localStorage.getItem('cbm-no-effects') === 'true' || document.documentElement.classList.contains('no-effects');
+        updateEffectsUI(initialNoEffects);
+
+        btnToggleEffects.addEventListener('click', () => {
+            const currentNoEffects = document.documentElement.classList.contains('no-effects') || document.body.classList.contains('no-effects');
+            const newNoEffects = !currentNoEffects;
+            localStorage.setItem('cbm-no-effects', newNoEffects);
+            updateEffectsUI(newNoEffects);
+        });
+    }
 });
+
