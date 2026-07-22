@@ -512,3 +512,153 @@ function closeGalleryFolder() {
     if (galeriaMenu) galeriaMenu.style.display = 'grid'; // Using grid to maintain the cards-grid layout
     if (contentArea) contentArea.style.display = 'none';
 }
+
+// Custom Video Player Controls
+function initCustomVideoPlayers() {
+    document.querySelectorAll(".video-card").forEach((card) => {
+        const video = card.querySelector(".gallery-video");
+        if (!video) return;
+
+        const centerPlay = card.querySelector(".center-play");
+        const playButton = card.querySelector(".play-button");
+        const muteButton = card.querySelector(".mute-button");
+        const fullscreenButton = card.querySelector(".fullscreen-button");
+
+        const progressBar = card.querySelector(".progress-bar");
+        const volumeBar = card.querySelector(".volume-bar");
+
+        const currentTimeElement = card.querySelector(".current-time");
+        const durationElement = card.querySelector(".duration");
+
+        function formatTime(seconds) {
+            if (!Number.isFinite(seconds)) {
+                return "0:00";
+            }
+
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60)
+                .toString()
+                .padStart(2, "0");
+
+            return `${minutes}:${remainingSeconds}`;
+        }
+
+        function updatePlayButtons() {
+            const paused = video.paused;
+
+            if (playButton) {
+                playButton.textContent = paused ? "▶" : "❚❚";
+                playButton.setAttribute(
+                    "aria-label",
+                    paused ? "Reproduzir" : "Pausar"
+                );
+            }
+
+            if (centerPlay) {
+                centerPlay.hidden = !paused;
+            }
+        }
+
+        async function togglePlay() {
+            try {
+                if (video.paused) {
+                    await video.play();
+                } else {
+                    video.pause();
+                }
+            } catch (error) {
+                console.error("Não foi possível reproduzir o vídeo:", error);
+            }
+        }
+
+        function updateProgress() {
+            if (!progressBar || !currentTimeElement) return;
+            if (!Number.isFinite(video.duration) || video.duration <= 0) {
+                progressBar.value = 0;
+                currentTimeElement.textContent = "0:00";
+                return;
+            }
+
+            progressBar.value = (video.currentTime / video.duration) * 100;
+            currentTimeElement.textContent = formatTime(video.currentTime);
+        }
+
+        function updateVolumeButton() {
+            if (!muteButton) return;
+            const muted = video.muted || video.volume === 0;
+
+            muteButton.textContent = muted ? "🔇" : "🔊";
+            muteButton.setAttribute(
+                "aria-label",
+                muted ? "Ativar som" : "Desativar som"
+            );
+        }
+
+        if (playButton) playButton.addEventListener("click", togglePlay);
+        if (centerPlay) centerPlay.addEventListener("click", togglePlay);
+        video.addEventListener("click", togglePlay);
+
+        video.addEventListener("play", updatePlayButtons);
+        video.addEventListener("pause", updatePlayButtons);
+        video.addEventListener("ended", updatePlayButtons);
+
+        video.addEventListener("loadedmetadata", () => {
+            if (durationElement) durationElement.textContent = formatTime(video.duration);
+            updateProgress();
+        });
+
+        video.addEventListener("timeupdate", updateProgress);
+
+        if (progressBar) {
+            progressBar.addEventListener("input", () => {
+                if (!Number.isFinite(video.duration)) {
+                    return;
+                }
+
+                video.currentTime =
+                    (Number(progressBar.value) / 100) * video.duration;
+            });
+        }
+
+        if (muteButton) {
+            muteButton.addEventListener("click", () => {
+                video.muted = !video.muted;
+                updateVolumeButton();
+            });
+        }
+
+        if (volumeBar) {
+            volumeBar.addEventListener("input", () => {
+                video.volume = Number(volumeBar.value);
+                video.muted = video.volume === 0;
+                updateVolumeButton();
+            });
+        }
+
+        video.addEventListener("volumechange", () => {
+            if (volumeBar) volumeBar.value = video.muted ? 0 : video.volume;
+            updateVolumeButton();
+        });
+
+        if (fullscreenButton) {
+            fullscreenButton.addEventListener("click", async () => {
+                try {
+                    if (!document.fullscreenElement) {
+                        await card.requestFullscreen();
+                    } else {
+                        await document.exitFullscreen();
+                    }
+                } catch (error) {
+                    console.error("Não foi possível ativar a tela cheia:", error);
+                }
+            });
+        }
+
+        updatePlayButtons();
+        updateVolumeButton();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initCustomVideoPlayers();
+});
