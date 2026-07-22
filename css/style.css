@@ -737,58 +737,125 @@ body {
     color: var(--text-muted);
 }
 
+/* ==========================================================================
+   NEON PULSING ANIMATIONS FOR ALL CARDS ACROSS ALL TABS
+   ========================================================================== */
+
+/* Red Cards (Vermelho) */
+@keyframes redNeonPulse {
+    0%, 100% {
+        border-color: rgba(239, 68, 68, 0.45);
+        box-shadow: 0 0 14px rgba(239, 68, 68, 0.3), inset 0 0 8px rgba(239, 68, 68, 0.1);
+    }
+    50% {
+        border-color: rgba(239, 68, 68, 0.95);
+        box-shadow: 0 0 25px rgba(239, 68, 68, 0.65), 0 0 45px rgba(239, 68, 68, 0.3), inset 0 0 16px rgba(239, 68, 68, 0.2);
+    }
+}
 .red-card {
-    border-top: 4px solid var(--primary-red);
-    background-color: rgba(239, 68, 68, 0.05) !important;
+    border-top: 4px solid var(--primary-red) !important;
+    background-color: rgba(239, 68, 68, 0.06) !important;
+    animation: redNeonPulse 3s ease-in-out infinite !important;
 }
 
-.red-card:hover {
-    box-shadow: 0 10px 30px var(--primary-red-glow);
+/* Green Cards (Verde) */
+@keyframes greenNeonPulse {
+    0%, 100% {
+        border-color: rgba(16, 185, 129, 0.45);
+        box-shadow: 0 0 14px rgba(16, 185, 129, 0.3), inset 0 0 8px rgba(16, 185, 129, 0.1);
+    }
+    50% {
+        border-color: rgba(16, 185, 129, 0.95);
+        box-shadow: 0 0 25px rgba(16, 185, 129, 0.65), 0 0 45px rgba(16, 185, 129, 0.3), inset 0 0 16px rgba(16, 185, 129, 0.2);
+    }
 }
-
 .green-card {
-    border-top: 4px solid var(--primary-green);
-    background-color: rgba(16, 185, 129, 0.05) !important;
+    border-top: 4px solid var(--primary-green) !important;
+    background-color: rgba(16, 185, 129, 0.06) !important;
+    animation: greenNeonPulse 3.1s ease-in-out infinite !important;
 }
 
-.green-card:hover {
-    box-shadow: 0 10px 30px var(--primary-green-glow);
+/* Yellow Cards (Amarelo / Dourado) */
+@keyframes yellowNeonPulse {
+    0%, 100% {
+        border-color: rgba(245, 158, 11, 0.45);
+        box-shadow: 0 0 14px rgba(245, 158, 11, 0.3), inset 0 0 8px rgba(245, 158, 11, 0.1);
+    }
+    50% {
+        border-color: rgba(245, 158, 11, 0.95);
+        box-shadow: 0 0 25px rgba(245, 158, 11, 0.65), 0 0 45px rgba(245, 158, 11, 0.3), inset 0 0 16px rgba(245, 158, 11, 0.2);
+    }
 }
-
 .yellow-card {
-    border-top: 4px solid #f59e0b;
-    background-color: rgba(245, 158, 11, 0.05) !important;
+    border-top: 4px solid #f59e0b !important;
+    background-color: rgba(245, 158, 11, 0.06) !important;
+    animation: yellowNeonPulse 3.2s ease-in-out infinite !important;
 }
 
-.yellow-card:hover {
-    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+/* Blue Cards (Azul) */
+@keyframes blueNeonPulse {
+    0%, 100% {
+        border-color: rgba(59, 130, 246, 0.45);
+        box-shadow: 0 0 14px rgba(59, 130, 246, 0.3), inset 0 0 8px rgba(59, 130, 246, 0.1);
+    }
+    50% {
+        border-color: rgba(59, 130, 246, 0.95);
+        box-shadow: 0 0 25px rgba(59, 130, 246, 0.65), 0 0 45px rgba(59, 130, 246, 0.3), inset 0 0 16px rgba(59, 130, 246, 0.2);
+    }
 }
-
 .blue-card {
-    border-top: 4px solid #3b82f6;
-    background-color: rgba(59, 130, 246, 0.05) !important;
+    border-top: 4px solid #3b82f6 !important;
+    background-color: rgba(59, 130, 246, 0.06) !important;
+    animation: blueNeonPulse 2.9s ease-in-out infinite !important;
 }
 
-.blue-card:hover {
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+/* Orange Cards (Laranja) */
+@keyframes orangeNeonPulse {
+    0%, 100% {
+        border-color: rgba(249, 115, 22, 0.45);
+        box-shadow: 0 0 14px rgba(249, 115, 22, 0.3), inset 0 0 8px rgba(249, 115, 22, 0.1);
+    }
+    50% {
+        border-color: rgba(249, 115, 22, 0.95);
+        box-shadow: 0 0 25px rgba(249, 115, 22, 0.65), 0 0 45px rgba(249, 115, 22, 0.3), inset 0 0 16px rgba(249, 115, 22, 0.2);
+    }
 }
-
 .orange-card {
-    border-top: 4px solid #f97316;
-    background-color: rgba(249, 115, 22, 0.05) !important;
+    border-top: 4px solid #f97316 !important;
+    background-color: rgba(249, 115, 22, 0.06) !important;
+    animation: orangeNeonPulse 2.8s ease-in-out infinite !important;
 }
 
-.orange-card:hover {
-    box-shadow: 0 10px 30px rgba(249, 115, 22, 0.2);
+/* Purple Cards (Roxo / Púrpura) */
+@keyframes purpleNeonPulse {
+    0%, 100% {
+        border-color: rgba(139, 92, 246, 0.45);
+        box-shadow: 0 0 14px rgba(139, 92, 246, 0.3), inset 0 0 8px rgba(139, 92, 246, 0.1);
+    }
+    50% {
+        border-color: rgba(139, 92, 246, 0.95);
+        box-shadow: 0 0 25px rgba(139, 92, 246, 0.65), 0 0 45px rgba(139, 92, 246, 0.3), inset 0 0 16px rgba(139, 92, 246, 0.2);
+    }
 }
-
 .purple-card {
-    border-top: 4px solid #8b5cf6;
-    background-color: rgba(139, 92, 246, 0.05) !important;
+    border-top: 4px solid #8b5cf6 !important;
+    background-color: rgba(139, 92, 246, 0.06) !important;
+    animation: purpleNeonPulse 3.3s ease-in-out infinite !important;
 }
 
-.purple-card:hover {
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+/* Cyan / Default Cards Pulse (Para cards sem cor explícita) */
+@keyframes cyanNeonPulse {
+    0%, 100% {
+        border-color: rgba(14, 165, 233, 0.4);
+        box-shadow: 0 0 14px rgba(14, 165, 233, 0.25), inset 0 0 8px rgba(14, 165, 233, 0.1);
+    }
+    50% {
+        border-color: rgba(14, 165, 233, 0.9);
+        box-shadow: 0 0 25px rgba(14, 165, 233, 0.6), 0 0 45px rgba(14, 165, 233, 0.3), inset 0 0 16px rgba(14, 165, 233, 0.2);
+    }
+}
+.card:not(.red-card):not(.green-card):not(.blue-card):not(.yellow-card):not(.orange-card):not(.purple-card) {
+    animation: cyanNeonPulse 3.2s ease-in-out infinite;
 }
 
 /* Melhoria de legibilidade para as abas de Cursos, Uniformes, Modulação, Viaturas, Regras e Hierarquia */
@@ -800,7 +867,8 @@ body {
 #view-hierarquia .card {
     background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85));
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-width: 1px;
+    border-style: solid;
 }
 
 #view-cursos .card h3,
@@ -1474,9 +1542,9 @@ body.locked {
         gap: 16px;
         padding: 12px 0;
     }
-}    height: 34px;
-  }
 }
+
+
 
 /* Gallery Tabs */
 .gallery-tabs-container {
@@ -1551,3 +1619,62 @@ body.locked {
         display: none !important;
     }
 }
+
+/* Radio Atual Neon Pulsing Header */
+.radio-atual-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.radio-atual-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 45px auto 25px auto;
+    padding: 16px 36px;
+    background: rgba(10, 15, 25, 0.75);
+    border: 2px solid #00f0ff;
+    border-radius: 50px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.4), inset 0 0 15px rgba(0, 240, 255, 0.2);
+    animation: radioNeonPulse 2.2s ease-in-out infinite;
+    max-width: 95%;
+}
+
+.radio-atual-icon {
+    width: 38px;
+    height: 38px;
+    stroke: #00f0ff;
+    filter: drop-shadow(0 0 10px #00f0ff);
+    flex-shrink: 0;
+}
+
+.radio-atual-title {
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-shadow: 
+        0 0 8px rgba(0, 240, 255, 0.9),
+        0 0 20px rgba(0, 240, 255, 0.7),
+        0 0 35px rgba(0, 240, 255, 0.5);
+}
+
+@keyframes radioNeonPulse {
+    0%, 100% {
+        border-color: rgba(0, 240, 255, 0.6);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.35), inset 0 0 12px rgba(0, 240, 255, 0.2);
+        transform: scale(1);
+    }
+    50% {
+        border-color: rgba(0, 240, 255, 1);
+        box-shadow: 0 0 45px rgba(0, 240, 255, 0.75), 0 0 70px rgba(0, 240, 255, 0.4), inset 0 0 25px rgba(0, 240, 255, 0.4);
+        transform: scale(1.03);
+    }
+}
+
