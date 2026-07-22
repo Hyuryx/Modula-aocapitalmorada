@@ -1418,13 +1418,17 @@ body.locked {
 
 /* Ajuste para usar a arte mobile correta e manter o quebra-galho onde não tem */
 @media (max-width: 768px) {
-    .bg-inicio {
-        background-image: url('../assets/inicio/celular.png') !important;
-        background-size: cover !important;
-        background-position: center !important;
-    }
+    .bg-inicio { background-image: url('../assets/inicio/celular.png') !important; background-size: cover !important; background-position: center !important; }
+    .bg-viaturas { background-image: url('../assets/viaturas/celular.png') !important; background-size: cover !important; background-position: center !important; }
+    .bg-uniformes { background-image: url('../assets/uniformes/celular.png') !important; background-size: cover !important; background-position: center !important; }
+    .login-background { background-image: url('../assets/telalogin/celular.png') !important; background-size: cover !important; background-position: center !important; }
+    .bg-regras { background-image: url('../assets/regras/celular.png') !important; background-size: cover !important; background-position: center !important; }
+    .bg-planilhas { background-image: url('../assets/planilhas/celular.png') !important; background-size: cover !important; background-position: center !important; }
+    .bg-modulacao { background-image: url('../assets/modulacao/celular.png') !important; background-size: cover !important; background-position: center !important; }
+    .bg-hierarquia { background-image: url('../assets/hierarquia/celular.png') !important; background-size: cover !important; background-position: center !important; }
+    .bg-avisos { background-image: url('../assets/avisos-gerais/celular.png') !important; background-size: cover !important; background-position: center !important; }
+    .bg-cursos { background-image: url('../assets/cursos/celular.png') !important; background-size: cover !important; background-position: center !important; }
     
-    .login-background,
     .entry-screen {
         background-size: contain !important;
         background-repeat: no-repeat !important;
