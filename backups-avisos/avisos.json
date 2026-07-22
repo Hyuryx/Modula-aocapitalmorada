@@ -40,5 +40,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "ola-sejam-todos-bem-vindo-1784758463588",
+    "titulo": "Olá, Sejam Todos Bem-Vindo !!!",
+    "descricao": "Olá! Sejam todos bem-vindos ao nosso site. Aqui você encontrará conteúdos atualizados, notícias, materiais de estudo e diversas informações importantes. Acompanhe nossas novidades e mantenha-se sempre atualizado!ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ\nㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ\n\nAtt: CBM CAPITAL MORADA!",
+    "categoria": "comunicado",
+    "prioridade": "normal",
+    "inicio": "2026-07-22T19:14:00-03:00",
+    "fim": null,
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
