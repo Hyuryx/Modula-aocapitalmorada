@@ -12,5 +12,19 @@
     "mostrarAvisosGerais": true,
     "piscar": true,
     "ativo": true
+  },
+  {
+    "id": "alteracao-de-uniforme-1784868582091",
+    "titulo": "ALTERAÇÃO DE UNIFORME",
+    "descricao": "Aos Soldados, Cabos e Sargentos, Informamos que há um novo uniforme designado à sua Patente!\nVerifique na aba \"UNIFORMES\".",
+    "categoria": "informacao",
+    "prioridade": "importante",
+    "inicio": "2026-07-24T01:49:00-03:00",
+    "fim": null,
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
   }
 ]
