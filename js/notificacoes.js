@@ -23,11 +23,7 @@ async function fetchAvisosData() {
   }
 
   if (!avisos) {
-    const resposta = await fetch(`public/dados/avisos.json?v=${Date.now()}`, { cache: "no-store" });
-    if (!resposta.ok) {
-      throw new Error(`Erro ao carregar avisos: ${resposta.status}`);
-    }
-    avisos = await resposta.json();
+    throw new Error(`Erro ao carregar avisos via API`);
   }
 
   if (!Array.isArray(avisos)) {

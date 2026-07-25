@@ -368,9 +368,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginPassword = document.getElementById('login-password');
     const loginSubmit = document.getElementById('login-submit');
     const loginError = document.getElementById('login-error');
-    
-    // A SENHA MESTRA
-    const MASTER_PASSWORD = "CAPITAL";
 
     if (loginScreen) {
         // Relógio da tela de login
@@ -441,31 +438,41 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('locked');
         const digitalClock = document.getElementById('digital-clock');
         if (digitalClock) digitalClock.style.display = 'none';
+        async function handleLogin() {
+            const btn = document.getElementById('login-submit');
+            if (btn) btn.disabled = true;
+            try {
+                const response = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: loginPassword.value })
+                });
 
-        function handleLogin() {
-            if (loginPassword.value === MASTER_PASSWORD) {
-                // Senha Correta
-                isUnlocked = true;
-                loginError.style.display = 'none';
-                loginScreen.style.opacity = '0';
-                loginScreen.style.visibility = 'hidden';
-                document.body.classList.remove('locked');
-                const digitalClock = document.getElementById('digital-clock');
-                if (digitalClock) digitalClock.style.display = 'block';
-                startTimers();
-                setTimeout(() => {
-                    loginScreen.style.display = 'none';
-                }, 800);
-            } else {
-                // Senha Incorreta
+                if (response.ok) {
+                    // Senha Correta
+                    isUnlocked = true;
+                    loginError.style.display = 'none';
+                    loginScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loginScreen.style.display = 'none';
+                        document.body.classList.remove('locked');
+                        const digitalClock = document.getElementById('digital-clock');
+                        if (digitalClock) digitalClock.style.display = 'block';
+                        startTimers();
+                        if (btn) btn.disabled = false;
+                    }, 500);
+                } else {
+                    // Senha Incorreta
+                    loginError.style.display = 'block';
+                    loginPassword.value = '';
+                    loginPassword.focus();
+                    if (btn) btn.disabled = false;
+                }
+            } catch (error) {
+                console.error("Erro na autenticação:", error);
+                loginError.textContent = "Erro ao conectar com o servidor.";
                 loginError.style.display = 'block';
-                loginPassword.value = '';
-                loginPassword.focus();
-                
-                // Reinicia a animação de erro
-                loginError.style.animation = 'none';
-                loginError.offsetHeight; /* trigger reflow */
-                loginError.style.animation = null;
+                if (btn) btn.disabled = false;
             }
         }
 

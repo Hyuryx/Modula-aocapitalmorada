@@ -24,6 +24,13 @@ module.exports = async (req, res) => {
     "User-Agent": "Painel-Avisos-App"
   };
 
+  // Auth Check:
+  const cookies = req.headers.cookie || "";
+  const authCookie = cookies.split(';').find(c => c.trim().startsWith('auth_token='));
+  if (!authCookie) {
+    return res.status(401).json({ erro: "Acesso negado. Faça login primeiro." });
+  }
+
   if (req.method === "GET") {
     try {
       const resposta = await fetch(url, { headers });
