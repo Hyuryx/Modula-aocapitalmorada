@@ -19,3 +19,6 @@ Clique em Salvar avisos.json.
 O arquivo será atualizado.
 Um backup será criado.
 Envie a alteração ao GitHub.
+
+
+vercel dev
