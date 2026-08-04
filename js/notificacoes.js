@@ -309,7 +309,6 @@ async function carregarAvisosGerais() {
             ${temFim ? `<span class="cronometro-aviso" data-fim="${aviso.fim}" style="display:none;"></span>` : ''}
             <span class="aviso-badge">${aviso.categoria}</span>
             <h3>${aviso.titulo}</h3>
-            <p>${aviso.descricao}</p>
           </article>
         `;
       })
