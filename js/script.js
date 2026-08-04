@@ -102,19 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Gerenciar visibilidade dos pop-ups (Apenas na aba Início)
-        const centralNotificacoes = document.getElementById('central-notificacoes');
-        if (centralNotificacoes) {
-            if (targetId === 'view-inicio') {
-                centralNotificacoes.style.display = '';
-                // Se a pessoa fechou o popup no 'X' e voltou para o Início, faz ele reaparecer
-                centralNotificacoes.querySelectorAll('.notificacao-site').forEach(notif => {
-                    notif.style.display = '';
-                });
-            } else {
-                centralNotificacoes.style.display = 'none';
-            }
-        }
+        // As notificações da central (lateral) agora permanecem visíveis em todas as abas.
+        // A lógica de ocultar ao mudar de aba foi removida a pedido do usuário.
 
         // Mostrar Modal Destaque (Disparar evento para notificacoes.js)
         window.dispatchEvent(new CustomEvent('tabChanged', { detail: { targetId } }));
