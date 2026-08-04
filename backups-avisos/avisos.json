@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": "resgate-aquatico-1785860929131",
+    "titulo": "Resgate Aquático",
+    "resumo": "CURSO AQUÁTICO - 10/08 às 20h. Verifique mais informações na aba \"Cursos\".",
+    "descricao": "🌊 CURSO DE RESGATE AQUÁTICO\n\n🚨 As inscrições estão abertas para mais uma especialização do Corpo de Bombeiros da Capital Morada!\n\nChegou a hora de colocar à prova seu preparo, disciplina e capacidade de atuar em ambientes onde cada decisão pode fazer a diferença.\n\nDurante o treinamento, os participantes enfrentarão desafios cuidadosamente planejados para desenvolver técnicas essenciais de resgate em ambiente aquático, exigindo trabalho em equipe, controle emocional e raciocínio rápido.\n\n📅 Data: 10/08\n🕗 Horário: 20h\n📍 Local: Informado no início do curso.\n\n⚠️ Importante: Todas as instruções e equipamentos necessários serão apresentados pela equipe responsável no momento da formação. Compareça no horário e esteja preparado para um treinamento de alto nível.\n\n\"A água testa seus limites. A disciplina define quem está preparado.\"",
+    "imagem": "",
+    "categoria": "evento",
+    "prioridade": "importante",
+    "inicio": "2026-08-04T13:20:00-03:00",
+    "fim": "2026-08-10T00:00:00-03:00",
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  }
+]
