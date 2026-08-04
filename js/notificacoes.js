@@ -470,6 +470,14 @@ async function carregarAvisosCursos() {
           navItemGeral.classList.add('tem-aviso');
         }
       }
+      
+      const isCurso = ["Curso de Piloto", "Resgate Aquático", "Resgate Montanha", "Paraquedismo"].includes(aviso.titulo);
+      if (isCurso) {
+        const navItemCursos = document.querySelector(mapaAbas["Cursos"].selector);
+        if (navItemCursos) {
+          navItemCursos.classList.add('tem-aviso');
+        }
+      }
     });
 
   } catch (erro) {
