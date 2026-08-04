@@ -65,30 +65,24 @@
         <div class="campo campo-completo">
           <label for="titulo">Título</label>
 
-          <input
-            type="text"
-            id="titulo"
-            list="opcoes-abas"
-            maxlength="100"
-            required
-            placeholder="Selecione uma aba ou digite um título"
-          >
-          <datalist id="opcoes-abas">
-            <option value="Início"></option>
-            <option value="Avisos Gerais"></option>
-            <option value="Regras"></option>
-            <option value="Uniformes"></option>
-            <option value="Cursos"></option>
-            <option value="Curso de Piloto"></option>
-            <option value="Resgate Aquático"></option>
-            <option value="Resgate Montanha"></option>
-            <option value="Paraquedismo"></option>
-            <option value="Modulação"></option>
-            <option value="Viaturas"></option>
-            <option value="Hierarquia"></option>
-            <option value="Planilhas"></option>
-            <option value="Galeria"></option>
-          </datalist>
+          <select id="titulo" required>
+            <option value="" disabled selected>Selecione o destino / título</option>
+            <option value="Início">Início</option>
+            <option value="Avisos Gerais">Avisos Gerais</option>
+            <option value="Regras">Regras</option>
+            <option value="Uniformes">Uniformes</option>
+            <optgroup label="Cursos Específicos">
+              <option value="Curso de Piloto">Curso de Piloto</option>
+              <option value="Resgate Aquático">Resgate Aquático</option>
+              <option value="Resgate Montanha">Resgate Montanha</option>
+              <option value="Paraquedismo">Paraquedismo</option>
+            </optgroup>
+            <option value="Modulação">Modulação</option>
+            <option value="Viaturas">Viaturas</option>
+            <option value="Hierarquia">Hierarquia</option>
+            <option value="Planilhas">Planilhas</option>
+            <option value="Galeria">Galeria</option>
+          </select>
         </div>
 
         <div class="campo campo-completo">
@@ -129,7 +123,6 @@
           <label for="categoria">Categoria</label>
 
           <select id="categoria" required>
-            <option value="curso">Curso</option>
             <option value="informacao">Informação</option>
             <option value="comunicado">Comunicado</option>
             <option value="evento">Evento</option>
