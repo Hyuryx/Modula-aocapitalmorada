@@ -181,7 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // A lógica de disparar modal em sub-abas foi removida a pedido do usuário
+            // Disparar evento para atualizar banner / modal ao clicar na sub-aba
+            window.dispatchEvent(new CustomEvent('tabChanged', { detail: { targetId } }));
         });
     });
 
@@ -475,9 +476,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         startTimers();
                         if (btn) btn.disabled = false;
                         
-                        // Disparar tabChanged agora que a tela está destravada
-                        const activeTab = localStorage.getItem('activeTab') || 'view-inicio';
-                        window.dispatchEvent(new CustomEvent('tabChanged', { detail: { targetId: activeTab } }));
+                        // Disparar evento especial de login para mostrar o aviso
+                        window.dispatchEvent(new CustomEvent('tabChanged', { detail: { targetId: 'login-event' } }));
                     }, 500);
                 } else {
                     // Senha Incorreta
