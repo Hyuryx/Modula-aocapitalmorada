@@ -557,6 +557,14 @@ window.addEventListener('tabChanged', async (e) => {
       }
     }
 
+    // Hardcoded fallback para a aba Cursos se não houver aviso configurado no painel
+    if (!avisoDestaque && targetId === 'view-cursos') {
+      avisoDestaque = {
+        imagem: 'assets/cursos/aquatico/extra.png',
+        descricao: `🚨 CURSO DE RESGATE AQUÁTICO\n\nAs inscrições para o Curso de Resgate Aquático estão abertas.\n\n📅 Data: 10/08\n🕗 Horário: 20h\n\n⚠️ Compareça no horário. Após o início do curso, não será permitida a entrada de participantes atrasados.\n\nPrepare-se para um treinamento desafiador e siga todas as orientações da equipe de instrução.\n\nBoa sorte, bombeiro! 🌊`
+      };
+    }
+
     const modalDestaque = document.getElementById('modal-destaque');
     if (modalDestaque && avisoDestaque) {
       const imgEl = document.getElementById('modal-destaque-img');
