@@ -115,6 +115,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 centralNotificacoes.style.display = 'none';
             }
         }
+
+        // Mostrar Modal Curso Destaque
+        const modalCurso = document.getElementById('modal-curso-destaque');
+        if (modalCurso) {
+            if (targetId === 'view-cursos' && !sessionStorage.getItem('cursoNotifClosed')) {
+                modalCurso.style.display = 'flex';
+                const textOverlay = modalCurso.querySelector('.modal-curso-text-overlay');
+                if (textOverlay) textOverlay.style.display = 'block';
+            } else if (targetId !== 'view-cursos') {
+                modalCurso.style.display = 'none';
+            }
+        }
     }
 
     globalNavItems.forEach(item => {
@@ -312,6 +324,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 resetZoom();
             }
         });
+    }
+
+    // Modal Curso Destaque Lógica
+    const modalCurso = document.getElementById('modal-curso-destaque');
+    if (modalCurso) {
+        const closeBtnCurso = modalCurso.querySelector('.modal-curso-close');
+        const textCloseBtn = modalCurso.querySelector('.modal-curso-text-close');
+        const textOverlay = modalCurso.querySelector('.modal-curso-text-overlay');
+
+        if (closeBtnCurso) {
+            closeBtnCurso.addEventListener('click', () => {
+                modalCurso.style.display = 'none';
+                sessionStorage.setItem('cursoNotifClosed', 'true');
+            });
+        }
+        
+        if (textCloseBtn && textOverlay) {
+            textCloseBtn.addEventListener('click', () => {
+                textOverlay.style.display = 'none';
+            });
+        }
     }
 
     // Lógica genérica para esconder/mostrar qualquer sidebar
