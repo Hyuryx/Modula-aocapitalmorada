@@ -116,17 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Mostrar Modal Curso Destaque
-        const modalCurso = document.getElementById('modal-curso-destaque');
-        if (modalCurso) {
-            if (targetId === 'view-cursos' && !sessionStorage.getItem('cursoNotifClosed')) {
-                modalCurso.style.display = 'flex';
-                const textOverlay = modalCurso.querySelector('.modal-curso-text-overlay');
-                if (textOverlay) textOverlay.style.display = 'block';
-            } else if (targetId !== 'view-cursos') {
-                modalCurso.style.display = 'none';
-            }
-        }
+        // Mostrar Modal Destaque (Disparar evento para notificacoes.js)
+        window.dispatchEvent(new CustomEvent('tabChanged', { detail: { targetId } }));
     }
 
     globalNavItems.forEach(item => {
@@ -200,6 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     sidebar.classList.add('collapsed');
                 }
             }
+
+            // Disparar evento para atualizar banner / modal ao clicar na sub-aba
+            window.dispatchEvent(new CustomEvent('tabChanged', { detail: { targetId } }));
         });
     });
 
@@ -326,17 +320,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Modal Curso Destaque Lógica
-    const modalCurso = document.getElementById('modal-curso-destaque');
-    if (modalCurso) {
-        const closeBtnCurso = modalCurso.querySelector('.modal-curso-close');
-        const textCloseBtn = modalCurso.querySelector('.modal-curso-text-close');
-        const textOverlay = modalCurso.querySelector('.modal-curso-text-overlay');
+    // Modal Destaque (Avisos) Setup
+    const modalDestaque = document.getElementById('modal-destaque');
+    if (modalDestaque) {
+        const closeBtnDestaque = modalDestaque.querySelector('.modal-destaque-close');
+        const textCloseBtn = modalDestaque.querySelector('.modal-destaque-text-close');
+        const textOverlay = modalDestaque.querySelector('.modal-destaque-text-overlay');
 
-        if (closeBtnCurso) {
-            closeBtnCurso.addEventListener('click', () => {
-                modalCurso.style.display = 'none';
-                sessionStorage.setItem('cursoNotifClosed', 'true');
+        if (closeBtnDestaque) {
+            closeBtnDestaque.addEventListener('click', () => {
+                modalDestaque.style.display = 'none';
             });
         }
         

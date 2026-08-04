@@ -134,7 +134,7 @@ async function fetchAvisosData() {
 
       <h2>${escaparHtml(aviso.titulo)}</h2>
 
-      <p>${escaparHtml(aviso.resumo || aviso.descricao)}</p>
+      <p>${formatarTextoMarkdown(aviso.resumo || aviso.descricao)}</p>
 
       ${["curso", "evento", "manutencao"].includes(aviso.categoria) && aviso.fim ? `
       <div class="notificacao-rodape" style="display: flex; justify-content: space-between; align-items: center;">
@@ -354,8 +354,8 @@ function abrirModalAviso(index) {
         <span class="aviso-badge prioridade-${aviso.prioridade}">${aviso.prioridade}</span>
       </div>
       ${imagemHTML}
-      ${aviso.resumo ? `<p class="modal-aviso-resumo" style="font-weight: bold; margin-bottom: 10px;">${aviso.resumo}</p>` : ''}
-      <p class="modal-aviso-desc">${aviso.descricao}</p>
+      ${aviso.resumo ? `<p class="modal-aviso-resumo" style="font-weight: bold; margin-bottom: 10px; white-space: pre-wrap;">${formatarTextoMarkdown(aviso.resumo)}</p>` : ''}
+      <p class="modal-aviso-desc">${formatarTextoMarkdown(aviso.descricao)}</p>
       <div class="modal-aviso-datas">
         <p><strong>Início:</strong> ${formatarDataModal(aviso.inicio)}</p>
         ${["curso", "evento", "manutencao"].includes(aviso.categoria) && aviso.fim ? `
@@ -447,7 +447,7 @@ async function carregarAvisosCursos() {
             </svg>
             <div>
               <strong>Atenção:</strong> ${tituloBanner} <br>
-              <span style="font-size: 0.85em; opacity: 0.9;">${escaparHtmlLocal(aviso.resumo || aviso.descricao)}</span>
+              <span style="font-size: 0.85em; opacity: 0.9;">${formatarTextoMarkdown(aviso.resumo || aviso.descricao)}</span>
             </div>
           `;
           const header = el.querySelector('header') || el.querySelector('.section-header');
@@ -493,3 +493,94 @@ function escaparHtmlLocal(valor = "") {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
+
+function formatarTextoMarkdown(valor = "") {
+  let texto = escaparHtmlLocal(valor);
+  // Negrito: **texto**
+  texto = texto.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  // Itálico: *texto* ou _texto_
+  texto = texto.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  texto = texto.replace(/_(.*?)_/g, '<em>$1</em>');
+  return texto;
+}
+
+window.addEventListener('tabChanged', async (e) => {
+  const targetId = e.detail.targetId;
+  
+  try {
+    const avisos = await fetchAvisosData();
+    const agora = new Date();
+
+    const avisosAtivos = avisos.filter((aviso) => {
+      const inicio = new Date(aviso.inicio);
+      if (aviso.fim && String(aviso.fim).trim() !== "" && String(aviso.fim) !== "null") {
+        const dataFim = new Date(aviso.fim);
+        if (!isNaN(dataFim.getTime())) {
+          return aviso.ativo && agora >= inicio && agora < dataFim;
+        }
+      }
+      return aviso.ativo && agora >= inicio;
+    });
+
+    const mapaAbas = {
+      "Curso de Piloto": { id: "curso-aereo" },
+      "Resgate Aquático": { id: "curso-aquatico" },
+      "Resgate Montanha": { id: "curso-montanha" },
+      "Paraquedismo": { id: "curso-paraquedismo" },
+      "Início": { id: "view-inicio" },
+      "Avisos Gerais": { id: "view-avisos" },
+      "Regras": { id: "view-regras" },
+      "Uniformes": { id: "view-uniformes" },
+      "Cursos": { id: "view-cursos" },
+      "Modulação": { id: "view-modulacao" },
+      "Viaturas": { id: "view-viaturas" },
+      "Hierarquia": { id: "view-hierarquia" },
+      "Planilhas": { id: "view-planilhas" },
+      "Galeria": { id: "view-galeria" }
+    };
+
+    let avisoDestaque = null;
+    
+    for (const aviso of avisosAtivos) {
+      const abaConfig = mapaAbas[aviso.titulo];
+      if (abaConfig && abaConfig.id === targetId && aviso.imagem) {
+        avisoDestaque = aviso;
+        break;
+      }
+      
+      if (targetId === "view-cursos") {
+          const isCurso = ["Curso de Piloto", "Resgate Aquático", "Resgate Montanha", "Paraquedismo"].includes(aviso.titulo);
+          if (isCurso && aviso.imagem) {
+              avisoDestaque = aviso;
+              break;
+          }
+      }
+    }
+
+    const modalDestaque = document.getElementById('modal-destaque');
+    if (modalDestaque && avisoDestaque) {
+      const imgEl = document.getElementById('modal-destaque-img');
+      const textEl = document.getElementById('modal-destaque-text');
+      const overlayEl = document.getElementById('modal-destaque-overlay');
+      
+      if (imgEl) imgEl.src = avisoDestaque.imagem;
+      
+      if (textEl) {
+          let conteudoText = '';
+          if (avisoDestaque.resumo) {
+             conteudoText += `<strong>${formatarTextoMarkdown(avisoDestaque.resumo)}</strong>\n\n`;
+          }
+          conteudoText += formatarTextoMarkdown(avisoDestaque.descricao);
+          textEl.innerHTML = conteudoText;
+      }
+      
+      modalDestaque.style.display = 'flex';
+      if (overlayEl) overlayEl.style.display = 'block';
+    } else if (modalDestaque) {
+        modalDestaque.style.display = 'none';
+    }
+
+  } catch (err) {
+    console.error("Erro ao verificar destaque da aba", err);
+  }
+});
