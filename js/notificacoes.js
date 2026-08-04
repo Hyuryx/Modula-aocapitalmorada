@@ -463,6 +463,13 @@ async function carregarAvisosCursos() {
           navItem.classList.add('tem-aviso');
         }
       }
+      
+      if (aviso.mostrarAvisosGerais) {
+        const navItemGeral = document.querySelector(mapaAbas["Avisos Gerais"].selector);
+        if(navItemGeral) {
+          navItemGeral.classList.add('tem-aviso');
+        }
+      }
     });
 
   } catch (erro) {
