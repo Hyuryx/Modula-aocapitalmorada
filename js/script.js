@@ -474,6 +474,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (digitalClock) digitalClock.style.display = 'block';
                         startTimers();
                         if (btn) btn.disabled = false;
+                        
+                        // Disparar tabChanged agora que a tela está destravada
+                        const activeTab = localStorage.getItem('activeTab') || 'view-inicio';
+                        window.dispatchEvent(new CustomEvent('tabChanged', { detail: { targetId: activeTab } }));
                     }, 500);
                 } else {
                     // Senha Incorreta

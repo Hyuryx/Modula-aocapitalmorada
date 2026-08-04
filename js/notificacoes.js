@@ -505,6 +505,7 @@ function formatarTextoMarkdown(valor = "") {
 }
 
 window.addEventListener('tabChanged', async (e) => {
+  if (document.body.classList.contains('locked')) return;
   const targetId = e.detail.targetId;
   
   try {
