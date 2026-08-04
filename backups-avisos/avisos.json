@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": "resgate-aquatico-1785860445231",
+    "titulo": "Resgate Aquático",
+    "resumo": "TESTE1",
+    "descricao": "TESTANDO",
+    "imagem": "",
+    "categoria": "informacao",
+    "prioridade": "normal",
+    "inicio": "2026-08-04T13:05:00-03:00",
+    "fim": null,
+    "link": "",
+    "mostrarPopup": true,
+    "mostrarAvisosGerais": true,
+    "piscar": true,
+    "ativo": true
+  }
+]
