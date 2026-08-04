@@ -432,6 +432,11 @@ async function carregarAvisosCursos() {
         const el = document.getElementById(aba.id);
         if(el && !el.querySelector('.aviso-curso-banner')) {
           const temFim = aviso.fim && String(aviso.fim).trim() !== "" && String(aviso.fim) !== "null";
+          const isCurso = ["Curso de Piloto", "Resgate Aquático", "Resgate Montanha", "Paraquedismo"].includes(aviso.titulo);
+          const tituloBanner = isCurso 
+            ? "Há um aviso ativo para este curso. Veja a aba Avisos Gerais." 
+            : "Há um aviso ativo para esta categoria.";
+            
           const banner = document.createElement('div');
           banner.className = 'aviso-curso-banner';
           banner.innerHTML = `
@@ -442,7 +447,7 @@ async function carregarAvisosCursos() {
               <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
             <div>
-              <strong>Atenção:</strong> Há um aviso ativo para esta área. <br>
+              <strong>Atenção:</strong> ${tituloBanner} <br>
               <span style="font-size: 0.85em; opacity: 0.9;">${escaparHtmlLocal(aviso.resumo || aviso.descricao)}</span>
             </div>
           `;
