@@ -181,8 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Disparar evento para atualizar banner / modal ao clicar na sub-aba
-            window.dispatchEvent(new CustomEvent('tabChanged', { detail: { targetId } }));
+            // A lógica de disparar modal em sub-abas foi removida a pedido do usuário
         });
     });
 
