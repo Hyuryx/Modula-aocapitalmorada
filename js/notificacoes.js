@@ -134,7 +134,7 @@ async function fetchAvisosData() {
 
       <h2>${escaparHtml(aviso.titulo)}</h2>
 
-      <p>${escaparHtml(aviso.descricao)}</p>
+      <p>${escaparHtml(aviso.resumo || aviso.descricao)}</p>
 
       ${["curso", "evento", "manutencao"].includes(aviso.categoria) && aviso.fim ? `
       <div class="notificacao-rodape" style="display: flex; justify-content: space-between; align-items: center;">
@@ -341,6 +341,10 @@ function abrirModalAviso(index) {
   const linkHTML = aviso.link 
     ? `<a href="${aviso.link}" class="modal-aviso-link" target="_blank">Acessar Link</a>` 
     : `<a class="modal-aviso-link inativo">Acessar Link</a>`;
+    
+  const imagemHTML = aviso.imagem
+    ? `<img src="${aviso.imagem}" alt="Imagem do Aviso" style="width: 100%; max-height: 400px; object-fit: contain; border-radius: 8px; margin: 15px 0;">`
+    : "";
 
   modal.innerHTML = `
     <div class="modal-aviso-conteudo">
@@ -350,6 +354,8 @@ function abrirModalAviso(index) {
         <span class="aviso-badge">${aviso.categoria}</span>
         <span class="aviso-badge prioridade-${aviso.prioridade}">${aviso.prioridade}</span>
       </div>
+      ${imagemHTML}
+      ${aviso.resumo ? `<p class="modal-aviso-resumo" style="font-weight: bold; margin-bottom: 10px;">${aviso.resumo}</p>` : ''}
       <p class="modal-aviso-desc">${aviso.descricao}</p>
       <div class="modal-aviso-datas">
         <p><strong>Início:</strong> ${formatarDataModal(aviso.inicio)}</p>
@@ -391,29 +397,39 @@ async function carregarAvisosCursos() {
       return aviso.ativo && agora >= inicio;
     });
 
-    const mapaCursos = {
-      "Curso de Piloto": "aereo",
-      "Resgate Aquático": "aquatico",
-      "Resgate Montanha": "montanha",
-      "Paraquedismo": "paraquedismo"
+    const mapaAbas = {
+      "Curso de Piloto": { id: "curso-aereo", selector: ".sidebar-nav li[data-target='curso-aereo']" },
+      "Resgate Aquático": { id: "curso-aquatico", selector: ".sidebar-nav li[data-target='curso-aquatico']" },
+      "Resgate Montanha": { id: "curso-montanha", selector: ".sidebar-nav li[data-target='curso-montanha']" },
+      "Paraquedismo": { id: "curso-paraquedismo", selector: ".sidebar-nav li[data-target='curso-paraquedismo']" },
+      "Início": { id: "view-inicio", selector: ".nav-item[data-global-target='view-inicio']" },
+      "Avisos Gerais": { id: "view-avisos", selector: ".nav-item[data-global-target='view-avisos']" },
+      "Regras": { id: "view-regras", selector: ".nav-item[data-global-target='view-regras']" },
+      "Uniformes": { id: "view-uniformes", selector: ".nav-item[data-global-target='view-uniformes']" },
+      "Cursos": { id: "view-cursos", selector: ".nav-item[data-global-target='view-cursos']" },
+      "Modulação": { id: "view-modulacao", selector: ".nav-item[data-global-target='view-modulacao']" },
+      "Viaturas": { id: "view-viaturas", selector: ".nav-item[data-global-target='view-viaturas']" },
+      "Hierarquia": { id: "view-hierarquia", selector: ".nav-item[data-global-target='view-hierarquia']" },
+      "Planilhas": { id: "view-planilhas", selector: ".nav-item[data-global-target='view-planilhas']" },
+      "Galeria": { id: "view-galeria", selector: ".nav-item[data-global-target='view-galeria']" }
     };
 
     // Reset current notifications
-    Object.values(mapaCursos).forEach(id => {
-      const el = document.getElementById(`curso-${id}`);
+    Object.values(mapaAbas).forEach(aba => {
+      const el = document.getElementById(aba.id);
       if(el) {
         const notif = el.querySelector('.aviso-curso-banner');
         if(notif) notif.remove();
       }
-      const navItem = document.querySelector(`.sidebar-nav li[data-target="curso-${id}"]`);
+      const navItem = document.querySelector(aba.selector);
       if(navItem) navItem.classList.remove('tem-aviso');
     });
 
     // Add new notifications
     avisosAtivos.forEach(aviso => {
-      if (mapaCursos[aviso.titulo]) {
-        const id = mapaCursos[aviso.titulo];
-        const el = document.getElementById(`curso-${id}`);
+      if (mapaAbas[aviso.titulo]) {
+        const aba = mapaAbas[aviso.titulo];
+        const el = document.getElementById(aba.id);
         if(el && !el.querySelector('.aviso-curso-banner')) {
           const temFim = aviso.fim && String(aviso.fim).trim() !== "" && String(aviso.fim) !== "null";
           const banner = document.createElement('div');
@@ -426,11 +442,11 @@ async function carregarAvisosCursos() {
               <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
             <div>
-              <strong>Atenção:</strong> Há um aviso ativo para este curso. <br>
-              <span style="font-size: 0.85em; opacity: 0.9;">${escaparHtmlLocal(aviso.descricao)}</span>
+              <strong>Atenção:</strong> Há um aviso ativo para esta área. <br>
+              <span style="font-size: 0.85em; opacity: 0.9;">${escaparHtmlLocal(aviso.resumo || aviso.descricao)}</span>
             </div>
           `;
-          const header = el.querySelector('header');
+          const header = el.querySelector('header') || el.querySelector('.section-header');
           if (header) {
             header.insertAdjacentElement('afterend', banner);
           } else {
@@ -438,7 +454,7 @@ async function carregarAvisosCursos() {
           }
         }
         
-        const navItem = document.querySelector(`.sidebar-nav li[data-target="curso-${id}"]`);
+        const navItem = document.querySelector(aba.selector);
         if(navItem) {
           navItem.classList.add('tem-aviso');
         }

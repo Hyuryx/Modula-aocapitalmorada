@@ -68,17 +68,50 @@
           <input
             type="text"
             id="titulo"
-            list="opcoes-curso"
+            list="opcoes-abas"
             maxlength="100"
             required
-            placeholder="Selecione um curso ou digite um título"
+            placeholder="Selecione uma aba ou digite um título"
           >
-          <datalist id="opcoes-curso">
+          <datalist id="opcoes-abas">
+            <option value="Início"></option>
+            <option value="Avisos Gerais"></option>
+            <option value="Regras"></option>
+            <option value="Uniformes"></option>
+            <option value="Cursos"></option>
             <option value="Curso de Piloto"></option>
             <option value="Resgate Aquático"></option>
             <option value="Resgate Montanha"></option>
             <option value="Paraquedismo"></option>
+            <option value="Modulação"></option>
+            <option value="Viaturas"></option>
+            <option value="Hierarquia"></option>
+            <option value="Planilhas"></option>
+            <option value="Galeria"></option>
           </datalist>
+        </div>
+
+        <div class="campo campo-completo">
+          <label for="resumo">Resumo (Informação Curta)</label>
+          <input
+            type="text"
+            id="resumo"
+            maxlength="150"
+            required
+            placeholder="Texto curto que aparecerá no pop-up (Max: 150 caracteres)"
+          >
+        </div>
+
+        <div class="campo campo-completo">
+          <label for="imagem">Imagem (Aparecerá nos Avisos Gerais)</label>
+          <input
+            type="file"
+            id="imagem"
+            accept="image/*"
+            style="padding: 10px; background-color: var(--surface-hover); border-radius: 8px;"
+          >
+          <small style="color: var(--text-muted); display: block; margin-top: 5px;">Selecione uma imagem. Ela será otimizada automaticamente.</small>
+          <img id="previewImagem" style="display: none; max-width: 200px; margin-top: 10px; border-radius: 8px;">
         </div>
 
         <div class="campo campo-completo">

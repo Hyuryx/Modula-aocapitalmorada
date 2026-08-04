@@ -8,6 +8,56 @@ const salvarArquivo = document.getElementById("salvarArquivo");
 const semFimCheckbox = document.getElementById("semFim");
 const fimInput = document.getElementById("fim");
 const inicioInput = document.getElementById("inicio");
+const imagemInput = document.getElementById("imagem");
+const previewImagem = document.getElementById("previewImagem");
+
+let imagemBase64 = "";
+
+if (imagemInput) {
+  imagemInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      imagemBase64 = "";
+      previewImagem.style.display = "none";
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const img = new Image();
+      img.onload = function() {
+        // Redimensionar e comprimir a imagem
+        const canvas = document.createElement("canvas");
+        const MAX_WIDTH = 800;
+        const MAX_HEIGHT = 800;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+        
+        // Comprimir para JPEG 70% qualidade
+        imagemBase64 = canvas.toDataURL("image/jpeg", 0.7);
+        previewImagem.src = imagemBase64;
+        previewImagem.style.display = "block";
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
 
 semFimCheckbox.addEventListener("change", (e) => {
   if (e.target.checked) {
@@ -237,10 +287,12 @@ formulario.addEventListener("submit", (evento) => {
   const aviso = {
     id: avisoExistente?.id || criarId(titulo),
     titulo,
+    resumo: document.getElementById("resumo").value.trim(),
     descricao: document
       .getElementById("descricao")
       .value
       .trim(),
+    imagem: imagemBase64,
     categoria: document.getElementById("categoria").value,
     prioridade: document.getElementById("prioridade").value,
     inicio: converterParaISOComFuso(inicio),
@@ -278,7 +330,18 @@ window.editarAviso = function(id) {
 
   document.getElementById("avisoId").value = aviso.id;
   document.getElementById("titulo").value = aviso.titulo;
+  document.getElementById("resumo").value = aviso.resumo || "";
   document.getElementById("descricao").value = aviso.descricao;
+  
+  imagemBase64 = aviso.imagem || "";
+  if (imagemBase64) {
+    document.getElementById("previewImagem").src = imagemBase64;
+    document.getElementById("previewImagem").style.display = "block";
+  } else {
+    document.getElementById("previewImagem").style.display = "none";
+  }
+  document.getElementById("imagem").value = ""; // Reseta o input file visualmente
+
   document.getElementById("categoria").value = aviso.categoria;
   document.getElementById("prioridade").value = aviso.prioridade;
   document.getElementById("inicio").value =
@@ -338,6 +401,10 @@ window.excluirAviso = function(id) {
 function limparFormulario() {
   idEmEdicao = null;
   document.getElementById("avisoId").value = "";
+  document.getElementById("resumo").value = "";
+  document.getElementById("imagem").value = "";
+  imagemBase64 = "";
+  document.getElementById("previewImagem").style.display = "none";
 
   const agora = new Date();
   agora.setMinutes(agora.getMinutes() - agora.getTimezoneOffset());

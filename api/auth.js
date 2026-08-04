@@ -19,13 +19,18 @@ module.exports = async (req, res) => {
     
     // Pegar a senha do env ou usar um fallback de segurança nulo
     const MASTER_PASSWORD = process.env.MASTER_PASSWORD;
+    
+    // Identifica se está rodando localmente pelo host
+    const host = req.headers.host || "";
+    const isLocal = host.includes("localhost");
 
-    if (!MASTER_PASSWORD) {
+    if (!MASTER_PASSWORD && !isLocal) {
        console.error("ERRO: MASTER_PASSWORD não está configurada na Vercel.");
        return res.status(500).json({ erro: "Configuração do servidor ausente." });
     }
 
-    if (password === MASTER_PASSWORD) {
+    // Aceita qualquer senha no ambiente local ou verifica a senha correta em produção
+    if (isLocal || password === MASTER_PASSWORD) {
       // Se a senha estiver correta, criamos um cookie seguro
       // HttpOnly: O JS do navegador não consegue ler (protege contra roubo via XSS)
       // Path=/: Vale para o site todo (inclusive para /api/avisos)
