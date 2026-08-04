@@ -432,7 +432,8 @@ body.locked #central-notificacoes {
   100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
 }
 
-.sidebar-nav li.tem-aviso {
+.sidebar-nav li.tem-aviso,
+.nav-item.tem-aviso {
   position: relative;
 }
 .sidebar-nav li.tem-aviso::after {
@@ -440,6 +441,18 @@ body.locked #central-notificacoes {
   position: absolute;
   top: 10px;
   right: 15px;
+  width: 10px;
+  height: 10px;
+  background-color: #dc3545;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #dc3545;
+  animation: piscar-aviso 1.5s infinite alternate;
+}
+.nav-item.tem-aviso::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 8px;
   width: 10px;
   height: 10px;
   background-color: #dc3545;
