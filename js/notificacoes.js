@@ -562,11 +562,11 @@ window.addEventListener('tabChanged', async (e) => {
       }
     }
 
-    // Hardcoded fallback para Resgate Aquático e Evento de Login
-    if (!avisoDestaque && (targetId === 'curso-aquatico' || targetId === 'login-event')) {
+    // Hardcoded fallback para Evento de Login
+    if (!avisoDestaque && targetId === 'login-event') {
       avisoDestaque = {
-        imagem: 'assets/cursos/aquatico/extra.png',
-        descricao: `🚨 CURSO DE RESGATE AQUÁTICO\n\nAs inscrições para o Curso de Resgate Aquático estão abertas.\n\n📅 Data: 10/08\n🕗 Horário: 20h\n\n⚠️ Compareça no horário. Após o início do curso, não será permitida a entrada de participantes atrasados.\n\nPrepare-se para um treinamento desafiador e siga todas as orientações da equipe de instrução.\n\nBoa sorte, bombeiro! 🌊`
+        imagem: 'assets/eventos/luta.png',
+        descricao: `🏆 **ESTÁ OFICIALMENTE ABERTO O GRANDE TORNEIO DE LUTAS DA SAÚDE CAPITALENSE** 🏆\n\nA hora de provar quem tem a mão mais pesada da cidade chegou! Prepare-se para uma semana de combates intensos, muita adrenalina e prêmios milionários. Junte sua coragem e venha fazer história da Capital!\n\n📅 **Cronograma do Evento**\nPeríodo de Inscrições: 10/08 até 16/08 *(Não perca o prazo!)*\nInício das Lutas (Fase Classificatória): 17/08\nGrande Semifinal e Final: 21/08 (Sexta-feira), às 22h\n\n📍 **Localização**\nComunidade da Nova Holanda *(A arena será montada no coração da comunidade!)*\n\n💰 **Premiação**\nConfira o que os vencedores vão levar para casa:\n\n🥇 **1º Lugar** R$ 1.200.000 \n🥈 **2º Lugar** R$ 600.000 \n🥉 **3º Lugar** R$ 200.000`
       };
     }
 
@@ -578,17 +578,21 @@ window.addEventListener('tabChanged', async (e) => {
       
       if (imgEl) imgEl.src = avisoDestaque.imagem;
       
+      let hasText = false;
       if (textEl) {
           let conteudoText = '';
           if (avisoDestaque.resumo) {
              conteudoText += `<strong>${formatarTextoMarkdown(avisoDestaque.resumo)}</strong>\n\n`;
           }
-          conteudoText += formatarTextoMarkdown(avisoDestaque.descricao);
+          if (avisoDestaque.descricao) {
+             conteudoText += formatarTextoMarkdown(avisoDestaque.descricao);
+          }
           textEl.innerHTML = conteudoText;
+          hasText = conteudoText.trim() !== '';
       }
       
       modalDestaque.style.display = 'flex';
-      if (overlayEl) overlayEl.style.display = 'block';
+      if (overlayEl) overlayEl.style.display = hasText ? 'block' : 'none';
     } else if (modalDestaque) {
         modalDestaque.style.display = 'none';
     }
