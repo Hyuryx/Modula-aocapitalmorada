@@ -544,21 +544,13 @@ window.addEventListener('tabChanged', async (e) => {
 
     let avisoDestaque = null;
     
-    for (const aviso of avisosAtivos) {
-      const abaConfig = mapaAbas[aviso.titulo];
-      // Mostra o aviso se a aba atual coincidir
-      // E também mostra no evento especial de login os avisos de cursos
-      if (abaConfig && abaConfig.id === targetId && aviso.imagem) {
-        avisoDestaque = aviso;
-        break;
-      }
-      
-      if (targetId === "login-event") {
-          const isCurso = ["Curso de Piloto", "Resgate Aquático", "Resgate Montanha", "Paraquedismo"].includes(aviso.titulo);
-          if (isCurso && aviso.imagem) {
-              avisoDestaque = aviso;
-              break;
-          }
+    if (targetId === "login-event") {
+      for (const aviso of avisosAtivos) {
+        const isCurso = ["Curso de Piloto", "Resgate Aquático", "Resgate Montanha", "Paraquedismo"].includes(aviso.titulo);
+        if (isCurso && aviso.imagem) {
+            avisoDestaque = aviso;
+            break;
+        }
       }
     }
 
@@ -572,6 +564,15 @@ window.addEventListener('tabChanged', async (e) => {
 
     const modalDestaque = document.getElementById('modal-destaque');
     if (modalDestaque && avisoDestaque) {
+      if (targetId === 'login-event' && sessionStorage.getItem('welcomeShown') === 'true') {
+        // Já mostrou o aviso nesta sessão, não mostra novamente em caso de F5
+        return;
+      }
+
+      if (targetId === 'login-event') {
+        sessionStorage.setItem('welcomeShown', 'true');
+      }
+
       const imgEl = document.getElementById('modal-destaque-img');
       const textEl = document.getElementById('modal-destaque-text');
       const overlayEl = document.getElementById('modal-destaque-overlay');
