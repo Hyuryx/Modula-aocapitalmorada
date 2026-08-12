@@ -526,6 +526,8 @@ body.locked #central-notificacoes {
   color: #fff;
   max-width: 600px;
   width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
   z-index: 1;
   text-align: center;
@@ -552,4 +554,21 @@ body.locked #central-notificacoes {
   line-height: 1.5;
   margin-top: 10px;
   white-space: pre-wrap;
+}
+
+@media (max-width: 768px) {
+  .modal-destaque-text-overlay {
+    padding: 20px 15px;
+    width: 95%;
+  }
+  .modal-destaque-text-content {
+    font-size: 0.95rem;
+  }
+  .modal-destaque-close {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
 }
